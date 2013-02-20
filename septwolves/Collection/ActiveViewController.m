@@ -7,7 +7,7 @@
 //
 
 #import "ActiveViewController.h"
-#import "cView.h"
+#import "cViewController.h"
 #define BIGLISTHEIGHT 160
 #define SMALLLISTHEIGHT 100
 #define SMALLLISTWIDTH 140  
@@ -45,16 +45,20 @@
 //需判断有无数据
 -(void)creatBig:(UIView*)view
 {
-    cView *cview = [[[cView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, BIGLISTHEIGHT) title:@"ssss" img:@"http://t3.baidu.com/it/u=3644186789,3529490292&fm=24&gp=0.jpg" cornerable:NO] autorelease];
-    [view addSubview:cview];
+    cViewController *cview = [[cViewController alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, BIGLISTHEIGHT) title:@"ssss" img:@"http://t3.baidu.com/it/u=3644186789,3529490292&fm=24&gp=0.jpg" cornerable:NO];
+    cview.delegate = self;
+    [view addSubview:cview.view];
+    [cview release];
 }
 //2、小列表
 //需判断有无数据
 -(void)creatSmall:(UIView*)view
 {
     for (NSInteger i = 0; i<10; i++) {
-        cView *cview = [[[cView alloc]initWithFrame:CGRectMake(10+ (i % 2) * (SMALLLISTWIDTH + 10), floor(i/2) * (SMALLLISTHEIGHT+10) + BIGLISTHEIGHT + 10, SMALLLISTWIDTH, SMALLLISTHEIGHT) title:@"ssss" img:@"http://t3.baidu.com/it/u=3644186789,3529490292&fm=24&gp=0.jpg" cornerable:YES] autorelease];
-        [view addSubview:cview];
+        cViewController *cview = [[cViewController alloc]initWithFrame:CGRectMake(10+ (i % 2) * (SMALLLISTWIDTH + 10), floor(i/2) * (SMALLLISTHEIGHT+10) + BIGLISTHEIGHT + 10, SMALLLISTWIDTH, SMALLLISTHEIGHT) title:@"ssss" img:@"http://t3.baidu.com/it/u=3644186789,3529490292&fm=24&gp=0.jpg" cornerable:YES];
+        cview.delegate = self;
+        [view addSubview:cview.view];
+        [cview release];
     }
 }
 
@@ -80,6 +84,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//实现cViewController的触碰
+- (void)touchEvent:(cViewController *)viewController
+{
+    NSLog(@"%@",@"sss");
 }
 
 @end

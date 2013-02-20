@@ -12,7 +12,9 @@
 #define CORNER 6
 #define LABELHEIGHT 30
 
-@implementation cView
+@implementation cView{
+    BOOL testHits; 
+}
 @synthesize imageView,label,title,img,cornerable;
 - (id)initWithFrame:(CGRect)frame
 {
@@ -29,28 +31,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        imageView = [[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)]autorelease];
-        //[imageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"pingBg.png"]];
-        [imageView setImage:[UIImage imageNamed:@"pingBg.png"]];
-        UILabel *bottomlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height - LABELHEIGHT, frame.size.width,LABELHEIGHT)];
-        [bottomlabel setText:text];
-        [bottomlabel setTextAlignment:NSTextAlignmentCenter];
-        [bottomlabel setTextColor:[UIColor whiteColor]];
-        [bottomlabel setBackgroundColor:[UIColor blackColor]];
-        bottomlabel.opaque = YES;
-        [bottomlabel setAlpha:0.6f];
-        if (cable)
-        {
-            // 圆角
-            self.layer.masksToBounds = YES;
-            self.opaque = YES;
-            self.layer.cornerRadius = CORNER;
-            self.layer.borderWidth = 1.0;
-            self.layer.borderColor = [[UIColor grayColor] CGColor];
-        }
-        [self addSubview:imageView];
-        [self addSubview:bottomlabel];
-        [bottomlabel release];
+        
     }
     return self;
 }
@@ -59,8 +40,28 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect{
     // Drawing code
+    
 }
-
+/*
+-(UIView*) hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    if(testHits){
+        return nil;
+    }
+    UIView *hitView = [super hitTest:point withEvent:event];
+    if (hitView == self) {
+        testHits = YES;
+        CGPoint superPoint = [self.superview convertPoint:point fromView:self];
+        
+        if(self.superview != nil){
+            UIView *superHitView = [self.superview hitTest:superPoint withEvent:event];
+            testHits = NO;
+            hitView = superHitView;
+        }
+        
+    }
+    return hitView;
+}
+*/
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self setAlpha:0.6f];
@@ -68,12 +69,14 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
+    [[self nextResponder]touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self setAlpha:1];
+    [[self nextResponder]touchesEnded:touches withEvent:event];
 }
+
 
 @end

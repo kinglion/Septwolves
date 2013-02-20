@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "cViewController.h"
 
-@interface ActiveViewController : UIViewController<UIScrollViewDelegate>
+@interface ActiveViewController : UIViewController<UIScrollViewDelegate,cViewDelegate>
 @property (nonatomic,retain)UIScrollView *scrollView;
 @end

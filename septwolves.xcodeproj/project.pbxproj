@@ -12,6 +12,7 @@
 		39481AC216D1E0CB00CC3BEC /* ActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39481AC116D1E0CB00CC3BEC /* ActiveViewController.m */; };
 		39592C9816D076F80041DA96 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 39592C9616D076F80041DA96 /* 03.png */; };
 		39592C9916D076F80041DA96 /* 03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39592C9716D076F80041DA96 /* 03@2x.png */; };
+		396244F516D30F6900FBEBA4 /* cViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 396244F416D30F6900FBEBA4 /* cViewController.m */; };
 		39822DF816D0D09D00297130 /* SBTableAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 39822DF716D0D09D00297130 /* SBTableAlert.m */; };
 		39822DFA16D0D57000297130 /* pingeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 39822DF916D0D57000297130 /* pingeBg.png */; };
 		39822DFC16D0D81800297130 /* indexBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 39822DFB16D0D81800297130 /* indexBG.png */; };
@@ -129,6 +130,8 @@
 		39481AC116D1E0CB00CC3BEC /* ActiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveViewController.m; sourceTree = "<group>"; };
 		39592C9616D076F80041DA96 /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 03.png; path = resource/03.png; sourceTree = "<group>"; };
 		39592C9716D076F80041DA96 /* 03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "03@2x.png"; path = "resource/03@2x.png"; sourceTree = "<group>"; };
+		396244F316D30F6900FBEBA4 /* cViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cViewController.h; sourceTree = "<group>"; };
+		396244F416D30F6900FBEBA4 /* cViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cViewController.m; sourceTree = "<group>"; };
 		3977BF6A16B7706E004D38ED /* JBKenBurnsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBKenBurnsView.h; sourceTree = "<group>"; };
 		3977BF6B16B7706E004D38ED /* JBKenBurnsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBKenBurnsView.m; sourceTree = "<group>"; };
 		39822DF616D0D09D00297130 /* SBTableAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTableAlert.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 			children = (
 				39481ABD16D1D3FB00CC3BEC /* cView.h */,
 				39481ABE16D1D3FB00CC3BEC /* cView.m */,
+				396244F316D30F6900FBEBA4 /* cViewController.h */,
+				396244F416D30F6900FBEBA4 /* cViewController.m */,
 			);
 			name = customView;
 			sourceTree = "<group>";
@@ -811,6 +816,7 @@
 				39822DF816D0D09D00297130 /* SBTableAlert.m in Sources */,
 				39481ABF16D1D3FB00CC3BEC /* cView.m in Sources */,
 				39481AC216D1E0CB00CC3BEC /* ActiveViewController.m in Sources */,
+				396244F516D30F6900FBEBA4 /* cViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "cViewController.h"
+#import "cView.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface ActiveViewController : UIViewController<UIScrollViewDelegate,cViewDelegate>
+@interface ActiveViewController : UIViewController<UIScrollViewDelegate,cViewDelegate,EGORefreshTableHeaderDelegate>
+{
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    BOOL _reloading;
+}
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 @property (nonatomic,retain)UIScrollView *scrollView;
 @end

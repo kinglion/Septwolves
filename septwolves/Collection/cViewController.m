@@ -8,7 +8,7 @@
 
 #import "cViewController.h"
 #import "cView.h"
-//#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #define CORNER 6
 #define LABELHEIGHT 30
@@ -24,9 +24,9 @@
     if(self){
         [self.view setFrame:frame];
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        //[imageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"pingBg.png"]];
-        UIImage *image = [UIImage imageNamed:@"pingBg.png"];
-        [imageView setImage:image];
+        [imageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"pingBg.png"]];
+        //UIImage *image = [UIImage imageNamed:@"pingBg.png"];
+        //[imageView setImage:image];
         [self.view addSubview:imageView];
         UILabel *bottomlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height - LABELHEIGHT, frame.size.width,LABELHEIGHT)];
         [bottomlabel setText:text];

@@ -21,11 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSMutableArray *array = [[NSMutableArray alloc]initWithObjects:@"indexBG.png",@"mannoone.png", nil];
-        SliderView *view = [[SliderView alloc]initWithFrame:_topView.frame ImageArr:array];
-        [self.topView addSubview:view];
-        [array release];
-        [view release];
+        
     }
     return self;
 }
@@ -33,6 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSMutableArray *array = [[NSMutableArray alloc]initWithObjects:@"indexBG.png",@"mannoone.png", nil];
+    SliderView *view = [[SliderView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height) ImageArr:array];
+    [self.topView addSubview:view];
+    [array release];
+    [view release];
     // Do any additional setup after loading the view from its nib.
 }
 

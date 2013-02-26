@@ -10,6 +10,7 @@
 #import "MosaicDataView.h"
 #import "MosaicData.h"
 #import "ActiveViewController.h"
+#import "ChrConsuViewController.h"
 
 @interface CollectionViewController ()
 
@@ -125,7 +126,7 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
             break;
         case 1:
             //名士资讯
-            //singleView = [[CollectionViewController alloc]init];
+            singleView = [[ChrConsuViewController alloc]init];
             break;
         default:
             break;

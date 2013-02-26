@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3930684816BFC1F300385F61 /* RootNavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3930684716BFC1F300385F61 /* RootNavController.xib */; };
+		3945F71316DCA47600F64A9B /* ChrConsuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71216DCA47500F64A9B /* ChrConsuViewController.m */; };
+		3945F71716DCA4D700F64A9B /* ChrConsuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71616DCA4D700F64A9B /* ChrConsuView.m */; };
+		3945F71B16DCC47D00F64A9B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71A16DCC47D00F64A9B /* JSONKit.m */; };
 		39481ABF16D1D3FB00CC3BEC /* cView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39481ABE16D1D3FB00CC3BEC /* cView.m */; };
 		39481AC216D1E0CB00CC3BEC /* ActiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39481AC116D1E0CB00CC3BEC /* ActiveViewController.m */; };
 		39592C9816D076F80041DA96 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 39592C9616D076F80041DA96 /* 03.png */; };
@@ -130,6 +133,12 @@
 
 /* Begin PBXFileReference section */
 		3930684716BFC1F300385F61 /* RootNavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootNavController.xib; sourceTree = "<group>"; };
+		3945F71116DCA47500F64A9B /* ChrConsuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrConsuViewController.h; sourceTree = "<group>"; };
+		3945F71216DCA47500F64A9B /* ChrConsuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChrConsuViewController.m; sourceTree = "<group>"; };
+		3945F71516DCA4D700F64A9B /* ChrConsuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrConsuView.h; sourceTree = "<group>"; };
+		3945F71616DCA4D700F64A9B /* ChrConsuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChrConsuView.m; sourceTree = "<group>"; };
+		3945F71916DCC47D00F64A9B /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		3945F71A16DCC47D00F64A9B /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		39481ABD16D1D3FB00CC3BEC /* cView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cView.h; path = customView/cView.h; sourceTree = "<group>"; };
 		39481ABE16D1D3FB00CC3BEC /* cView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = cView.m; path = customView/cView.m; sourceTree = "<group>"; };
 		39481AC016D1E0CB00CC3BEC /* ActiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveViewController.h; sourceTree = "<group>"; };
@@ -308,6 +317,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3945F71416DCA4B600F64A9B /* ChrConsuView */ = {
+			isa = PBXGroup;
+			children = (
+				3945F71516DCA4D700F64A9B /* ChrConsuView.h */,
+				3945F71616DCA4D700F64A9B /* ChrConsuView.m */,
+			);
+			name = ChrConsuView;
+			sourceTree = "<group>";
+		};
+		3945F71816DCC47D00F64A9B /* jsonkit */ = {
+			isa = PBXGroup;
+			children = (
+				3945F71916DCC47D00F64A9B /* JSONKit.h */,
+				3945F71A16DCC47D00F64A9B /* JSONKit.m */,
+			);
+			path = jsonkit;
+			sourceTree = "<group>";
+		};
 		39481ABC16D1D39700CC3BEC /* customView */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +587,7 @@
 				B4B2DF5B169E99BE002614CE /* ASINetworkQueue.h */,
 				B4B2DF5C169E99BE002614CE /* ASINetworkQueue.m */,
 				B4B2DF5D169E99BE002614CE /* ASIProgressDelegate.h */,
+				3945F71816DCC47D00F64A9B /* jsonkit */,
 				B4B2DF5E169E99BE002614CE /* ASIWebPageRequest */,
 				B4B2DF61169E99BE002614CE /* CloudFiles */,
 				B4B2DF70169E99BE002614CE /* Reachability */,
@@ -650,6 +678,9 @@
 				B4E75A321680110B0099EE8B /* CollectionViewController.xib */,
 				39481AC016D1E0CB00CC3BEC /* ActiveViewController.h */,
 				39481AC116D1E0CB00CC3BEC /* ActiveViewController.m */,
+				3945F71116DCA47500F64A9B /* ChrConsuViewController.h */,
+				3945F71216DCA47500F64A9B /* ChrConsuViewController.m */,
+				3945F71416DCA4B600F64A9B /* ChrConsuView */,
 				397DB3A216D5C8BC00E561E8 /* EGORefreshTableHeaderView.h */,
 				397DB3A316D5C8BC00E561E8 /* EGORefreshTableHeaderView.m */,
 			);
@@ -855,6 +886,9 @@
 				395F5BD716D61B8100A8BE2E /* detailViewController.m in Sources */,
 				39CEDA8B16D718FC00C144AC /* SliderView.m in Sources */,
 				39CEDA8E16D7191300C144AC /* VideoView.m in Sources */,
+				3945F71316DCA47600F64A9B /* ChrConsuViewController.m in Sources */,
+				3945F71716DCA4D700F64A9B /* ChrConsuView.m in Sources */,
+				3945F71B16DCC47D00F64A9B /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

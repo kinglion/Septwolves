@@ -9,6 +9,7 @@
 #import "ActiveViewController.h"
 #import "cView.h"
 #import "detailViewController.h"
+#import "JSONKit.h"
 #define BIGLISTHEIGHT 160.0f
 #define SMALLLISTHEIGHT 100.0f
 #define SMALLLISTWIDTH 140.0f
@@ -19,6 +20,7 @@
 
 @implementation ActiveViewController
 @synthesize scrollView = _scrollView;
+@synthesize array = _array;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,7 +36,6 @@
 {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [scrollView setDelegate:self];
-    scrollView.pagingEnabled = YES;
     scrollView.showsVerticalScrollIndicator = NO;
     return scrollView;
 }
@@ -43,7 +44,7 @@
 -(void)creatBig:(UIView*)view
 {
     cView *cview = [[cView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, BIGLISTHEIGHT)];
-    [cview setView:CGRectMake(0, 0, self.view.frame.size.width, BIGLISTHEIGHT) title:@"ssss" img:@"http://img.itc.cn/photo/jejJ6dJCVWW" cornerable:NO];
+    [cview setView:CGRectMake(0, 0, self.view.frame.size.width, BIGLISTHEIGHT) title:@"ssss" img:_array[0] cornerable:NO];
     cview.delegate = self;
     [view addSubview:cview];
     [cview release];
@@ -52,9 +53,10 @@
 //需判断有无数据
 -(void)creatSmall:(UIView*)view
 {
-    for (NSInteger i = 0; i<10; i++) {
+    int arrCount = [_array count] - 1;
+    for (NSInteger i = 0; i<arrCount; i++) {
         cView *cview = [[cView alloc]initWithFrame:CGRectMake(10.0f+ (i % 2) * (SMALLLISTWIDTH + 10.0f), floor(i/2) * (SMALLLISTHEIGHT+10.0f) + BIGLISTHEIGHT + 10.0f, SMALLLISTWIDTH, SMALLLISTHEIGHT)];
-        [cview setView:CGRectMake(10.0f+ (i % 2) * (SMALLLISTWIDTH + 10.0f), floor(i/2) * (SMALLLISTHEIGHT+10.0f) + BIGLISTHEIGHT + 10.0f, SMALLLISTWIDTH, SMALLLISTHEIGHT) title:@"ssss" img:@"http://img.itc.cn/photo/jejJ6dJCVWW" cornerable:YES];
+        [cview setView:CGRectMake(10.0f+ (i % 2) * (SMALLLISTWIDTH + 10.0f), floor(i/2) * (SMALLLISTHEIGHT+10.0f) + BIGLISTHEIGHT + 10.0f, SMALLLISTWIDTH, SMALLLISTHEIGHT) title:@"ssss" img:_array[i] cornerable:YES];
         cview.delegate = self;
         [view addSubview:cview];
         [cview release];
@@ -64,17 +66,25 @@
 //更新scrollview的contentsize
 -(void)updateScrollView:(UIScrollView*)scrollView
 {
-    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, BIGLISTHEIGHT + floor(9/2) * (SMALLLISTHEIGHT+10.0f) + BIGLISTHEIGHT + 10.0f)];
+    int arrCount = [_array count] - 1;
+    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, BIGLISTHEIGHT + floor(arrCount/2) * (SMALLLISTHEIGHT+10.0f) )];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    str = @"{\"a\":123, \"imgArr\":[\"http://img.itc.cn/photo/jejJ6dJCVWW\",\"http://www.fzlol.com/upimg/allimg/130226/2132T91491.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95612.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T93M4.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T963K.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95D6.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96048.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T921E.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T954410.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tca11.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132U012312.jpg\"]}";
+    NSDictionary *data = [str objectFromJSONString];
+    _array = [data objectForKey:@"imgArr"];
 	// Do any additional setup after loading the view.
     if (_scrollView == nil) {
         _scrollView = [self creatTable];
-        [self creatBig:_scrollView];
-        [self creatSmall:_scrollView];
+        int arrCount = [_array count];
+        NSLog(@"%d",arrCount);
+        if (arrCount>0) {
+            [self creatBig:_scrollView];
+            [self creatSmall:_scrollView];
+        }
         [self updateScrollView:_scrollView];
         NSLog(@"scrollView frameHeight:%f,contentHeight:%f",_scrollView.frame.size.height,_scrollView.contentSize.height);
         [self.view addSubview:_scrollView];

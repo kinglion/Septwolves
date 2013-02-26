@@ -14,8 +14,10 @@
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;
+    NSString *str;
 }
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
 @property (nonatomic,retain)UIScrollView *scrollView;
+@property (nonatomic,retain)NSMutableArray *array;
 @end

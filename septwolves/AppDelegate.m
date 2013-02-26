@@ -41,7 +41,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     rootNav = [[RootNavController alloc]initWithNibName:@"RootNavController" bundle:nil];
     [self.window makeKeyAndVisible];
-    UIImageView *splashView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
+    /*UIImageView *splashView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
     splashView.image = [UIImage imageNamed:@"sDefault.png"];
     [self.window addSubview:splashView];
     [self.window bringSubviewToFront:splashView];
@@ -52,7 +52,7 @@
     [UIView setAnimationDidStopSelector:@selector(startupAnimationDone:finished:context:)];
     splashView.alpha = 0.0;
     splashView.frame = CGRectMake(-60, -85, 440, 635);
-    [UIView commitAnimations];
+    [UIView commitAnimations];*/
     self.navController = [[UINavigationController alloc] initWithRootViewController:rootNav];
     self.navController.navigationBar.tintColor = [UIColor colorWithRed:(29.0/255.0) green:(29.0 / 255.0) blue:(29.0 / 255.0) alpha:1];
     [self.window addSubview:navController.view];

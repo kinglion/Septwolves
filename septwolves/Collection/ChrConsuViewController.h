@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChrConsuViewController : UIViewController
-
+@interface ChrConsuViewController : UIViewController<UIScrollViewDelegate>
+{
+    NSString *str;
+    NSMutableArray *array;
+}
+@property (nonatomic,retain)UIScrollView *scrollView;
 @end

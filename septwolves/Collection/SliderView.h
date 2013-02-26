@@ -24,8 +24,5 @@
 @property (nonatomic,assign) NSInteger currentNum;
 @property (nonatomic,assign) id<SliderDelegate> delegate;
 @property (nonatomic,retain) UIPageControl *pageControl;
-<<<<<<< HEAD
 @property (nonatomic,retain) UIScrollView *scrollView;
-=======
->>>>>>> 2013-02-26
 @end

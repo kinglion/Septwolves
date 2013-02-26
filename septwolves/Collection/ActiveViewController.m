@@ -67,7 +67,7 @@
 -(void)updateScrollView:(UIScrollView*)scrollView
 {
     int arrCount = [_array count] - 1;
-    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, BIGLISTHEIGHT + floor(arrCount/2) * (SMALLLISTHEIGHT+10.0f) )];
+    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, BIGLISTHEIGHT + (floor(arrCount/2)-1) * (SMALLLISTHEIGHT+10.0f)+BIGLISTHEIGHT)];
 }
 
 - (void)viewDidLoad

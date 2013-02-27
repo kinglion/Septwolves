@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ChrConsuViewController : UIViewController<UIScrollViewDelegate>
+#import "EGORefreshTableHeaderView.h"
+#import "ChrConsuView.h"
+@interface ChrConsuViewController : UIViewController<UIScrollViewDelegate,EGORefreshTableHeaderDelegate,ChrConsuViewDelegate>
 {
+    EGORefreshTableHeaderView *_refreshHeaderView;
     NSString *str;
     NSMutableArray *array;
+    BOOL _reloading;
 }
 @property (nonatomic,retain)UIScrollView *scrollView;
 @end

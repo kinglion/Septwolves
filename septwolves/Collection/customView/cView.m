@@ -22,7 +22,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        NSLog(@"initWithFrame 1");
         
     }
     return self;
@@ -32,7 +31,6 @@
 - (void)setView:(CGRect)frame title:(NSString*)text img:(NSString*)url cornerable:(BOOL)cable
 {
     // Initialization code
-    NSLog(@"initWithFrame 2");
     imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [imageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"pingeBg.png"]];
     //UIImage *image = [UIImage imageNamed:@"pingBg.png"];

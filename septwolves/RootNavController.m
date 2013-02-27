@@ -140,14 +140,14 @@
             break;
         case 2:
             //品格天下
-            singleView = [[DateViewController alloc]init];
+            singleView = [[ServiceViewController alloc]init];
             break;
         case 3:
             //品格着装顾问
             singleView = [[NewViewController alloc]init];
             break;
         case 4:
-            singleView = [[ServiceViewController alloc]init];
+            singleView = [[DateViewController alloc]init];
             //品格会
             break;
         default:

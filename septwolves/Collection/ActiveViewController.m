@@ -97,7 +97,7 @@
 		_refreshHeaderView = view;
         [view release];
 	}
-	
+	[_scrollView release];
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
 }
@@ -173,6 +173,7 @@
 {
     detailViewController *viewController = [[detailViewController alloc]initWithNibName:@"detailViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
+    [view setAlpha:1.0f];
     [viewController release];
     NSLog(@"%@",@"sss");
 }

@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ServiceViewController : UIViewController
+{
+    UISearchDisplayController *searchDisplayController;
+}
+
+@property (nonatomic, retain) IBOutlet UISearchDisplayController *searchDisplayController; 
 
 @end

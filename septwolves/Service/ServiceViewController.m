@@ -14,8 +14,13 @@
 @end
 
 @implementation ServiceViewController
+<<<<<<< HEAD
 @synthesize allArr;
 @synthesize resultArr;
+=======
+@synthesize searchDisplayController = _searchDisplayController;
+
+>>>>>>> 2013-02-27
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServiceViewController : UIViewController
+@interface ServiceViewController : UIViewController<UISearchDisplayDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
-    UISearchDisplayController *searchDisplayController;
 }
 
-@property (nonatomic, retain) IBOutlet UISearchDisplayController *searchDisplayController; 
-
+@property (nonatomic,retain)NSArray *allArr;
+@property (nonatomic,retain)NSArray *resultArr;
 @end

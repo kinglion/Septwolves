@@ -40,7 +40,7 @@
             imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height)];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             [imageView setImageWithURL:[NSURL URLWithString:array[0]] placeholderImage:[UIImage imageNamed:@"pingeBg.png"]];
-            NSLog(@"%d",arc4random() % 2);
+            //NSLog(@"%d",arc4random() % 0xffffffffu);
             [self addSubview:imageView];
             [imageView release];
         }

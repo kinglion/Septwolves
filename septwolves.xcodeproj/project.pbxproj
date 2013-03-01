@@ -24,6 +24,8 @@
 		39822DFA16D0D57000297130 /* pingeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 39822DF916D0D57000297130 /* pingeBg.png */; };
 		39822DFC16D0D81800297130 /* indexBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 39822DFB16D0D81800297130 /* indexBG.png */; };
 		39822DFE16D0E12E00297130 /* mannoone.png in Resources */ = {isa = PBXBuildFile; fileRef = 39822DFD16D0E12E00297130 /* mannoone.png */; };
+		398C751616E0BF0A004838F7 /* cTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 398C751516E0BF0A004838F7 /* cTableView.m */; };
+		398C751916E0C027004838F7 /* product.m in Sources */ = {isa = PBXBuildFile; fileRef = 398C751816E0C027004838F7 /* product.m */; };
 		399FAE4C16B920F1005FD31F /* RootNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 399FAE4A16B920F1005FD31F /* RootNavController.m */; };
 		39AD2F2516AF848100AF0CCE /* MosaicData.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F1916AF848100AF0CCE /* MosaicData.m */; };
 		39AD2F2616AF848100AF0CCE /* TwoDimentionalArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F1C16AF848100AF0CCE /* TwoDimentionalArray.m */; };
@@ -159,6 +161,10 @@
 		39822DF916D0D57000297130 /* pingeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pingeBg.png; path = resource/pingeBg.png; sourceTree = "<group>"; };
 		39822DFB16D0D81800297130 /* indexBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indexBG.png; path = resource/indexBG.png; sourceTree = "<group>"; };
 		39822DFD16D0E12E00297130 /* mannoone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mannoone.png; path = resource/mannoone.png; sourceTree = "<group>"; };
+		398C751416E0BF0A004838F7 /* cTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cTableView.h; sourceTree = "<group>"; };
+		398C751516E0BF0A004838F7 /* cTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cTableView.m; sourceTree = "<group>"; };
+		398C751716E0C026004838F7 /* product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = product.h; sourceTree = "<group>"; };
+		398C751816E0C027004838F7 /* product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = product.m; sourceTree = "<group>"; };
 		399FAE4916B920F1005FD31F /* RootNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavController.h; sourceTree = "<group>"; };
 		399FAE4A16B920F1005FD31F /* RootNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavController.m; sourceTree = "<group>"; };
 		39AD2F1816AF848100AF0CCE /* MosaicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MosaicData.h; sourceTree = "<group>"; };
@@ -365,6 +371,17 @@
 				39822DF716D0D09D00297130 /* SBTableAlert.m */,
 			);
 			path = SBAlert;
+			sourceTree = "<group>";
+		};
+		398C751316E0B434004838F7 /* customTableView */ = {
+			isa = PBXGroup;
+			children = (
+				398C751416E0BF0A004838F7 /* cTableView.h */,
+				398C751516E0BF0A004838F7 /* cTableView.m */,
+				398C751716E0C026004838F7 /* product.h */,
+				398C751816E0C027004838F7 /* product.m */,
+			);
+			name = customTableView;
 			sourceTree = "<group>";
 		};
 		39AD2F1616AF848100AF0CCE /* MosaicUI */ = {
@@ -711,6 +728,7 @@
 		B4E75A41168012AD0099EE8B /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				398C751316E0B434004838F7 /* customTableView */,
 				B4E75A42168012CC0099EE8B /* ServiceViewController.h */,
 				B4E75A43168012CC0099EE8B /* ServiceViewController.m */,
 				B4E75A44168012CC0099EE8B /* ServiceViewController.xib */,
@@ -889,6 +907,8 @@
 				3945F71316DCA47600F64A9B /* ChrConsuViewController.m in Sources */,
 				3945F71716DCA4D700F64A9B /* ChrConsuView.m in Sources */,
 				3945F71B16DCC47D00F64A9B /* JSONKit.m in Sources */,
+				398C751616E0BF0A004838F7 /* cTableView.m in Sources */,
+				398C751916E0C027004838F7 /* product.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

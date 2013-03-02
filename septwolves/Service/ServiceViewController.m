@@ -14,13 +14,9 @@
 @end
 
 @implementation ServiceViewController
-<<<<<<< HEAD
 @synthesize allArr;
 @synthesize resultArr;
-=======
-@synthesize searchDisplayController = _searchDisplayController;
 
->>>>>>> 2013-02-27
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -180,10 +176,18 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+<<<<<<< HEAD
     static NSString* identifier = @"cell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+=======
+    static NSString* Cellldentifier = @"Cell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:Cellldentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Cellldentifier]autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+>>>>>>> 2013-3-2
     }
     int resultNum = [self.resultArr count];
     if(resultNum > 0)

@@ -20,6 +20,7 @@
 @implementation RootNavController
 @synthesize tableView;
 @synthesize kenBurnsView;
+@synthesize navController;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -152,14 +153,20 @@
         default:
             break;
     }
-    CATransition *animation = [CATransition animation];
+    navController = [[NavViewController alloc]initWithRootViewController:singleView];
+    /*CATransition *animation = [CATransition animation];
     [animation setDuration:0.5];
     [animation setType:kCATransitionPush];
     [animation setSubtype:kCATransitionFromRight];
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    [[singleView.view layer] addAnimation:animation forKey:@"SwitchToView"];
+    
+    [[navController.view layer] addAnimation:animation forKey:@"SwitchToView"];*/
     //[self setModalPresentationStyle:UIModalTransitionStylePartialCurl];
-    [self presentViewController:singleView animated:NO completion:nil];
+    [self addChildViewController:navController];
+    [self transitionFromViewController:nil toViewController:navController duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{} completion:^(BOOL finished) {
+        //
+    }];
+   // [self presentViewController:navController animated:NO completion:nil];
     //[self.navigationController pushViewController:singleView animated:YES];
     [singleView release];
 }
@@ -169,6 +176,7 @@
 {
     [tableView release];
     [kenBurnsView release];
+    [navController release];
     [super dealloc];
 }
 

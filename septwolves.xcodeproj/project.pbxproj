@@ -98,6 +98,10 @@
 		B4C501C216996FF40013091C /* top_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4C501C016996FF40013091C /* top_pic@2x.png */; };
 		B4C501C6169985E50013091C /* single_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = B4C501C4169985E50013091C /* single_pic.png */; };
 		B4C501C7169985E50013091C /* single_pic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4C501C5169985E50013091C /* single_pic@2x.png */; };
+		B4D4317016E4F4EC00FC0657 /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4316E16E4F4EC00FC0657 /* NavViewController.m */; };
+		B4D4317116E4F4EC00FC0657 /* NavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D4316F16E4F4EC00FC0657 /* NavViewController.xib */; };
+		B4D4317516E5013D00FC0657 /* mainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D4317316E5013D00FC0657 /* mainViewController.m */; };
+		B4D4317616E5013D00FC0657 /* mainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D4317416E5013D00FC0657 /* mainViewController.xib */; };
 		B4E75A271680100A0099EE8B /* FristViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A251680100A0099EE8B /* FristViewController.m */; };
 		B4E75A331680110B0099EE8B /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A311680110B0099EE8B /* CollectionViewController.m */; };
 		B4E75A341680110B0099EE8B /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E75A321680110B0099EE8B /* CollectionViewController.xib */; };
@@ -284,6 +288,12 @@
 		B4C501C016996FF40013091C /* top_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "top_pic@2x.png"; path = "resource/top_pic@2x.png"; sourceTree = "<group>"; };
 		B4C501C4169985E50013091C /* single_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = single_pic.png; path = resource/single_pic.png; sourceTree = "<group>"; };
 		B4C501C5169985E50013091C /* single_pic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "single_pic@2x.png"; path = "resource/single_pic@2x.png"; sourceTree = "<group>"; };
+		B4D4316D16E4F4EC00FC0657 /* NavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
+		B4D4316E16E4F4EC00FC0657 /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
+		B4D4316F16E4F4EC00FC0657 /* NavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavViewController.xib; sourceTree = "<group>"; };
+		B4D4317216E5013D00FC0657 /* mainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainViewController.h; sourceTree = "<group>"; };
+		B4D4317316E5013D00FC0657 /* mainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mainViewController.m; sourceTree = "<group>"; };
+		B4D4317416E5013D00FC0657 /* mainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mainViewController.xib; sourceTree = "<group>"; };
 		B4E75A241680100A0099EE8B /* FristViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FristViewController.h; path = index/FristViewController.h; sourceTree = "<group>"; };
 		B4E75A251680100A0099EE8B /* FristViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FristViewController.m; path = index/FristViewController.m; sourceTree = "<group>"; };
 		B4E75A301680110B0099EE8B /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
@@ -509,6 +519,12 @@
 				399FAE4916B920F1005FD31F /* RootNavController.h */,
 				399FAE4A16B920F1005FD31F /* RootNavController.m */,
 				3930684716BFC1F300385F61 /* RootNavController.xib */,
+				B4D4317216E5013D00FC0657 /* mainViewController.h */,
+				B4D4317316E5013D00FC0657 /* mainViewController.m */,
+				B4D4317416E5013D00FC0657 /* mainViewController.xib */,
+				B4D4316D16E4F4EC00FC0657 /* NavViewController.h */,
+				B4D4316E16E4F4EC00FC0657 /* NavViewController.m */,
+				B4D4316F16E4F4EC00FC0657 /* NavViewController.xib */,
 				B48513AA1696841C0088B29F /* MainWindow.xib */,
 				B4E75A2316800EE60099EE8B /* Index */,
 				B4E75A2F1680110B0099EE8B /* Collection */,
@@ -844,6 +860,8 @@
 				395F5BD116D5D2AC00A8BE2E /* blueArrow.png in Resources */,
 				395F5BD216D5D2AC00A8BE2E /* blueArrow@2x.png in Resources */,
 				395F5BD816D61B8100A8BE2E /* detailViewController.xib in Resources */,
+				B4D4317116E4F4EC00FC0657 /* NavViewController.xib in Resources */,
+				B4D4317616E5013D00FC0657 /* mainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +927,8 @@
 				3945F71B16DCC47D00F64A9B /* JSONKit.m in Sources */,
 				398C751616E0BF0A004838F7 /* cTableView.m in Sources */,
 				398C751916E0C027004838F7 /* product.m in Sources */,
+				B4D4317016E4F4EC00FC0657 /* NavViewController.m in Sources */,
+				B4D4317516E5013D00FC0657 /* mainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

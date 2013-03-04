@@ -9,7 +9,8 @@
 #import "product.h"
 
 @implementation product
-@synthesize title,imgUrl,productId,type;
+@synthesize productId,type;
+@synthesize title,imgUrl;
 
 + (id)productWithType:(NSInteger)proId title:(NSString*)text imgUrl:(NSString*)url type:(NSInteger)typeId
 {

@@ -16,10 +16,7 @@
 @implementation ServiceViewController
 @synthesize allArr;
 @synthesize resultArr;
-<<<<<<< HEAD
 
-=======
->>>>>>> 2013-03-03
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

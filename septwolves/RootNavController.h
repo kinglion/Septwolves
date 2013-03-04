@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "JBKenBurnsView.h"
+#import "NavViewController.h"
 
 @interface RootNavController : UIViewController<UITableViewDataSource,UITableViewDelegate,KenBurnsViewDelegate,UINavigationControllerDelegate>
+{
+    NavViewController *navController;
+}
+@property (nonatomic, retain) NavViewController *navController;
 @property (strong , nonatomic) KenBurnsView *kenBurnsView;
 @property (nonatomic, retain) UITableView *tableView;
 @end

@@ -33,6 +33,7 @@
         [typeTable setDelegate:self];
         [typeTable setDataSource:self];
         [self.view addSubview:typeTable];
+        
         [uiimage release];
         [imageView release];
     }

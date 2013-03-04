@@ -53,11 +53,11 @@
     splashView.alpha = 0.0;
     splashView.frame = CGRectMake(-60, -85, 440, 635);
     [UIView commitAnimations];*/
-    self.navController = [[UINavigationController alloc] initWithRootViewController:rootNav];
-    self.navController.navigationBar.tintColor = [UIColor colorWithRed:(29.0/255.0) green:(29.0 / 255.0) blue:(29.0 / 255.0) alpha:1];
-    [self.window addSubview:navController.view];
+    //self.navController = [[UINavigationController alloc] initWithRootViewController:rootNav];
+    //self.navController.navigationBar.tintColor = [UIColor colorWithRed:(29.0/255.0) green:(29.0 / 255.0) blue:(29.0 / 255.0) alpha:1];
+    [self.window setRootViewController:rootNav];
     [rootNav release];
-    [navController release];
+    //[navController release];
     return YES;
     
 }

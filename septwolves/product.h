@@ -13,7 +13,10 @@
     NSInteger productId;
     NSString* title;
     NSString* imgUrl;
-    NSInteger* type;
+    NSInteger type;
 }
 @property(nonatomic,copy) NSString *title, *imgUrl;
+@property(nonatomic)NSInteger type;
+@property(nonatomic)NSInteger productId;
++ (id)productWithType:(NSInteger)proId title:(NSString*)text imgUrl:(NSString*)url type:(NSInteger)typeId;
 @end

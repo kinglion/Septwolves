@@ -61,7 +61,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     NSLog(@"self.navigationController:%@",self.navigationController);
-    [self.navigationController setNavigationBarHidden:YES];
     [self.tableView reloadData];
 }
 
@@ -153,8 +152,15 @@
         default:
             break;
     }
-    [self.navigationController pushViewController:singleView animated:YES];
-    [self.navigationController setNavigationBarHidden:NO];
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.5];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [[singleView.view layer] addAnimation:animation forKey:@"SwitchToView"];
+    //[self setModalPresentationStyle:UIModalTransitionStylePartialCurl];
+    [self presentViewController:singleView animated:NO completion:nil];
+    //[self.navigationController pushViewController:singleView animated:YES];
     [singleView release];
 }
 

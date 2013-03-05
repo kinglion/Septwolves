@@ -69,7 +69,8 @@
         default:
             break;
     }
-    navController = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
+    //navController = [[UINavigationController alloc]initWithNibName:@"NavViewController" bundle:nil];
+    navController = [[[NSBundle mainBundle] loadNibNamed:@"NavViewController" owner:self options:nil] objectAtIndex:0];
     [navController setViewControllers:[NSArray arrayWithObject:singleView]];
     /*CATransition *animation = [CATransition animation];
      [animation setDuration:0.5];
@@ -91,7 +92,6 @@
     // [self presentViewController:navController animated:NO completion:nil];
     //[self.navigationController pushViewController:singleView animated:YES];
     [singleView release];
-    [navController release];
 }
 
 @end

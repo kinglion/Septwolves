@@ -17,9 +17,9 @@
 
 @interface mainViewController : UIViewController<RootNavControllerDelegate>
 {
-    NavViewController *navController;
+    UINavigationController *navController;
     RootNavController *rootController;
 }
-@property (nonatomic, retain) NavViewController *navController;
+@property (nonatomic, retain) UINavigationController *navController;
 @property (nonatomic, retain) RootNavController *rootController;
 @end

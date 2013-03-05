@@ -25,12 +25,23 @@
 //  THE SOFTWARE
 
 #import "CustomNavigationBar.h"
-
+#import <QuartzCore/QuartzCore.h>
 #define MAX_BACK_BUTTON_WIDTH 160.0
 
 @implementation CustomNavigationBar
 @synthesize navigationBarBackgroundImage, navigationController;
 
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.tintColor = [UIColor colorWithRed:0.0 / 1.0 green:0.0 / 1.0 blue:0.0 / 1.0 alpha:1.0];
+    
+    // draw shadow
+    self.layer.masksToBounds = NO;
+    self.layer.shadowOffset = CGSizeMake(0, 3);
+    self.layer.shadowOpacity = 0.6;
+    self.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.bounds].CGPath;
+}
 // If we have a custom background image, then draw it, othwerwise call super and draw the standard nav bar
 - (void)drawRect:(CGRect)rect
 {

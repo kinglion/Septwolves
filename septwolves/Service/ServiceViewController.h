@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "cTableView.h"
 @interface ServiceViewController : UIViewController<UISearchDisplayDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
+    cTableView *ctableView;
+    NSString *str;
+    NSMutableArray *allArr;
+    NSMutableArray *resultArr;
 }
-
-@property (nonatomic,retain)NSArray *allArr;
-@property (nonatomic,retain)NSArray *resultArr;
+@property (nonatomic, retain)cTableView *ctableView;
+@property (nonatomic,retain)NSMutableArray *allArr;
+@property (nonatomic,retain)NSMutableArray *resultArr;
+@property (nonatomic,copy)NSString* str;
 @end

@@ -8,7 +8,8 @@
 //品格天下
 
 #import "ServiceViewController.h"
-
+#import "JSONKit.h"
+#import "product.h"
 @interface ServiceViewController ()
 
 @end
@@ -16,20 +17,32 @@
 @implementation ServiceViewController
 @synthesize allArr;
 @synthesize resultArr;
-
+@synthesize ctableView;
+@synthesize str;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        str = @"{\"result\":\"000\", \"list\":[{\"id\":\"0\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"1\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"}]}";
+        allArr = [[NSMutableArray alloc]init];
+        NSDictionary *data = [str objectFromJSONString];
+        NSArray *dataArray = [[NSArray alloc]initWithArray:[data objectForKey:@"list"]];
+        int allArrCount = [dataArray count];
+        NSLog(@"productsCount:%d",allArrCount);
+        for (NSInteger i = 0; i < allArrCount; i++) {
+            NSDictionary *single = [dataArray objectAtIndex:i];
+            product *productBean = [product productWithType:[[single objectForKey:@"id"] intValue] title:[single objectForKey:@"title"] imgUrl:[single objectForKey:@"imgUrl"] type:0];
+            [allArr addObject:productBean];
+        }
         [self.searchDisplayController setDelegate:self];
         [self.searchDisplayController setSearchResultsDataSource:self];
         [self.searchDisplayController setSearchResultsDelegate:self];
         [self.searchDisplayController.searchBar setScopeButtonTitles:[NSArray arrayWithObjects:@"First",@"Last",nil]];
         self.searchDisplayController.searchBar.delegate = self;
         [self.searchDisplayController.searchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-        
         [self.searchDisplayController.searchBar sizeToFit];
+        [ctableView reloadData];
     }
     return self;
 }
@@ -161,8 +174,7 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",self.searchDisplayController.searchBar.text];
     
     //将搜索的结果赋值给新的数组
-    self.resultArr = [self.allArr filteredArrayUsingPredicate:resultPredicate ] ;
-    
+    [self.resultArr setArray:[self.allArr filteredArrayUsingPredicate:resultPredicate ]];
     //NSLog(@"%@",self.resultArr);
     
     if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
@@ -198,9 +210,13 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.allArr = [NSArray arrayWithObjects:@"fdsa",@"wefews",@"sfdwew",@"tewres", nil];
+    //self.allArr = [NSArray arrayWithObjects:@"fdsa",@"wefews",@"sfdwew",@"tewres", nil];
     // Do any additional setup after loading the view from its nib.
+    ctableView = [[cTableView alloc]initWithFrame:CGRectMake(0, self.searchDisplayController.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchDisplayController.searchBar.frame.size.height) products:allArr];
+    NSLog(@"%f",self.view.frame.size.height - self.searchDisplayController.searchBar.frame.size.height);
+    [self.view addSubview:ctableView];
     [self.searchDisplayController.searchResultsTableView reloadData];
+    [ctableView release];
 }
 
 - (void)didReceiveMemoryWarning

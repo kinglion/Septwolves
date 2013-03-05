@@ -10,8 +10,8 @@
 #import "product.h"
 #import "cView.h"
 
-#define WIDTH 320
-#define HEIGHT 640
+#define WIDTH 320.0f
+#define HEIGHT 480.0f
 
 @implementation cTableView
 @synthesize products;
@@ -31,15 +31,12 @@
         // Initialization code
         if (self.products == nil) {
             self.products = [[NSMutableArray alloc]initWithArray:productsArr];
+            [self setupView:productsArr];
         }
     }
     return self;
 }
 
-- (void)setProducts:(NSMutableArray *)productsArr
-{
-    self.products = productsArr;
-}
 
 - (NSMutableArray*)getProducts
 {
@@ -64,7 +61,8 @@
     for (int i = 0; i < productsLen; i++) {
         cView *view = [[cView alloc]init];
         product *productItem = productsArr[i];
-        [view setView:CGRectMake((i%2)*WIDTH/2, floor(i/2)*HEIGHT/5, WIDTH/2, HEIGHT/5) title:productItem.title img:productItem.imgUrl cornerable:NO];
+        NSLog(@"x:%f,y:%f,width:%f,height:%f",(i%2)*WIDTH/2, (i/2)*HEIGHT/5, WIDTH/2, HEIGHT/5);
+        [view setView:CGRectMake((i%2)*WIDTH/2, (i/2)*HEIGHT/5, WIDTH/2, HEIGHT/5) title:productItem.title img:productItem.imgUrl cornerable:NO];
         [self addSubview:view];
         [view release];
         [productItem release];

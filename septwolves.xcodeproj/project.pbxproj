@@ -156,6 +156,8 @@
 		395F5BD416D61B8100A8BE2E /* detailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = detailViewController.h; sourceTree = "<group>"; };
 		395F5BD516D61B8100A8BE2E /* detailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = detailViewController.m; sourceTree = "<group>"; };
 		395F5BD616D61B8100A8BE2E /* detailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailViewController.xib; sourceTree = "<group>"; };
+		39636EA416E5A43600499B53 /* CustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
+		39636EA516E5A43600499B53 /* CustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
 		3977BF6A16B7706E004D38ED /* JBKenBurnsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBKenBurnsView.h; sourceTree = "<group>"; };
 		3977BF6B16B7706E004D38ED /* JBKenBurnsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBKenBurnsView.m; sourceTree = "<group>"; };
 		397DB3A216D5C8BC00E561E8 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -526,6 +528,8 @@
 				B4D4316E16E4F4EC00FC0657 /* NavViewController.m */,
 				B4D4316F16E4F4EC00FC0657 /* NavViewController.xib */,
 				B48513AA1696841C0088B29F /* MainWindow.xib */,
+				39636EA416E5A43600499B53 /* CustomNavigationBar.h */,
+				39636EA516E5A43600499B53 /* CustomNavigationBar.m */,
 				B4E75A2316800EE60099EE8B /* Index */,
 				B4E75A2F1680110B0099EE8B /* Collection */,
 				B4E75A351680116D0099EE8B /* Date */,

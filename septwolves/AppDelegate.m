@@ -19,6 +19,7 @@
 #import "CustomNavigationBar.h"
 #import "CustomNavigationController.h"
 #import "LNSingleViewController.h"
+#import "mainViewController.h"
 
 @implementation AppDelegate
 
@@ -39,7 +40,7 @@
     //隐藏顶部状态栏
     //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    rootNav = [[RootNavController alloc]initWithNibName:@"RootNavController" bundle:nil];
+    rootNav = [[mainViewController alloc]init];
     [self.window makeKeyAndVisible];
     /*UIImageView *splashView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
     splashView.image = [UIImage imageNamed:@"sDefault.png"];

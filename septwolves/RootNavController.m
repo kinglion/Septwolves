@@ -21,6 +21,7 @@
 @synthesize tableView;
 @synthesize kenBurnsView;
 @synthesize navController;
+@synthesize rootNavControllerDelegate = _rootNavControllerDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -126,49 +127,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"选中！");
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UIViewController *singleView;
-    switch (indexPath.row) {
-        case 0:
-            //跳转到品格男装
-            singleView = [[FristViewController alloc]init];
-            break;
-        case 1:
-            //男人不止一面
-            singleView = [[CollectionViewController alloc]init];
-            break;
-        case 2:
-            //品格天下
-            singleView = [[ServiceViewController alloc]init];
-            break;
-        case 3:
-            //品格着装顾问
-            singleView = [[NewViewController alloc]init];
-            break;
-        case 4:
-            singleView = [[DateViewController alloc]init];
-            //品格会
-            break;
-        default:
-            break;
-    }
-    navController = [[NavViewController alloc]initWithRootViewController:singleView];
-    /*CATransition *animation = [CATransition animation];
-    [animation setDuration:0.5];
-    [animation setType:kCATransitionPush];
-    [animation setSubtype:kCATransitionFromRight];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    [[navController.view layer] addAnimation:animation forKey:@"SwitchToView"];*/
-    //[self setModalPresentationStyle:UIModalTransitionStylePartialCurl];
-    [self addChildViewController:navController];
-    [self transitionFromViewController:nil toViewController:navController duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{} completion:^(BOOL finished) {
-        //
-    }];
-   // [self presentViewController:navController animated:NO completion:nil];
-    //[self.navigationController pushViewController:singleView animated:YES];
-    [singleView release];
+    [_rootNavControllerDelegate onClickItem:self row:indexPath.row];
 }
 
 

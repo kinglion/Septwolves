@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JBKenBurnsView.h"
 #import "RootNavController.h"
+#import "mainViewController.h"
 
 @class ViewController;
 
@@ -20,6 +21,6 @@
 @property (strong, nonatomic) UINavigationController *navController;
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 @property (strong, nonatomic) ViewController *viewController;
-@property (nonatomic, retain) RootNavController *rootNav;
+@property (nonatomic, retain) mainViewController *rootNav;
 
 @end

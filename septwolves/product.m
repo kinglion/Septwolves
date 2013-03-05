@@ -11,6 +11,7 @@
 @implementation product
 @synthesize productId,type;
 @synthesize title,imgUrl;
+@synthesize content;
 
 + (id)productWithType:(NSInteger)proId title:(NSString*)text imgUrl:(NSString*)url type:(NSInteger)typeId
 {

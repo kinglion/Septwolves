@@ -52,7 +52,7 @@
             break;
         case 1:
             //男人不止一面
-            singleView = [[CollectionViewController alloc]init];
+            singleView = [[SecondViewController alloc]init];
             break;
         case 2:
             //品格天下

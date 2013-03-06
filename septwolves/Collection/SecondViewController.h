@@ -11,7 +11,7 @@
 #import "MosaicView.h"
 
 
-@interface CollectionViewController : UIViewController<MosaicViewDatasourceProtocol,MosaicViewDelegateProtocol,UITableViewDataSource,UITableViewDelegate>
+@interface SecondViewController : UIViewController<MosaicViewDatasourceProtocol,MosaicViewDelegateProtocol,UITableViewDataSource,UITableViewDelegate>
 {
     MosaicView *mosaicView;
     NSMutableArray *elements;

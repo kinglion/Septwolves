@@ -9,6 +9,7 @@
 #import "FristViewController.h"
 #import "CustomNavigationBar.h"
 #import "LNSingleViewController.h"
+#import "mainViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 @interface FristViewController ()
 
@@ -33,7 +34,22 @@
         [typeTable setDelegate:self];
         [typeTable setDataSource:self];
         [self.view addSubview:typeTable];
-        
+        UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
+        CGRect backframe = CGRectMake(0,0,30,19);
+        UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
+        [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
+        [backButton setTitle:@"" forState:UIControlStateNormal];
+        backButton.titleLabel.font=[UIFont systemFontOfSize:13];
+        [backButton addTarget:self action:@selector(doClickBackAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+        [leftBarButtonItem release];
+        [backButton release];
+        /*UIBarButtonItem *backItem = [[UIBarButtonItem alloc]init];
+        [backItem setWidth:20.0f];
+        [backItem setBackButtonBackgroundImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        self.navigationItem.leftBarButtonItem = backItem; 
+        [backItem release];*/
         [uiimage release];
         [imageView release];
     }
@@ -44,8 +60,30 @@
 {
     [super viewDidLoad];
     if(self){
+        
     }
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)doClickBackAction:(id)sender
+{
+    if (self.parentViewController) {
+        CGRect rect = [[UIScreen mainScreen] bounds];
+        mainViewController *parentVC = (mainViewController *)self.parentViewController.parentViewController;
+        [parentVC transitionFromViewController:parentVC.navController toViewController:parentVC.rootController duration:0.5 options:UIViewAnimationOptionTransitionNone animations:^{
+            [parentVC.navController.view setCenter:CGPointMake(rect.size.width * 1.5, rect.size.height/2)];
+            [parentVC.rootController.view setCenter:CGPointMake(rect.size.width/2, rect.size.height/2)];
+        } completion:^(BOOL finished) {
+            [parentVC.navController removeFromParentViewController];
+        }];
+    }
+    /*[self.parentViewController transitionFromViewController:self toViewController:self.parentViewController.rootController duration:0.5 options:UIViewAnimationOptionTransitionNone animations:^{
+        [rootController.view setCenter:CGPointMake(-self.view.frame.size.width/2, self.view.frame.size.height/2)];
+        [navController.view setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
+    } completion:^(BOOL finished) {
+        //
+    }];*/
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -70,6 +108,7 @@
     cell.textLabel.backgroundColor = altCellColor;
     cell.detailTextLabel.backgroundColor = altCellColor;
     cell.textLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
     typeTable.separatorColor = [UIColor darkGrayColor];
     [typeTable setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [typeTable setBounces:NO];
@@ -86,6 +125,10 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
         cell.textLabel.text = @"男式服装";
+        cell.detailTextLabel.text = @"摩登,进取,都市时间";
+        UIImageView *rightCell = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cellRight.png"]];
+        [cell setAccessoryView:rightCell];
+        [rightCell release];
     }
     return cell;
 }

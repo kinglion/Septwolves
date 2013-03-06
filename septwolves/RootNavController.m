@@ -13,6 +13,7 @@
 #import "DateViewController.h"
 #import "NewViewController.h"
 #import "ServiceViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @interface RootNavController ()
 
 @end
@@ -94,24 +95,38 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
+    UIImageView *imageView;
     if(cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
-        
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        UIImageView *rightCell = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cellRight.png"]];
+        [cell setAccessoryView:rightCell];
+        [rightCell release];
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"品格男装";
+                imageView = cell.imageView;
+                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
                 break;
             case 1:
                 cell.textLabel.text = @"男人不止一面";
+                imageView = cell.imageView;
+                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
                 break;
             case 2:
-                cell.textLabel.text = @"品格天下";
+                cell.textLabel.text = @"品格咨询";
+                imageView = cell.imageView;
+                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
                 break;
             case 3:
                 cell.textLabel.text = @"品格着装顾问";
+                imageView = cell.imageView;
+                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
                 break;
             case 4:
                 cell.textLabel.text = @"品格会";
+                imageView = cell.imageView;
+                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
                 break;
             default:
                 break;

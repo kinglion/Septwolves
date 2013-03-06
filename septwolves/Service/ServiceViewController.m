@@ -10,6 +10,7 @@
 #import "ServiceViewController.h"
 #import "JSONKit.h"
 #import "product.h"
+#import "mainViewController.h"
 @interface ServiceViewController ()
 
 @end
@@ -19,22 +20,14 @@
 @synthesize resultArr;
 @synthesize ctableView;
 @synthesize str;
+@synthesize allTitleArr;
+@synthesize filterTitleArr;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        str = @"{\"result\":\"000\", \"list\":[{\"id\":\"0\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"1\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"}]}";
-        allArr = [[NSMutableArray alloc]init];
-        NSDictionary *data = [str objectFromJSONString];
-        NSArray *dataArray = [[NSArray alloc]initWithArray:[data objectForKey:@"list"]];
-        int allArrCount = [dataArray count];
-        NSLog(@"productsCount:%d",allArrCount);
-        for (NSInteger i = 0; i < allArrCount; i++) {
-            NSDictionary *single = [dataArray objectAtIndex:i];
-            product *productBean = [product productWithType:[[single objectForKey:@"id"] intValue] title:[single objectForKey:@"title"] imgUrl:[single objectForKey:@"imgUrl"] type:0];
-            [allArr addObject:productBean];
-        }
+        self.title = @"品格天下";
         [self.searchDisplayController setDelegate:self];
         [self.searchDisplayController setSearchResultsDataSource:self];
         [self.searchDisplayController setSearchResultsDelegate:self];
@@ -42,7 +35,19 @@
         self.searchDisplayController.searchBar.delegate = self;
         [self.searchDisplayController.searchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
         [self.searchDisplayController.searchBar sizeToFit];
-        [ctableView reloadData];
+        
+        UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
+        CGRect backframe = CGRectMake(0,0,30,19);
+        UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
+        [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
+        [backButton setTitle:@"" forState:UIControlStateNormal];
+        backButton.titleLabel.font=[UIFont systemFontOfSize:13];
+        [backButton addTarget:self action:@selector(doClickBackAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+        [leftBarButtonItem release];
+        [backButton release];
     }
     return self;
 }
@@ -99,7 +104,26 @@
     
 }
 
-
+- (void)doClickBackAction:(id)sender
+{
+    if (self.parentViewController) {
+        CGRect rect = [[UIScreen mainScreen] bounds];
+        mainViewController *parentVC = (mainViewController *)self.parentViewController.parentViewController;
+        [parentVC transitionFromViewController:parentVC.navController toViewController:parentVC.rootController duration:0.5 options:UIViewAnimationOptionTransitionNone animations:^{
+            [parentVC.navController.view setCenter:CGPointMake(rect.size.width * 1.5, rect.size.height/2)];
+            [parentVC.rootController.view setCenter:CGPointMake(rect.size.width/2, rect.size.height/2)];
+        } completion:^(BOOL finished) {
+            [parentVC.navController removeFromParentViewController];
+        }];
+    }
+    /*[self.parentViewController transitionFromViewController:self toViewController:self.parentViewController.rootController duration:0.5 options:UIViewAnimationOptionTransitionNone animations:^{
+     [rootController.view setCenter:CGPointMake(-self.view.frame.size.width/2, self.view.frame.size.height/2)];
+     [navController.view setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
+     } completion:^(BOOL finished) {
+     //
+     }];*/
+    
+}
 
 
 #pragma mark UISearchBar and UISearchDisplayController Delegate Methods
@@ -210,12 +234,21 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.allArr = [NSArray arrayWithObjects:@"fdsa",@"wefews",@"sfdwew",@"tewres", nil];
-    // Do any additional setup after loading the view from its nib.
+    str = @"{\"result\":\"000\", \"list\":[{\"id\":\"0\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"1\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"}]}";
     ctableView = [[cTableView alloc]initWithFrame:CGRectMake(0, self.searchDisplayController.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchDisplayController.searchBar.frame.size.height) products:allArr];
-    NSLog(@"%f",self.view.frame.size.height - self.searchDisplayController.searchBar.frame.size.height);
     [self.view addSubview:ctableView];
+    allArr = [[NSMutableArray alloc]init];
+    NSDictionary *data = [str objectFromJSONString];
+    NSArray *dataArray = [[NSArray alloc]initWithArray:[data objectForKey:@"list"]];
+    int allArrCount = [dataArray count];
+    NSLog(@"productsCount:%d",allArrCount);
+    for (NSInteger i = 0; i < allArrCount; i++) {
+        NSDictionary *single = [dataArray objectAtIndex:i];
+        product *productBean = [product productWithType:[[single objectForKey:@"id"] intValue] title:[single objectForKey:@"title"] imgUrl:[single objectForKey:@"imgUrl"] type:0];
+        [allArr addObject:productBean];
+    }
     [self.searchDisplayController.searchResultsTableView reloadData];
+    [ctableView reloadData];
     [ctableView release];
 }
 

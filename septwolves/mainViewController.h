@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RootNavController.h"
 #import "FristViewController.h"
-#import "CollectionViewController.h"
+#import "SecondViewController.h"
 #import "DateViewController.h"
 #import "NewViewController.h"
 #import "ServiceViewController.h"

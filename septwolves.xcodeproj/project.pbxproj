@@ -36,6 +36,11 @@
 		39C28A5716B7BBE500B5A74B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C28A5616B7BBE500B5A74B /* QuartzCore.framework */; };
 		39CEDA8B16D718FC00C144AC /* SliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEDA8A16D718FC00C144AC /* SliderView.m */; };
 		39CEDA8E16D7191300C144AC /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEDA8D16D7191300C144AC /* VideoView.m */; };
+		39EE9C5A16E6DC6100AFDAB2 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5816E6DC6100AFDAB2 /* backButton.png */; };
+		39EE9C5B16E6DC6100AFDAB2 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5916E6DC6100AFDAB2 /* backButton@2x.png */; };
+		39EE9C5C16E6F52100AFDAB2 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A311680110B0099EE8B /* SecondViewController.m */; };
+		39EE9C6016E7271200AFDAB2 /* cellRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5E16E7271200AFDAB2 /* cellRight.png */; };
+		39EE9C6116E7271200AFDAB2 /* cellRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5F16E7271200AFDAB2 /* cellRight@2x.png */; };
 		B40D2DBA16804DE9005A0EC8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B40D2DB816804DE9005A0EC8 /* icon.png */; };
 		B40D2DBB16804DE9005A0EC8 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B40D2DB916804DE9005A0EC8 /* icon@2x.png */; };
 		B4123AA91680671C00E56EE6 /* vcBg.png in Resources */ = {isa = PBXBuildFile; fileRef = B4123AA71680671C00E56EE6 /* vcBg.png */; };
@@ -104,8 +109,7 @@
 		B4D4319316E657C900FC0657 /* Title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4D4318E16E654E100FC0657 /* Title@2x.png */; };
 		B4D4319416E657CE00FC0657 /* Title.png in Resources */ = {isa = PBXBuildFile; fileRef = B4D4318F16E654E100FC0657 /* Title.png */; };
 		B4E75A271680100A0099EE8B /* FristViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A251680100A0099EE8B /* FristViewController.m */; };
-		B4E75A331680110B0099EE8B /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A311680110B0099EE8B /* CollectionViewController.m */; };
-		B4E75A341680110B0099EE8B /* CollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E75A321680110B0099EE8B /* CollectionViewController.xib */; };
+		B4E75A341680110B0099EE8B /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E75A321680110B0099EE8B /* SecondViewController.xib */; };
 		B4E75A39168011A80099EE8B /* DateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A37168011A80099EE8B /* DateViewController.m */; };
 		B4E75A3A168011A80099EE8B /* DateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4E75A38168011A80099EE8B /* DateViewController.xib */; };
 		B4E75A3F168012990099EE8B /* NewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A3D168012990099EE8B /* NewViewController.m */; };
@@ -188,6 +192,10 @@
 		39CEDA8A16D718FC00C144AC /* SliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderView.m; sourceTree = "<group>"; };
 		39CEDA8C16D7191300C144AC /* VideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
 		39CEDA8D16D7191300C144AC /* VideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
+		39EE9C5816E6DC6100AFDAB2 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backButton.png; path = resource/backButton.png; sourceTree = "<group>"; };
+		39EE9C5916E6DC6100AFDAB2 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backButton@2x.png"; path = "resource/backButton@2x.png"; sourceTree = "<group>"; };
+		39EE9C5E16E7271200AFDAB2 /* cellRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellRight.png; path = resource/cellRight.png; sourceTree = "<group>"; };
+		39EE9C5F16E7271200AFDAB2 /* cellRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cellRight@2x.png"; path = "resource/cellRight@2x.png"; sourceTree = "<group>"; };
 		B40D2DB816804DE9005A0EC8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		B40D2DB916804DE9005A0EC8 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		B4123AA71680671C00E56EE6 /* vcBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vcBg.png; path = resource/vcBg.png; sourceTree = "<group>"; };
@@ -297,9 +305,9 @@
 		B4D4318F16E654E100FC0657 /* Title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Title.png; sourceTree = "<group>"; };
 		B4E75A241680100A0099EE8B /* FristViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FristViewController.h; path = index/FristViewController.h; sourceTree = "<group>"; };
 		B4E75A251680100A0099EE8B /* FristViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FristViewController.m; path = index/FristViewController.m; sourceTree = "<group>"; };
-		B4E75A301680110B0099EE8B /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
-		B4E75A311680110B0099EE8B /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
-		B4E75A321680110B0099EE8B /* CollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewController.xib; sourceTree = "<group>"; };
+		B4E75A301680110B0099EE8B /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		B4E75A311680110B0099EE8B /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		B4E75A321680110B0099EE8B /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		B4E75A36168011A80099EE8B /* DateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DateViewController.h; path = septwolves/Date/DateViewController.h; sourceTree = SOURCE_ROOT; };
 		B4E75A37168011A80099EE8B /* DateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DateViewController.m; path = septwolves/Date/DateViewController.m; sourceTree = SOURCE_ROOT; };
 		B4E75A38168011A80099EE8B /* DateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DateViewController.xib; path = septwolves/Date/DateViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -447,6 +455,10 @@
 		B4123AA5168066E700E56EE6 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				39EE9C5E16E7271200AFDAB2 /* cellRight.png */,
+				39EE9C5F16E7271200AFDAB2 /* cellRight@2x.png */,
+				39EE9C5816E6DC6100AFDAB2 /* backButton.png */,
+				39EE9C5916E6DC6100AFDAB2 /* backButton@2x.png */,
 				B4D4318E16E654E100FC0657 /* Title@2x.png */,
 				B4D4318F16E654E100FC0657 /* Title.png */,
 				39AD2F2916AF85ED00AF0CCE /* data.json */,
@@ -707,9 +719,9 @@
 			children = (
 				395F5BD316D61A8E00A8BE2E /* detailView */,
 				39481ABC16D1D39700CC3BEC /* customView */,
-				B4E75A301680110B0099EE8B /* CollectionViewController.h */,
-				B4E75A311680110B0099EE8B /* CollectionViewController.m */,
-				B4E75A321680110B0099EE8B /* CollectionViewController.xib */,
+				B4E75A301680110B0099EE8B /* SecondViewController.h */,
+				B4E75A311680110B0099EE8B /* SecondViewController.m */,
+				B4E75A321680110B0099EE8B /* SecondViewController.xib */,
 				39481AC016D1E0CB00CC3BEC /* ActiveViewController.h */,
 				39481AC116D1E0CB00CC3BEC /* ActiveViewController.m */,
 				3945F71116DCA47500F64A9B /* ChrConsuViewController.h */,
@@ -832,7 +844,7 @@
 				B41EA9B4167F25DE0032FA40 /* sDefault.png in Resources */,
 				B41EA9B6167F25DE0032FA40 /* sDefault@2x.png in Resources */,
 				B41EA9B8167F25DE0032FA40 /* Default-568h@2x.png in Resources */,
-				B4E75A341680110B0099EE8B /* CollectionViewController.xib in Resources */,
+				B4E75A341680110B0099EE8B /* SecondViewController.xib in Resources */,
 				B4E75A3A168011A80099EE8B /* DateViewController.xib in Resources */,
 				B4E75A40168012990099EE8B /* NewViewController.xib in Resources */,
 				B4E75A46168012CC0099EE8B /* ServiceViewController.xib in Resources */,
@@ -865,6 +877,10 @@
 				B4D4317616E5013D00FC0657 /* mainViewController.xib in Resources */,
 				B4D4319316E657C900FC0657 /* Title@2x.png in Resources */,
 				B4D4319416E657CE00FC0657 /* Title.png in Resources */,
+				39EE9C5A16E6DC6100AFDAB2 /* backButton.png in Resources */,
+				39EE9C5B16E6DC6100AFDAB2 /* backButton@2x.png in Resources */,
+				39EE9C6016E7271200AFDAB2 /* cellRight.png in Resources */,
+				39EE9C6116E7271200AFDAB2 /* cellRight@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,13 +891,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39EE9C5C16E6F52100AFDAB2 /* SecondViewController.m in Sources */,
 				397DB3A416D5C91B00E561E8 /* EGORefreshTableHeaderView.m in Sources */,
 				39C28A5116B7B9C400B5A74B /* JBKenBurnsView.m in Sources */,
 				B42D1B43168197F20034B5B5 /* CustomNavigationBar.m in Sources */,
 				B41EA9AE167F25DE0032FA40 /* main.m in Sources */,
 				B41EA9B2167F25DE0032FA40 /* AppDelegate.m in Sources */,
 				B4E75A271680100A0099EE8B /* FristViewController.m in Sources */,
-				B4E75A331680110B0099EE8B /* CollectionViewController.m in Sources */,
 				B4E75A39168011A80099EE8B /* DateViewController.m in Sources */,
 				B4E75A3F168012990099EE8B /* NewViewController.m in Sources */,
 				B4E75A45168012CC0099EE8B /* ServiceViewController.m in Sources */,

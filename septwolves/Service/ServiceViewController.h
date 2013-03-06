@@ -14,7 +14,11 @@
     NSString *str;
     NSMutableArray *allArr;
     NSMutableArray *resultArr;
+    NSArray *allTitleArr;
+    NSArray *filterTitleArr;
 }
+@property (nonatomic, retain)NSArray *allTitleArr;
+@property (nonatomic, retain)NSArray *filterTitleArr;
 @property (nonatomic, retain)cTableView *ctableView;
 @property (nonatomic,retain)NSMutableArray *allArr;
 @property (nonatomic,retain)NSMutableArray *resultArr;

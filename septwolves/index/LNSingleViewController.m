@@ -37,6 +37,17 @@
         [button setFrame:CGRectMake(self.view.frame.size.width - 74,10, 64, 64)];
         [button addTarget:self action:@selector(onClickPop:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:button];
+        UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
+        CGRect backframe = CGRectMake(0,0,30,19);
+        UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
+        [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
+        [backButton setTitle:@"" forState:UIControlStateNormal];
+        backButton.titleLabel.font=[UIFont systemFontOfSize:13];
+        [backButton addTarget:self action:@selector(doClickBackAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+        [leftBarButtonItem release];
+        [backButton release];
         [button release];
         [imageView release];
         [image release];
@@ -54,7 +65,6 @@
     [alert.view addButtonWithTitle:@"OK"];
     [alert setDelegate:self];
 	[alert setDataSource:self];
-	
 	[alert show];
     [alert release];
 }
@@ -63,7 +73,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
+    CGRect backframe = CGRectMake(0,0,30,19);
+    UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
+    [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
+    [backButton setTitle:@"" forState:UIControlStateNormal];
+    backButton.titleLabel.font=[UIFont systemFontOfSize:13];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationItem.backBarButtonItem = item;
+    [item release];
+    [backButton release];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)doClickBackAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

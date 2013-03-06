@@ -34,7 +34,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.tintColor = [UIColor colorWithRed:0.0 / 1.0 green:0.0 / 1.0 blue:0.0 / 1.0 alpha:1.0];
+    //self.tintColor = [UIColor colorWithRed:0.0 / 1.0 green:0.0 / 1.0 blue:0.0 / 1.0 alpha:1.0];
     
     // draw shadow
     self.layer.masksToBounds = NO;

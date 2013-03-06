@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewViewController : UIViewController
+@interface NewViewController : UIViewController{
+    UIView *dataView;
+    UIView *outfitView;
+}
+
+@property (nonatomic,retain) UIView *dataView;
+@property (nonatomic,retain) UIView *outfitView;
 
 @end

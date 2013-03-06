@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VRGCalendarView.h"
 
-@interface NewViewController : UIViewController{
+@interface NewViewController : UIViewController<VRGCalendarViewDelegate,UITableViewDataSource,UITableViewDelegate>{
     UIView *dataView;
     UIView *outfitView;
+    VRGCalendarView *calendarView;
+    UITableView *dataTableView;
+    UITableView *outfitTableView;
 }
-
+@property (nonatomic,retain) VRGCalendarView *calendarView;
 @property (nonatomic,retain) UIView *dataView;
 @property (nonatomic,retain) UIView *outfitView;
-
+@property (nonatomic,retain) UITableView *dataTableView;
+@property (nonatomic,retain) UITableView *outfitTableView;
 @end

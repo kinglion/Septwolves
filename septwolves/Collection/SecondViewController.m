@@ -45,7 +45,7 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
     if (self) {
         // Custom initialization
         self.title = @"男人不止一面";
-        UIImage *image = [UIImage imageNamed:@"mannoone.png.png"];
+        UIImage *image = [UIImage imageNamed:@"mannoone.png"];
         UIImageView *imageView =  [[UIImageView alloc]initWithImage:image];
         [imageView setFrame:CGRectMake(0, 0, self.view.frame.size
                                        .width, self.view.frame.size

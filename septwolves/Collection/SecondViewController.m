@@ -62,7 +62,6 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
         [backButton setTitle:@"" forState:UIControlStateNormal];
         backButton.titleLabel.font=[UIFont systemFontOfSize:13];
         [backButton addTarget:self action:@selector(doClickBackAction:) forControlEvents:UIControlEventTouchUpInside];
-        
         UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         self.navigationItem.leftBarButtonItem = leftBarButtonItem;
         [leftBarButtonItem release];
@@ -160,16 +159,17 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
         case 0:
             //跳转到品牌动态
             singleView = [[ActiveViewController alloc]init];
+            singleView.title = @"品牌动态";
             break;
         case 1:
             //名士资讯
             singleView = [[ChrConsuViewController alloc]init];
+            singleView.title = @"名士资讯";
             break;
         default:
             break;
     }
     [self.navigationController pushViewController:singleView animated:YES];
-    [self.navigationController setNavigationBarHidden:NO];
     [singleView release];
 }
 

@@ -11,5 +11,10 @@
 #import "FPPopoverController.h"
 
 @interface LNSingleViewController : UIViewController<FPPopoverControllerDelegate,SBTableAlertDataSource,SBTableAlertDelegate>
-@property (nonatomic,retain) UIView *personView;
+{
+    UIPageControl *pageControl;
+    UIScrollView *scrollView;
+}
+@property (nonatomic,retain) UIPageControl *pageControl;
+@property (nonatomic,retain) UIScrollView *scrollView;
 @end

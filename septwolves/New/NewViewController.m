@@ -9,6 +9,8 @@
 #import "NewViewController.h"
 #import "mainViewController.h"
 
+#define HEADHEIGHT 30.0f
+
 @interface NewViewController ()
 //读取储存在本地的日常管理数据
 - (NSArray *)loadLocalData;
@@ -24,6 +26,7 @@
 @synthesize dataView,outfitView;
 @synthesize calendarView;
 @synthesize dataTableView,outfitTableView;
+@synthesize isCalendarHide;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -86,13 +89,27 @@
     dataView = [[UIView alloc]initWithFrame:self.view.frame];
     calendarView = [[VRGCalendarView alloc]init];
     calendarView.delegate = self;
-    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height)];
+    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, HEADHEIGHT, self.view.frame.size.width, self.view.frame.size.height)];
     [dataView addSubview:calendarView];
+    //dataSelectBtn
+    UIButton *dataSelectBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60, 10, 20, 20)];
+    [dataSelectBtn setBackgroundColor:[UIColor blackColor]];
+    [dataSelectBtn setTitle:@"select" forState:UIControlStateNormal];
+    [dataSelectBtn addTarget:self action:@selector(dataSelectClick:) forControlEvents:UIControlEventTouchUpInside];
+    //addDataBtn
+    UIButton *addDataBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 30, 10, 20, 20)];
+    [addDataBtn setBackgroundColor:[UIColor blackColor]];
+    [addDataBtn setTitle:@"add" forState:UIControlStateNormal];
+    [addDataBtn addTarget:self action:@selector(addDataClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [dataView addSubview:dataSelectBtn];
+    [dataView addSubview:addDataBtn];
     [dataView addSubview:dataTableView];
     [self.view addSubview:dataView];
-    [calendarView release];
+    isCalendarHide = YES;
     [dataTableView release];
-    [dataView release];
+    [calendarView release];
+    //[dataView release];
 }
 
 - (void)addSubOutfitView
@@ -109,7 +126,6 @@
         outfitTableView.dataSource = self;
     [outfitView addSubview:outfitTableView];
     [imageView release];
-    [outfitTableView release];
     [self.view addSubview:outfitView];
     
 }
@@ -230,6 +246,28 @@
    // [singleView release];
 }
 
+- (void)dataSelectClick:(id)sender
+{
+    if(isCalendarHide){
+        NSLog(@"%f",calendarView.frame.size.height);
+        [UIView beginAnimations:@"animate" context:nil];
+        [UIView setAnimationDuration:0.5f];
+        [dataTableView setFrame:CGRectMake(0, HEADHEIGHT + calendarView.frame.size.height, dataTableView.frame.size.width, dataTableView.frame.size.height)];
+        [UIView commitAnimations];
+        isCalendarHide = NO;
+    }else{
+        [UIView beginAnimations:@"animate" context:nil];
+        [UIView setAnimationDuration:0.5f];
+        [dataTableView setFrame:CGRectMake(0, HEADHEIGHT, dataTableView.frame.size.width, dataTableView.frame.size.height)];
+        [UIView commitAnimations];
+        isCalendarHide = YES;
+    }
+}
+
+- (void)addDataClick:(id)sender
+{
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

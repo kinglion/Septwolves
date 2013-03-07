@@ -28,6 +28,17 @@
     if (self) {
         // Custom initialization
         [self.view setBackgroundColor:[UIColor blackColor]];
+        UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
+        CGRect backframe = CGRectMake(0,0,30,19);
+        UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
+        [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
+        [backButton setTitle:@"" forState:UIControlStateNormal];
+        backButton.titleLabel.font=[UIFont systemFontOfSize:13];
+        [backButton addTarget:self action:@selector(doClickBackAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+        [leftBarButtonItem release];
+        [backButton release];
     }
     return self;
 }
@@ -89,6 +100,11 @@
 {
     int arrCount = [array count];
     [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, arrCount * (LISTHEIGHT + LISTDIS)+TOPBARHEIGHT)];
+}
+
+- (void)doClickBackAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -

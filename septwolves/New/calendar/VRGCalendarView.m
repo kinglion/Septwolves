@@ -251,7 +251,7 @@
     self.markedColors=nil;  
     
     CGRect rectArrowLeft = CGRectMake(0, 0, 50, 40);
-    CGRect rectArrowRight = CGRectMake(self.frame.size.width-50, 0, 50, 40);
+    CGRect rectArrowRight = CGRectMake(labelCurrentMonth.frameWidth+40, 0, 50, 40);
     
     //Touch either arrows or month in middle
     if (CGRectContainsPoint(rectArrowLeft, touchPoint)) {
@@ -270,13 +270,19 @@
 #pragma mark - Drawing
 - (void)drawRect:(CGRect)rect
 {
+    //Arrows
+    int arrowSize = 12;
+    int xmargin = 20;
+    int ymargin = 18;
+    
     int firstWeekDay = [self.currentMonth firstWeekDayInMonth]-1; //-1 because weekdays begin at 1, not 0
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM yyyy"];
+    [formatter setDateFormat:@"yyyy-MM"];
     labelCurrentMonth.text = [formatter stringFromDate:self.currentMonth];
     [labelCurrentMonth sizeToFit];
-    labelCurrentMonth.frameX = roundf(self.frame.size.width/2 - labelCurrentMonth.frameWidth/2);
+    //labelCurrentMonth.frameX = roundf(self.frame.size.width/2 - labelCurrentMonth.frameWidth/2);
+    labelCurrentMonth.frameX = xmargin+arrowSize/1.5 + 10;
     labelCurrentMonth.frameY = 10;
     [formatter release];
     [currentMonth firstWeekDayInMonth];
@@ -289,10 +295,7 @@
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillPath(context);
     
-    //Arrows
-    int arrowSize = 12;
-    int xmargin = 20;
-    int ymargin = 18;
+    
     
     //Arrow Left
     CGContextBeginPath(context);
@@ -307,11 +310,14 @@
     
     //Arrow right
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, self.frame.size.width-(xmargin+arrowSize/1.5), ymargin);
-    CGContextAddLineToPoint(context,self.frame.size.width-xmargin,ymargin+arrowSize/2);
-    CGContextAddLineToPoint(context,self.frame.size.width-(xmargin+arrowSize/1.5),ymargin+arrowSize);
-    CGContextAddLineToPoint(context,self.frame.size.width-(xmargin+arrowSize/1.5), ymargin);
-    
+    //CGContextMoveToPoint(context, self.frame.size.width-(xmargin+arrowSize/1.5), ymargin);
+    //CGContextAddLineToPoint(context,self.frame.size.width-xmargin,ymargin+arrowSize/2);
+    //CGContextAddLineToPoint(context,self.frame.size.width-(xmargin+arrowSize/1.5),ymargin+arrowSize);
+    //CGContextAddLineToPoint(context,self.frame.size.width-(xmargin+arrowSize/1.5), ymargin);
+    CGContextMoveToPoint(context, (xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5) - 10 , ymargin);
+    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-xmargin- 10 ,ymargin+arrowSize/2);
+    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5)- 10 ,ymargin+arrowSize);
+    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5)- 10 , ymargin);
     CGContextSetFillColorWithColor(context, 
                                    [UIColor blackColor].CGColor);
     CGContextFillPath(context);

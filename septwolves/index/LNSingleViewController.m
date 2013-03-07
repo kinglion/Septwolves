@@ -17,26 +17,16 @@
 @end
 
 @implementation LNSingleViewController
-@synthesize personView;
 @synthesize tarBtn;
+@synthesize pageControl;
+@synthesize scrollView = _scrollView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"西装服饰";
-        // Custom initialization
-        UIImage *image = [UIImage imageNamed:@"man1.png"];
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-        [imageView setFrame:CGRectMake(0, 0, 320, 460)];
-        self.personView = [[UIView alloc]init];
-        [personView addSubview:imageView];
-        [self.view addSubview:personView];
-        //生成触摸点
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:[UIImage imageNamed:@"03.png"] forState:UIControlStateNormal];
-        [button setFrame:CGRectMake(self.view.frame.size.width - 74,10, 64, 64)];
-        [button addTarget:self action:@selector(onClickPop:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
+        
+        //navigationBarItem
         UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
         CGRect backframe = CGRectMake(0,0,30,19);
         UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
@@ -48,10 +38,6 @@
         self.navigationItem.leftBarButtonItem = leftBarButtonItem;
         [leftBarButtonItem release];
         [backButton release];
-        [button release];
-        [imageView release];
-        [image release];
-        [personView release];
     }
     return self;
 }
@@ -73,16 +59,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
-    CGRect backframe = CGRectMake(0,0,30,19);
-    UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
-    [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
-    [backButton setTitle:@"" forState:UIControlStateNormal];
-    backButton.titleLabel.font=[UIFont systemFontOfSize:13];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backButton];
-    self.navigationItem.backBarButtonItem = item;
-    [item release];
-    [backButton release];
+    pageControl = [[UIPageControl alloc]init];
+    [pageControl setCenter:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height - 20)];
+    [pageControl setNumberOfPages:1];
+    // Custom initialization
+    _scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+    [_scrollView setUserInteractionEnabled:YES];
+    [self.view addSubview:_scrollView];
+    UIImage *image = [UIImage imageNamed:@"man1.png"];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+    [imageView setFrame:self.view.frame];
+    //[_scrollView addSubview:imageView];
+    //生成触摸点
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"03.png"] forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(self.view.frame.size.width - 74,10, 64, 64)];
+    [button addTarget:self action:@selector(onClickPop:) forControlEvents:UIControlEventTouchUpInside];
+    [button setBackgroundColor:[UIColor blackColor]];
+    [_scrollView addSubview:button];
+    
+    //addSubView UIpageControl
+    //[self.view addSubview:pageControl];
+    [button release];
+    //[imageView release];
+    //[image release];
+    [_scrollView release];
     // Do any additional setup after loading the view from its nib.
 }
 

@@ -42,6 +42,7 @@
     //layer.contents = (id)[UIImage imageNamed:@"pingeBg.png"].CGImage;
     //[[self layer] addSublayer:layer];
     UILabel *bottomlabel = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height - LABELHEIGHT, frame.size.width,LABELHEIGHT)];
+    self.title = text;
     [bottomlabel setText:text];
     [bottomlabel setTextAlignment:NSTextAlignmentCenter];
     [bottomlabel setTextColor:[UIColor whiteColor]];
@@ -109,5 +110,10 @@
     [_delegate touchEvent:self];
 }
 
+- (NSString *)getTitle
+{
+    NSString* str = self.title;
+    return str;
+}
 
 @end

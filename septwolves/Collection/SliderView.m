@@ -58,7 +58,7 @@
         [_scrollView setShowsHorizontalScrollIndicator:NO];
         [self addSubview:_scrollView];
         [self addSubview:_pageControl];
-        [_pageControl addTarget:self action:@selector(pageTurn) forControlEvents:UIControlEventValueChanged];
+        [_pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
         [_scrollView release];
         [_pageControl release];
     }

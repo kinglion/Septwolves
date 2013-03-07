@@ -15,10 +15,14 @@
     VRGCalendarView *calendarView;
     UITableView *dataTableView;
     UITableView *outfitTableView;
+    BOOL isCalendarHide;
 }
 @property (nonatomic,retain) VRGCalendarView *calendarView;
 @property (nonatomic,retain) UIView *dataView;
 @property (nonatomic,retain) UIView *outfitView;
 @property (nonatomic,retain) UITableView *dataTableView;
 @property (nonatomic,retain) UITableView *outfitTableView;
+@property (nonatomic) BOOL isCalendarHide;
+- (void)dataSelectClick:(id)sender;
+- (void)addDataClick:(id)sender;
 @end

@@ -27,6 +27,17 @@
     if (self) {
         // Custom initialization
         [self.view setBackgroundColor:[UIColor blackColor]];
+        UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
+        CGRect backframe = CGRectMake(0,0,30,19);
+        UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
+        [backButton setBackgroundImage:backImage forState:UIControlStateNormal];
+        [backButton setTitle:@"" forState:UIControlStateNormal];
+        backButton.titleLabel.font=[UIFont systemFontOfSize:13];
+        [backButton addTarget:self action:@selector(doClickBackAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem;
+        [leftBarButtonItem release];
+        [backButton release];
     }
     return self;
 }
@@ -61,6 +72,11 @@
         [view addSubview:cview];
         [cview release];
     }
+}
+
+- (void)doClickBackAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //更新scrollview的contentsize
@@ -171,11 +187,13 @@
 //实现cViewController的触碰
 - (void)touchEvent:(cView *)view
 {
+    
     detailViewController *viewController = [[detailViewController alloc]initWithNibName:@"detailViewController" bundle:nil];
+    NSLog(@"title:%@",view);
+    viewController.title = [view getTitle];
     [self.navigationController pushViewController:viewController animated:YES];
     [view setAlpha:1.0f];
     [viewController release];
-    NSLog(@"%@",@"sss");
 }
 
 @end

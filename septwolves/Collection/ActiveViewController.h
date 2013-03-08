@@ -13,6 +13,7 @@
 @interface ActiveViewController : UIViewController<UIScrollViewDelegate,cViewDelegate,EGORefreshTableHeaderDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
+    EGORefreshTableHeaderView *_refreshFooterView;
     BOOL _reloading;
     NSString *str;
 }

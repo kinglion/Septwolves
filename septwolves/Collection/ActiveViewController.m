@@ -13,6 +13,7 @@
 #define BIGLISTHEIGHT 160.0f
 #define SMALLLISTHEIGHT 100.0f
 #define SMALLLISTWIDTH 140.0f
+#define NAVIGATIONHEIGHT 44.0f
 
 @interface ActiveViewController ()
 
@@ -45,7 +46,8 @@
 //创建外围scrollView
 -(UIScrollView*)creatTable
 {
-    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - NAVIGATIONHEIGHT)];
+    NSLog(@"navigationController.height:%f",self.navigationController.view.frame.size.height);
     [scrollView setDelegate:self];
     scrollView.showsVerticalScrollIndicator = NO;
     return scrollView;
@@ -82,8 +84,8 @@
 //更新scrollview的contentsize
 -(void)updateScrollView:(UIScrollView*)scrollView
 {
-    int arrCount = [_array count] - 1;
-    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, BIGLISTHEIGHT + (floor(arrCount/2)-1) * (SMALLLISTHEIGHT+10.0f)+BIGLISTHEIGHT)];
+    int arrCount = [_array count];
+    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, BIGLISTHEIGHT + 10.0f + arrCount/2 * (SMALLLISTHEIGHT+10.0f))];
 }
 
 - (void)viewDidLoad
@@ -102,17 +104,23 @@
             [self creatSmall:_scrollView];
         }
         [self updateScrollView:_scrollView];
-        NSLog(@"scrollView frameHeight:%f,contentHeight:%f",_scrollView.frame.size.height,_scrollView.contentSize.height);
         [self.view addSubview:_scrollView];
     }
     if (_refreshHeaderView == nil) {
 		NSLog(@"scrollView.bounds.size.height:%f",self.scrollView.bounds.size.height);
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
+        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, - self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height) arrowImageName:@"blueArrow.png" textColor:[UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0] pos:EGORefreshHeader];
 		view.delegate = self;
 		[self.scrollView addSubview:view];
 		_refreshHeaderView = view;
         [view release];
 	}
+    if (_refreshFooterView == nil) {
+        EGORefreshTableHeaderView *footview = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height) arrowImageName:@"blueArrow.png" textColor:[UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0] pos:EGORefreshFooter];
+        footview.delegate = self;
+        [self.scrollView addSubview:footview];
+        _refreshFooterView = footview;
+        [footview release];
+    }
 	[_scrollView release];
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
@@ -142,12 +150,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    
+    [_refreshFooterView egoRefreshScrollViewDidScroll:scrollView];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-	
+	[_refreshFooterView egoRefreshScrollViewDidEndDragging:scrollView];
 }
 
 #pragma mark -

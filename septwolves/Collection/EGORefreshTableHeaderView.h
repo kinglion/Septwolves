@@ -26,12 +26,22 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#define FLIP_ANIMATION_DURATION 0.18f
+
+#define PULL_AREA_HEIGTH 60.0f
+#define PULL_TRIGGER_HEIGHT (PULL_AREA_HEIGTH + 5.0f)
 
 typedef enum{
 	EGOOPullRefreshPulling = 0,
 	EGOOPullRefreshNormal,
 	EGOOPullRefreshLoading,	
 } EGOPullRefreshState;
+
+typedef enum{
+    EGORefreshHeader = 0,
+    EGORefreshFooter
+} EGORefreshPos;
+
 
 @protocol EGORefreshTableHeaderDelegate;
 @interface EGORefreshTableHeaderView : UIView {
@@ -43,13 +53,13 @@ typedef enum{
 	UILabel *_statusLabel;
 	CALayer *_arrowImage;
 	UIActivityIndicatorView *_activityView;
-	
+	EGORefreshPos _pos;
 
 }
 
 @property(nonatomic,assign) id <EGORefreshTableHeaderDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor;
+- (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor pos:(EGORefreshPos)position;
 
 - (void)refreshLastUpdatedDate;
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;

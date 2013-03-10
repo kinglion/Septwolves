@@ -9,12 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
 #import "ChrConsuView.h"
-@interface ChrConsuViewController : UIViewController<UIScrollViewDelegate,EGORefreshTableHeaderDelegate,ChrConsuViewDelegate>
+#import "LoadMoreTableFooterView.h"
+@interface ChrConsuViewController : UIViewController<UIScrollViewDelegate,EGORefreshTableHeaderDelegate,ChrConsuViewDelegate,LoadMoreTableFooterDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
+    LoadMoreTableFooterView *_refreshFooterView;
     NSString *str;
     NSMutableArray *array;
+    // Status
+    BOOL pullTableIsRefreshing;
+    BOOL pullTableIsLoadingMore;
     BOOL _reloading;
 }
+@property (nonatomic, assign) BOOL pullTableIsRefreshing;
+@property (nonatomic, assign) BOOL pullTableIsLoadingMore;
 @property (nonatomic,retain)UIScrollView *scrollView;
 @end

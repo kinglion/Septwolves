@@ -57,17 +57,34 @@
     }
     if (_refreshHeaderView == nil) {
 		NSLog(@"scrollView.bounds.size.height:%f",self.scrollView.bounds.size.height);
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
+        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc]initWithFrame:CGRectMake(0.0f, -self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
 		view.delegate = self;
 		[self.scrollView addSubview:view];
 		_refreshHeaderView = view;
-        [view release];
+        //[view release];
 	}
+    if (_refreshFooterView == nil) {
+        LoadMoreTableFooterView *footview = [[LoadMoreTableFooterView alloc]initWithFrame:CGRectMake(0.0f, self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
+        footview.delegate = self;
+        [self.scrollView addSubview:footview];
+        _refreshFooterView = footview;
+        //[footview release];
+    }
     [self.view addSubview:_scrollView];
     [self updateScrollView:_scrollView];
-    [_scrollView release];
+	[_scrollView release];
     [_refreshHeaderView refreshLastUpdatedDate];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    CGFloat visibleTableDiffBoundsHeight = (self.scrollView.bounds.size.height - MIN(self.scrollView.bounds.size.height, self.scrollView.contentSize.height));
+    
+    CGRect loadMoreFrame = _refreshFooterView.frame;
+    loadMoreFrame.origin.y = self.scrollView.contentSize.height + visibleTableDiffBoundsHeight;
+    _refreshFooterView.frame = loadMoreFrame;
 }
 
 //创建外围scrollView
@@ -107,6 +124,36 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - Status Propreties
+
+@synthesize pullTableIsRefreshing;
+@synthesize pullTableIsLoadingMore;
+
+- (void)setPullTableIsRefreshing:(BOOL)isRefreshing
+{
+    if(!pullTableIsRefreshing && isRefreshing) {
+        // If not allready refreshing start refreshing
+        [_refreshHeaderView startAnimatingWithScrollView:self.scrollView];
+        pullTableIsRefreshing = YES;
+    } else if(pullTableIsRefreshing && !isRefreshing) {
+        [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollView];
+        pullTableIsRefreshing = NO;
+    }
+}
+
+- (void)setPullTableIsLoadingMore:(BOOL)isLoadingMore
+{
+    if(!pullTableIsLoadingMore && isLoadingMore) {
+        // If not allready loading more start refreshing
+        [_refreshFooterView startAnimatingWithScrollView:self.scrollView];
+        pullTableIsLoadingMore = YES;
+    } else if(pullTableIsLoadingMore && !isLoadingMore) {
+        [_refreshFooterView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollView];
+        pullTableIsLoadingMore = NO;
+    }
+}
+
+
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
 
@@ -114,29 +161,30 @@
 	
 	//  should be calling your tableviews data source model to reload
 	//  put here just for demo
-	_reloading = YES;
-	
+	pullTableIsRefreshing = YES;
+	[_refreshFooterView egoRefreshScrollViewDidScroll:self.scrollView];
 }
 
 - (void)doneLoadingTableViewData{
 	
 	//  model should call this when its done loading
-	_reloading = NO;
+	pullTableIsRefreshing = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollView];
 	
 }
+
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    
+    [_refreshFooterView egoRefreshScrollViewDidScroll:scrollView];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-	
+	[_refreshFooterView egoRefreshScrollViewDidEndDragging:scrollView];
 }
 
 #pragma mark -
@@ -151,7 +199,7 @@
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
 	
-	return _reloading; // should return if data source model is reloading
+	return pullTableIsRefreshing; // should return if data source model is reloading
 	
 }
 
@@ -161,6 +209,12 @@
 	
 }
 
+#pragma mark - LoadMoreTableViewDelegate
+
+- (void)loadMoreTableFooterDidTriggerLoadMore:(LoadMoreTableFooterView *)view
+{
+    pullTableIsLoadingMore = YES;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -19,7 +19,6 @@
 		395F5BD216D5D2AC00A8BE2E /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 395F5BD016D5D2AC00A8BE2E /* blueArrow@2x.png */; };
 		395F5BD716D61B8100A8BE2E /* detailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395F5BD516D61B8100A8BE2E /* detailViewController.m */; };
 		395F5BD816D61B8100A8BE2E /* detailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 395F5BD616D61B8100A8BE2E /* detailViewController.xib */; };
-		397DB3A416D5C91B00E561E8 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 397DB3A316D5C8BC00E561E8 /* EGORefreshTableHeaderView.m */; };
 		39822DF816D0D09D00297130 /* SBTableAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 39822DF716D0D09D00297130 /* SBTableAlert.m */; };
 		39822DFA16D0D57000297130 /* pingeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 39822DF916D0D57000297130 /* pingeBg.png */; };
 		39822DFC16D0D81800297130 /* indexBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 39822DFB16D0D81800297130 /* indexBG.png */; };
@@ -50,6 +49,8 @@
 		B417EF1E169964450043A77B /* LNSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B417EF1C169964450043A77B /* LNSingleViewController.m */; };
 		B417EF1F169964450043A77B /* LNSingleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B417EF1D169964450043A77B /* LNSingleViewController.xib */; };
 		B41BBA13168A9E24009933F1 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41BBA12168A9E24009933F1 /* CustomNavigationController.m */; };
+		B41E0D0216ECE0B900332365 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B41E0CFF16ECE05D00332365 /* EGORefreshTableHeaderView.m */; };
+		B41E0D0316ECE0B900332365 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B41E0D0116ECE05D00332365 /* LoadMoreTableFooterView.m */; };
 		B41EA9A2167F25DE0032FA40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41EA9A1167F25DE0032FA40 /* UIKit.framework */; };
 		B41EA9A4167F25DE0032FA40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41EA9A3167F25DE0032FA40 /* Foundation.framework */; };
 		B41EA9A6167F25DE0032FA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41EA9A5167F25DE0032FA40 /* CoreGraphics.framework */; };
@@ -168,8 +169,6 @@
 		395F5BD616D61B8100A8BE2E /* detailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailViewController.xib; sourceTree = "<group>"; };
 		3977BF6A16B7706E004D38ED /* JBKenBurnsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JBKenBurnsView.h; sourceTree = "<group>"; };
 		3977BF6B16B7706E004D38ED /* JBKenBurnsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JBKenBurnsView.m; sourceTree = "<group>"; };
-		397DB3A216D5C8BC00E561E8 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
-		397DB3A316D5C8BC00E561E8 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		39822DF616D0D09D00297130 /* SBTableAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBTableAlert.h; sourceTree = "<group>"; };
 		39822DF716D0D09D00297130 /* SBTableAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBTableAlert.m; sourceTree = "<group>"; };
 		39822DF916D0D57000297130 /* pingeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pingeBg.png; path = resource/pingeBg.png; sourceTree = "<group>"; };
@@ -213,6 +212,10 @@
 		B417EF1D169964450043A77B /* LNSingleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LNSingleViewController.xib; path = index/LNSingleViewController.xib; sourceTree = "<group>"; };
 		B41BBA11168A9E24009933F1 /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNavigationController.h; path = custom/CustomNavigationController.h; sourceTree = "<group>"; };
 		B41BBA12168A9E24009933F1 /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNavigationController.m; path = custom/CustomNavigationController.m; sourceTree = "<group>"; };
+		B41E0CFE16ECE05D00332365 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		B41E0CFF16ECE05D00332365 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		B41E0D0016ECE05D00332365 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
+		B41E0D0116ECE05D00332365 /* LoadMoreTableFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadMoreTableFooterView.m; sourceTree = "<group>"; };
 		B41EA99D167F25DE0032FA40 /* septwolves.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = septwolves.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41EA9A1167F25DE0032FA40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B41EA9A3167F25DE0032FA40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -759,9 +762,11 @@
 				39481AC116D1E0CB00CC3BEC /* ActiveViewController.m */,
 				3945F71116DCA47500F64A9B /* ChrConsuViewController.h */,
 				3945F71216DCA47500F64A9B /* ChrConsuViewController.m */,
+				B41E0CFE16ECE05D00332365 /* EGORefreshTableHeaderView.h */,
+				B41E0CFF16ECE05D00332365 /* EGORefreshTableHeaderView.m */,
+				B41E0D0016ECE05D00332365 /* LoadMoreTableFooterView.h */,
+				B41E0D0116ECE05D00332365 /* LoadMoreTableFooterView.m */,
 				3945F71416DCA4B600F64A9B /* ChrConsuView */,
-				397DB3A216D5C8BC00E561E8 /* EGORefreshTableHeaderView.h */,
-				397DB3A316D5C8BC00E561E8 /* EGORefreshTableHeaderView.m */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -925,8 +930,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B41E0D0216ECE0B900332365 /* EGORefreshTableHeaderView.m in Sources */,
+				B41E0D0316ECE0B900332365 /* LoadMoreTableFooterView.m in Sources */,
 				39EE9C5C16E6F52100AFDAB2 /* SecondViewController.m in Sources */,
-				397DB3A416D5C91B00E561E8 /* EGORefreshTableHeaderView.m in Sources */,
 				39C28A5116B7B9C400B5A74B /* JBKenBurnsView.m in Sources */,
 				B42D1B43168197F20034B5B5 /* CustomNavigationBar.m in Sources */,
 				B41EA9AE167F25DE0032FA40 /* main.m in Sources */,

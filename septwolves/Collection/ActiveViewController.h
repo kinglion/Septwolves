@@ -7,18 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "cView.h"
 #import "EGORefreshTableHeaderView.h"
+#import "LoadMoreTableFooterView.h"
 
-@interface ActiveViewController : UIViewController<UIScrollViewDelegate,cViewDelegate,EGORefreshTableHeaderDelegate>
+@interface ActiveViewController : UIViewController<cViewDelegate,EGORefreshTableHeaderDelegate,LoadMoreTableFooterDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
-    EGORefreshTableHeaderView *_refreshFooterView;
-    BOOL _reloading;
+    LoadMoreTableFooterView *_refreshFooterView;
+    // Status
+    BOOL pullTableIsRefreshing;
+    BOOL pullTableIsLoadingMore;
     NSString *str;
 }
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
+@property (nonatomic, assign) BOOL pullTableIsRefreshing;
+@property (nonatomic, assign) BOOL pullTableIsLoadingMore;
 @property (nonatomic,retain)UIScrollView *scrollView;
 @property (nonatomic,retain)NSMutableArray *array;
 @end

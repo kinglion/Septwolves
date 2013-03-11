@@ -154,7 +154,7 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
 {
     NSLog(@"选中！");
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UIViewController *singleView;
+    UIViewController *singleView = nil;
     switch (indexPath.row) {
         case 0:
             //跳转到品牌动态
@@ -165,8 +165,6 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
             //名士资讯
             singleView = [[ChrConsuViewController alloc]init];
             singleView.title = @"名士资讯";
-            break;
-        default:
             break;
     }
     [self.navigationController pushViewController:singleView animated:YES];

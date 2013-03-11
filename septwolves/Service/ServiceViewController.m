@@ -11,6 +11,7 @@
 #import "JSONKit.h"
 #import "product.h"
 #import "mainViewController.h"
+#import "LNconst.h"
 @interface ServiceViewController ()
 
 @end
@@ -27,7 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"品格天下";
+        self.title = @"品格咨询";
         [self.searchDisplayController setDelegate:self];
         [self.searchDisplayController setSearchResultsDataSource:self];
         [self.searchDisplayController setSearchResultsDelegate:self];
@@ -198,12 +199,12 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@",self.searchDisplayController.searchBar.text];
     
     //将搜索的结果赋值给新的数组
-    [self.resultArr setArray:[self.allArr filteredArrayUsingPredicate:resultPredicate ]];
+    [filterTitleArr setArray:[allTitleArr filteredArrayUsingPredicate:resultPredicate ]];
     //NSLog(@"%@",self.resultArr);
     
     if ([tableView isEqual:self.searchDisplayController.searchResultsTableView]) {
         
-        a=[self.resultArr count];
+        a=[self.filterTitleArr count];
         
     }
     return a;
@@ -234,9 +235,10 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    str = @"{\"result\":\"000\", \"list\":[{\"id\":\"0\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"1\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"}]}";
-    ctableView = [[cTableView alloc]initWithFrame:CGRectMake(0, self.searchDisplayController.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchDisplayController.searchBar.frame.size.height) products:allArr];
-    [self.view addSubview:ctableView];
+    str = @"{\"result\":\"000\", \"list\":[{\"id\":\"0\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"1\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"}]}";
+    //str = @"{\"result\":\"000\", \"list\":[{\"id\":\"0\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"}]}";
+    allTitleArr = [[NSMutableArray alloc]init];
+    filterTitleArr = [[NSMutableArray alloc]init];
     allArr = [[NSMutableArray alloc]init];
     NSDictionary *data = [str objectFromJSONString];
     NSArray *dataArray = [[NSArray alloc]initWithArray:[data objectForKey:@"list"]];
@@ -245,11 +247,26 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     for (NSInteger i = 0; i < allArrCount; i++) {
         NSDictionary *single = [dataArray objectAtIndex:i];
         product *productBean = [product productWithType:[[single objectForKey:@"id"] intValue] title:[single objectForKey:@"title"] imgUrl:[single objectForKey:@"imgUrl"] type:0];
+        [allTitleArr addObject:[single objectForKey:@"title"]];
         [allArr addObject:productBean];
     }
+    NSLog(@"frameWidth:%f,frameHeight:%f",self.view.frame.size.width,self.view.frame.size.height - HEIGHT_BAR);
+    ctableView = [[cTableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR, self.view.frame.size.width, self.view.frame.size.height - HEIGHT_BAR) products:allArr];
+    [ctableView setCustomDelegate:self];
+    [self.view addSubview:ctableView];
     [self.searchDisplayController.searchResultsTableView reloadData];
-    [ctableView reloadData];
+    //[ctableView reloadData];
     [ctableView release];
+}
+
+- (void)cTableViewAdd:(cTableView *)view
+{
+    NSLog(@"cTableViewAdd");
+}
+
+- (void)cTableViewSelected:(cTableView *)view
+{
+    NSLog(@"cTableViewSelected");
 }
 
 - (void)didReceiveMemoryWarning

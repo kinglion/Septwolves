@@ -44,7 +44,7 @@
 - (void)onClickItem:(UIViewController*)viewController row:(NSInteger)row
 {
     NSLog(@"选中！%d",row);
-    UIViewController *singleView;
+    UIViewController *singleView = nil;
     switch (row) {
         case 0:
             //跳转到品格男装

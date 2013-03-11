@@ -8,12 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "product.h"
+#import "cView.h"
+@class cTableView;
+@protocol cTableViewDelegate
 
-@interface cTableView : UIView
+- (void)cTableViewAdd:(cTableView *)view;
+- (void)cTableViewSelected:(cTableView *)view;
+
+@end
+
+
+@interface cTableView : UIScrollView<cViewDelegate>
 {
     NSMutableArray* products;
+    id<cTableViewDelegate> customDelegate;
 }
 @property (nonatomic,retain)NSMutableArray* products;
+@property (nonatomic,retain)id<cTableViewDelegate> customDelegate;
 - (id)initWithFrame:(CGRect)frame products:(NSMutableArray*)products;
 //设置view的数据
 - (void)setProducts:(NSMutableArray*)products;

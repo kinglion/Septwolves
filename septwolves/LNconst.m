@@ -7,10 +7,7 @@
 //
 
 #import "LNconst.h"
-#define RECT_SCREEN [[UIScreen mainScreen] bounds]
-#define SIZE_SCREEN RECT_SCREEN.size
-#define HEIGHT_SCREEN SIZE_SCREEN.height
-#define WIDTH_SCREEN SIZE_SCREEN.width
+
 
 @implementation LNconst
 

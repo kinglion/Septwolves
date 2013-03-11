@@ -8,7 +8,7 @@
 
 #import "NewViewController.h"
 #import "mainViewController.h"
-
+#import "LNconst.h"
 #define HEADHEIGHT 30.0f
 
 @interface NewViewController ()
@@ -89,7 +89,7 @@
     dataView = [[UIView alloc]initWithFrame:self.view.frame];
     calendarView = [[VRGCalendarView alloc]init];
     calendarView.delegate = self;
-    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, HEADHEIGHT, self.view.frame.size.width, self.view.frame.size.height)];
+    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR, self.view.frame.size.width, self.view.frame.size.height)];
     [dataView addSubview:calendarView];
     //dataSelectBtn
     UIButton *dataSelectBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60, 10, 20, 20)];

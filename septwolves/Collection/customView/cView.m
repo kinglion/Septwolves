@@ -33,6 +33,7 @@
     // Initialization code
     imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [imageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"pingeBg.png"]];
+    [imageView setContentMode:UIViewContentModeScaleAspectFit];
     //UIImage *image = [UIImage imageNamed:@"pingBg.png"];
     //[imageView setImage:image];
     [self addSubview:imageView];

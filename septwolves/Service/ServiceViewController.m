@@ -243,14 +243,12 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     NSDictionary *data = [str objectFromJSONString];
     NSArray *dataArray = [[NSArray alloc]initWithArray:[data objectForKey:@"list"]];
     int allArrCount = [dataArray count];
-    NSLog(@"productsCount:%d",allArrCount);
     for (NSInteger i = 0; i < allArrCount; i++) {
         NSDictionary *single = [dataArray objectAtIndex:i];
         product *productBean = [product productWithType:[[single objectForKey:@"id"] intValue] title:[single objectForKey:@"title"] imgUrl:[single objectForKey:@"imgUrl"] type:0];
         [allTitleArr addObject:[single objectForKey:@"title"]];
         [allArr addObject:productBean];
     }
-    NSLog(@"frameWidth:%f,frameHeight:%f",self.view.frame.size.width,self.view.frame.size.height - HEIGHT_BAR);
     ctableView = [[cTableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR, self.view.frame.size.width, self.view.frame.size.height - HEIGHT_BAR) products:allArr];
     [ctableView setCustomDelegate:self];
     [self.view addSubview:ctableView];

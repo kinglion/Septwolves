@@ -33,7 +33,7 @@
         if (self.products == nil) {
             self.products = [[NSMutableArray alloc]initWithArray:productsArr];
             [self setBackgroundColor:[UIColor blackColor]];
-            [self setAlwaysBounceVertical:NO];
+            [self setShowsVerticalScrollIndicator:NO];
             [self setupView:productsArr];
         }
     }
@@ -72,7 +72,6 @@
     UIButton *addButton = [[UIButton alloc]initWithFrame:CGRectMake((productsLen%2)*WIDTH/2, (productsLen/2)*HEIGHT/3, WIDTH/2, HEIGHT/3)];
     [addButton addTarget:self action:@selector(addButtonSelected:) forControlEvents:UIControlStateNormal];
     [addButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
-    [addButton setTitle:@"添加" forState:UIControlStateNormal];
     [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addSubview:addButton];
     [addButton release];

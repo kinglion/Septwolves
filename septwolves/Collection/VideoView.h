@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@class VideoView;
+@protocol VideoViewDelegate
+
+- (void)touchEvent:(VideoView *)view;
+
+@end
 
 @interface VideoView : UIView
+{
+    id<VideoViewDelegate> delegate;
+}
+
+@property(nonatomic,retain) id<VideoViewDelegate> delegate;
 
 @end

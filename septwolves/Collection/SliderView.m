@@ -7,6 +7,7 @@
 //
 
 #import "SliderView.h"
+#
 
 
 @implementation SliderView
@@ -15,7 +16,8 @@
 @synthesize scrollView = _scrollView;
 @synthesize delegate = _delegate;
 @synthesize imageCount,currentNum;
-
+@synthesize images;
+@synthesize mediaFocusManager;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -31,6 +33,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        NSMutableArray *imgArr = [[NSMutableArray alloc]init];
+        self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
+        self.mediaFocusManager.delegate = self;
         currentNum = 0;
         imageCount = [imageArr count];
         _pageControl = [[UIPageControl alloc]init];
@@ -52,15 +57,19 @@
             pageFrame = CGRectMake(i * _scrollView.bounds.size.width, 0.0f, _scrollView.bounds.size.width, _scrollView.bounds.size.height) ;
             imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:imageArr[i]]];
             [imageView setFrame:pageFrame];
+            [imgArr addObject:imageView];
             [self.scrollView addSubview:imageView];
             [imageView release];
         }
+        self.images = imgArr;
+        [self.mediaFocusManager installOnViews:self.images];
         [_scrollView setShowsHorizontalScrollIndicator:NO];
         [self addSubview:_scrollView];
         [self addSubview:_pageControl];
         [_pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
         [_scrollView release];
         [_pageControl release];
+        [imageArr release];
     }
     return self;
 }
@@ -103,8 +112,6 @@
     else
         transition = [self getAnimation:@"fromLeft"];
     
-    UIImageView *newView = (UIImageView *)[[_scrollView subviews] objectAtIndex:0];
-    [newView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"ipad_wallpaper%02d.jpg",secondPage+1]]];
     [_scrollView exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
     [[_scrollView layer] addAnimation:transition forKey:@"transitionView Animation"];
     
@@ -130,6 +137,35 @@
     return animation;
     
 }
+
+#pragma mark - ASMediaFocusDelegate
+- (UIImage *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageForView:(UIView *)view
+{
+    return ((UIImageView *)view).image;
+}
+
+- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameforView:(UIView *)view
+{
+    return self.parentViewController.view.bounds;
+}
+
+- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
+{
+    return self.parentViewController;
+}
+
+- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaPathForView:(UIView *)view
+{
+    NSString *path;
+    NSString *name;
+    
+    // Here, images are accessed through their name "1f.jpg", "2f.jpg", …
+    name = [NSString stringWithFormat:@"%df", ([self.imageViews indexOfObject:view] + 1)];
+    path = [[NSBundle mainBundle] pathForResource:name ofType:@"jpg"];
+    
+    return path;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

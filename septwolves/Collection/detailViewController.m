@@ -8,6 +8,8 @@
 
 #import "detailViewController.h"
 #import "SliderView.h"
+#import "VideoView.h"
+#import <MediaPlayer/MPMoviePlayerViewController.h>
 
 @interface detailViewController ()
 
@@ -41,11 +43,20 @@
 {
     [super viewDidLoad];
     NSMutableArray *array = [[NSMutableArray alloc]initWithObjects:@"indexBG.png",@"mannoone.png", nil];
-    SliderView *view = [[SliderView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height) ImageArr:array];
+    //SliderView *view = [[SliderView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height) ImageArr:array];
+    VideoView *view = [[VideoView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height)];
+    view.delegate = self;
     [self.topView addSubview:view];
     [array release];
     [view release];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)touchEvent:(VideoView *)view
+{
+    MPMoviePlayerViewController *viewController = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://movies.apple.com/media/us/iphone/2010/tours/apple-iphone4-design_video-us-20100607_848x480.mov"]];
+    [self presentMoviePlayerViewControllerAnimated:viewController];
+    [view setAlpha:1.0f];
 }
 
 - (void)doClickBackAction:(id)sender

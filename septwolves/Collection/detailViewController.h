@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoView.h"
 
-@interface detailViewController : UIViewController
+@interface detailViewController : UIViewController<VideoViewDelegate>
 
 @property (nonatomic,retain) IBOutlet UIView *topView;
 @property (nonatomic,retain) IBOutlet UILabel *textLabel;

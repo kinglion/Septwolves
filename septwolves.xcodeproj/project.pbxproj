@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		391130F516EEDB9800BF0DC0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391130F416EEDB9800BF0DC0 /* MediaPlayer.framework */; };
 		3930684816BFC1F300385F61 /* RootNavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3930684716BFC1F300385F61 /* RootNavController.xib */; };
 		3945F71316DCA47600F64A9B /* ChrConsuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71216DCA47500F64A9B /* ChrConsuViewController.m */; };
 		3945F71716DCA4D700F64A9B /* ChrConsuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71616DCA4D700F64A9B /* ChrConsuView.m */; };
@@ -35,6 +36,10 @@
 		39AD2F2A16AF85ED00AF0CCE /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 39AD2F2916AF85ED00AF0CCE /* data.json */; };
 		39C28A5116B7B9C400B5A74B /* JBKenBurnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3977BF6B16B7706E004D38ED /* JBKenBurnsView.m */; };
 		39C28A5716B7BBE500B5A74B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C28A5616B7BBE500B5A74B /* QuartzCore.framework */; };
+		39CDF63C16EF2C3C00E797DE /* ASImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CDF63616EF2C3C00E797DE /* ASImageScrollView.m */; };
+		39CDF63D16EF2C3C00E797DE /* ASMediaFocusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CDF63816EF2C3C00E797DE /* ASMediaFocusController.m */; };
+		39CDF63E16EF2C3C00E797DE /* ASMediaFocusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39CDF63916EF2C3C00E797DE /* ASMediaFocusController.xib */; };
+		39CDF63F16EF2C3C00E797DE /* ASMediaFocusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CDF63B16EF2C3C00E797DE /* ASMediaFocusManager.m */; };
 		39CEDA8B16D718FC00C144AC /* SliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEDA8A16D718FC00C144AC /* SliderView.m */; };
 		39CEDA8E16D7191300C144AC /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEDA8D16D7191300C144AC /* VideoView.m */; };
 		39EE9C5A16E6DC6100AFDAB2 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5816E6DC6100AFDAB2 /* backButton.png */; };
@@ -151,6 +156,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		391130F416EEDB9800BF0DC0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3930684716BFC1F300385F61 /* RootNavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootNavController.xib; sourceTree = "<group>"; };
 		3945F71116DCA47500F64A9B /* ChrConsuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrConsuViewController.h; sourceTree = "<group>"; };
 		3945F71216DCA47500F64A9B /* ChrConsuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChrConsuViewController.m; sourceTree = "<group>"; };
@@ -196,6 +202,13 @@
 		39AD2F2416AF848100AF0CCE /* MosaicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MosaicView.m; sourceTree = "<group>"; };
 		39AD2F2916AF85ED00AF0CCE /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		39C28A5616B7BBE500B5A74B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		39CDF63516EF2C3C00E797DE /* ASImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASImageScrollView.h; sourceTree = "<group>"; };
+		39CDF63616EF2C3C00E797DE /* ASImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASImageScrollView.m; sourceTree = "<group>"; };
+		39CDF63716EF2C3C00E797DE /* ASMediaFocusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusController.h; sourceTree = "<group>"; };
+		39CDF63816EF2C3C00E797DE /* ASMediaFocusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusController.m; sourceTree = "<group>"; };
+		39CDF63916EF2C3C00E797DE /* ASMediaFocusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASMediaFocusController.xib; sourceTree = "<group>"; };
+		39CDF63A16EF2C3C00E797DE /* ASMediaFocusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASMediaFocusManager.h; sourceTree = "<group>"; };
+		39CDF63B16EF2C3C00E797DE /* ASMediaFocusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASMediaFocusManager.m; sourceTree = "<group>"; };
 		39CEDA8916D718FC00C144AC /* SliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderView.h; sourceTree = "<group>"; };
 		39CEDA8A16D718FC00C144AC /* SliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderView.m; sourceTree = "<group>"; };
 		39CEDA8C16D7191300C144AC /* VideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
@@ -346,6 +359,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				391130F516EEDB9800BF0DC0 /* MediaPlayer.framework in Frameworks */,
 				39C28A5716B7BBE500B5A74B /* QuartzCore.framework in Frameworks */,
 				B47F8F4716A0189B00997BF0 /* ImageIO.framework in Frameworks */,
 				B47F8F4516A0187D00997BF0 /* MapKit.framework in Frameworks */,
@@ -474,6 +488,20 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		39CDF63416EF2C3C00E797DE /* ASMediaFocusManager */ = {
+			isa = PBXGroup;
+			children = (
+				39CDF63516EF2C3C00E797DE /* ASImageScrollView.h */,
+				39CDF63616EF2C3C00E797DE /* ASImageScrollView.m */,
+				39CDF63716EF2C3C00E797DE /* ASMediaFocusController.h */,
+				39CDF63816EF2C3C00E797DE /* ASMediaFocusController.m */,
+				39CDF63916EF2C3C00E797DE /* ASMediaFocusController.xib */,
+				39CDF63A16EF2C3C00E797DE /* ASMediaFocusManager.h */,
+				39CDF63B16EF2C3C00E797DE /* ASMediaFocusManager.m */,
+			);
+			path = ASMediaFocusManager;
+			sourceTree = "<group>";
+		};
 		B4123AA5168066E700E56EE6 /* resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +563,7 @@
 		B41EA9A0167F25DE0032FA40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				391130F416EEDB9800BF0DC0 /* MediaPlayer.framework */,
 				39C28A5616B7BBE500B5A74B /* QuartzCore.framework */,
 				B47F8F4416A0187D00997BF0 /* MapKit.framework */,
 				B4B2DFCE169EA013002614CE /* libxml2.2.dylib */,
@@ -574,6 +603,7 @@
 				B4123AA5168066E700E56EE6 /* resource */,
 				B42D1B3B168195020034B5B5 /* custom */,
 				39AD2F1616AF848100AF0CCE /* MosaicUI */,
+				39CDF63416EF2C3C00E797DE /* ASMediaFocusManager */,
 				B41EA9A8167F25DE0032FA40 /* Supporting Files */,
 			);
 			path = septwolves;
@@ -928,6 +958,7 @@
 				39EE9C6116E7271200AFDAB2 /* cellRight@2x.png in Resources */,
 				394F6B5D16EDC1FF002AD5B5 /* add.png in Resources */,
 				394F6B5E16EDC1FF002AD5B5 /* add@2x.png in Resources */,
+				39CDF63E16EF2C3C00E797DE /* ASMediaFocusController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1031,9 @@
 				B4D431B516E7AAE800FC0657 /* UIColor+expanded.m in Sources */,
 				B4D431B616E7AAE800FC0657 /* UIView+convenience.m in Sources */,
 				B4D431B716E7AAE800FC0657 /* VRGCalendarView.m in Sources */,
+				39CDF63C16EF2C3C00E797DE /* ASImageScrollView.m in Sources */,
+				39CDF63D16EF2C3C00E797DE /* ASMediaFocusController.m in Sources */,
+				39CDF63F16EF2C3C00E797DE /* ASMediaFocusManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

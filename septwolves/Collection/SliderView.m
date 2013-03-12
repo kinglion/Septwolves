@@ -156,14 +156,11 @@
 
 - (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaPathForView:(UIView *)view
 {
-    NSString *path;
-    NSString *name;
+    NSString *url;
     
-    // Here, images are accessed through their name "1f.jpg", "2f.jpg", …
-    name = [NSString stringWithFormat:@"%df", ([self.imageViews indexOfObject:view] + 1)];
-    path = [[NSBundle mainBundle] pathForResource:name ofType:@"jpg"];
+    // Here, images are accessed through their name "1f.jpg", "2f.jpg",
     
-    return path;
+    return url;
 }
 
 /*

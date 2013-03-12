@@ -49,7 +49,7 @@
     [self.topView addSubview:view];
     [array release];
     [view release];
-    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loadßing the view from its nib.
 }
 
 - (void)touchEvent:(VideoView *)view

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3901F24C16F0614300779A13 /* LNView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3901F24B16F0614300779A13 /* LNView.m */; };
 		391130F516EEDB9800BF0DC0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391130F416EEDB9800BF0DC0 /* MediaPlayer.framework */; };
 		3930684816BFC1F300385F61 /* RootNavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3930684716BFC1F300385F61 /* RootNavController.xib */; };
 		3945F71316DCA47600F64A9B /* ChrConsuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71216DCA47500F64A9B /* ChrConsuViewController.m */; };
@@ -156,6 +157,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3901F24A16F0614300779A13 /* LNView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LNView.h; path = septwolves/Date/LNView/LNView.h; sourceTree = SOURCE_ROOT; };
+		3901F24B16F0614300779A13 /* LNView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LNView.m; path = septwolves/Date/LNView/LNView.m; sourceTree = SOURCE_ROOT; };
 		391130F416EEDB9800BF0DC0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3930684716BFC1F300385F61 /* RootNavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootNavController.xib; sourceTree = "<group>"; };
 		3945F71116DCA47500F64A9B /* ChrConsuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrConsuViewController.h; sourceTree = "<group>"; };
@@ -378,6 +381,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3901F24716F060F100779A13 /* LNView */ = {
+			isa = PBXGroup;
+			children = (
+				3901F24A16F0614300779A13 /* LNView.h */,
+				3901F24B16F0614300779A13 /* LNView.m */,
+			);
+			name = LNView;
+			sourceTree = "<group>";
+		};
 		3945F71416DCA4B600F64A9B /* ChrConsuView */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +822,7 @@
 		B4E75A351680116D0099EE8B /* Date */ = {
 			isa = PBXGroup;
 			children = (
+				3901F24716F060F100779A13 /* LNView */,
 				B4E75A36168011A80099EE8B /* DateViewController.h */,
 				B4E75A37168011A80099EE8B /* DateViewController.m */,
 				B4E75A38168011A80099EE8B /* DateViewController.xib */,
@@ -1034,6 +1047,7 @@
 				39CDF63C16EF2C3C00E797DE /* ASImageScrollView.m in Sources */,
 				39CDF63D16EF2C3C00E797DE /* ASMediaFocusController.m in Sources */,
 				39CDF63F16EF2C3C00E797DE /* ASMediaFocusManager.m in Sources */,
+				3901F24C16F0614300779A13 /* LNView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 //
 
 #import "SliderView.h"
-#
+#import <SDWebImage/UIImageView+WebCache.h>
 
 
 @implementation SliderView
@@ -28,14 +28,13 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame ImageArr:(NSMutableArray *)imageArr
+- (id)setFrame:(CGRect)frame ImageArr:(NSMutableArray *)imageArr
 
 {
     self = [super initWithFrame:frame];
     if (self) {
         NSMutableArray *imgArr = [[NSMutableArray alloc]init];
         self.mediaFocusManager = [[ASMediaFocusManager alloc] init];
-        self.mediaFocusManager.delegate = self;
         currentNum = 0;
         imageCount = [imageArr count];
         _pageControl = [[UIPageControl alloc]init];
@@ -49,13 +48,15 @@
         [_scrollView setContentSize: CGSizeMake(_scrollView.bounds.size.width * imageCount, _scrollView.bounds.size.height)];
         _scrollView.delegate = self;
         [_scrollView setBounces:NO];
-        [_scrollView setPagingEnabled: YES] ;
+        [_scrollView setPagingEnabled: YES];
         CGRect pageFrame;
         UIImageView *imageView;
         for (int i = 0 ; i < imageCount ; i++)
         {
             pageFrame = CGRectMake(i * _scrollView.bounds.size.width, 0.0f, _scrollView.bounds.size.width, _scrollView.bounds.size.height) ;
-            imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:imageArr[i]]];
+            imageView = [[UIImageView alloc]init];
+            [imageView setImageWithURL:[NSURL URLWithString:imageArr[i]]];
+            [imageView setContentMode:UIViewContentModeScaleAspectFit];
             [imageView setFrame:pageFrame];
             [imgArr addObject:imageView];
             [self.scrollView addSubview:imageView];
@@ -66,10 +67,12 @@
         [_scrollView setShowsHorizontalScrollIndicator:NO];
         [self addSubview:_scrollView];
         [self addSubview:_pageControl];
+        [_delegate touchView:self ASMediaFocusManager:self.mediaFocusManager images:imgArr];
         [_pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
         [_scrollView release];
         [_pageControl release];
         [imageArr release];
+        [imgArr release];
     }
     return self;
 }
@@ -138,31 +141,22 @@
     
 }
 
-#pragma mark - ASMediaFocusDelegate
-- (UIImage *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageForView:(UIView *)view
-{
-    return ((UIImageView *)view).image;
-}
 
-- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameforView:(UIView *)view
+#pragma mark - touchView
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    return self.parentViewController.view.bounds;
-}
-
-- (UIViewController *)parentViewControllerForMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager
-{
-    return self.parentViewController;
-}
-
-- (NSString *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager mediaPathForView:(UIView *)view
-{
-    NSString *url;
     
-    // Here, images are accessed through their name "1f.jpg", "2f.jpg",
-    
-    return url;
 }
 
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

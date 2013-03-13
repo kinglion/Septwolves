@@ -9,19 +9,21 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ASMediaFocusManager.h"
+@class SliderView;
 @protocol SliderDelegate
 
-- (void)touchView:(UIImageView *)imageView;
+- (void)touchView:(SliderView *)view ASMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager images:(NSMutableArray *)images;
 
 @end
 
-@interface SliderView : UIView<UIScrollViewDelegate,ASMediasFocusDelegate>
+@interface SliderView : UIView<UIScrollViewDelegate>
 {
     NSMutableArray *images;
     ASMediaFocusManager *mediaFocusManager;
+    id<SliderDelegate> delegate;
 }
 -(CATransition *) getAnimation:(NSString *) direction;
-- (id)initWithFrame:(CGRect)frame ImageArr:(NSMutableArray *)imageArr;
+- (id)setFrame:(CGRect)frame ImageArr:(NSMutableArray *)imageArr;
 @property (strong, nonatomic) ASMediaFocusManager *mediaFocusManager;
 @property (nonatomic,assign) NSInteger imageCount;
 @property (nonatomic,assign) NSInteger currentNum;

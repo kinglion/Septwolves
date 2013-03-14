@@ -92,6 +92,8 @@
 		B42D1B3F168197900034B5B5 /* navBg.png in Resources */ = {isa = PBXBuildFile; fileRef = B42D1B3D168197900034B5B5 /* navBg.png */; };
 		B42D1B40168197900034B5B5 /* navBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B42D1B3E168197900034B5B5 /* navBg@2x.png */; };
 		B42D1B43168197F20034B5B5 /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B42D1B42168197D30034B5B5 /* CustomNavigationBar.m */; };
+		B445616316F2142300D296A9 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B445616116F2142300D296A9 /* UserViewController.m */; };
+		B445616416F2142300D296A9 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B445616216F2142300D296A9 /* UserViewController.xib */; };
 		B47F8F4316A0136500997BF0 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B47F8F3916A011BF00997BF0 /* libSDWebImage.a */; };
 		B47F8F4516A0187D00997BF0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47F8F4416A0187D00997BF0 /* MapKit.framework */; };
 		B47F8F4716A0189B00997BF0 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47F8F4616A0189B00997BF0 /* ImageIO.framework */; };
@@ -293,6 +295,9 @@
 		B42D1B3E168197900034B5B5 /* navBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navBg@2x.png"; path = "resource/navBg@2x.png"; sourceTree = "<group>"; };
 		B42D1B41168197D30034B5B5 /* CustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CustomNavigationBar.h; path = custom/CustomNavigationBar.h; sourceTree = "<group>"; };
 		B42D1B42168197D30034B5B5 /* CustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CustomNavigationBar.m; path = custom/CustomNavigationBar.m; sourceTree = "<group>"; };
+		B445616016F2142300D296A9 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = septwolves/Date/UserViewController.h; sourceTree = SOURCE_ROOT; };
+		B445616116F2142300D296A9 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = septwolves/Date/UserViewController.m; sourceTree = SOURCE_ROOT; };
+		B445616216F2142300D296A9 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserViewController.xib; path = septwolves/Date/UserViewController.xib; sourceTree = SOURCE_ROOT; };
 		B47F8F2F16A011BD00997BF0 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = "SDWebImage-master/SDWebImage.xcodeproj"; sourceTree = "<group>"; };
 		B47F8F4416A0187D00997BF0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B47F8F4616A0189B00997BF0 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -871,6 +876,9 @@
 			isa = PBXGroup;
 			children = (
 				3901F24716F060F100779A13 /* LNView */,
+				B445616016F2142300D296A9 /* UserViewController.h */,
+				B445616116F2142300D296A9 /* UserViewController.m */,
+				B445616216F2142300D296A9 /* UserViewController.xib */,
 				B4E75A36168011A80099EE8B /* DateViewController.h */,
 				B4E75A37168011A80099EE8B /* DateViewController.m */,
 				B4E75A38168011A80099EE8B /* DateViewController.xib */,
@@ -1036,6 +1044,7 @@
 				39FEC76F16F17C0000ACFF4F /* submit_button_image.png in Resources */,
 				39FEC77016F17C0000ACFF4F /* submit_button_image@2x.png in Resources */,
 				39FEC77116F17C0000ACFF4F /* Character_will_bg.png in Resources */,
+				B445616416F2142300D296A9 /* UserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1121,7 @@
 				39CDF63D16EF2C3C00E797DE /* ASMediaFocusController.m in Sources */,
 				39CDF63F16EF2C3C00E797DE /* ASMediaFocusManager.m in Sources */,
 				3901F24C16F0614300779A13 /* LNView.m in Sources */,
+				B445616316F2142300D296A9 /* UserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

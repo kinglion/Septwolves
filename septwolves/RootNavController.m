@@ -28,8 +28,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initializatio
-        UIView *rootView = [[UIView alloc]init];
-        [rootView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         /*NSArray *imageArr = [NSArray arrayWithObjects:
                              @"http://img.article.pchome.net/00/59/22/36/pic_lib/wm/Meinv06.jpg",@"http://img.article.pchome.net/00/50/42/87/pic_lib/wm/Meinv01.jpg",nil];*/
         //kenBurnsView = [[KenBurnsView alloc]initWithFrame:CGRectMake(0, 0,rootView.frame.size.width,rootView.frame.size.height)];
@@ -45,8 +43,7 @@
         tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [tableView setDataSource:self];
         [tableView setDelegate:self];
-        [rootView addSubview:tableView];
-        [self.view addSubview:rootView];
+        [self.view addSubview:tableView];
         [tableView release];
         [uiimage release];
         [imageView release];

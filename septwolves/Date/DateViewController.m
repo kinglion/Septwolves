@@ -90,6 +90,7 @@
     UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30.0f)];
     textField.text = @"ssssssssssssss";
     [array addObject:textField];
+<<<<<<< HEAD
     
     //添加 登陆按钮 和 注册按钮
     if (!_loginFlag)[self addMutilButton:CGRectMake(0.0f, self.view.frame.size.height - TABLE_HEIGHT - HEIGHT_VIEW, WIDTH_SCREEN / 2, HEIGHT_VIEW) rFrame:CGRectMake(WIDTH_SCREEN / 2, self.view.frame.size.height - TABLE_HEIGHT - HEIGHT_VIEW, WIDTH_SCREEN / 2, HEIGHT_VIEW)];
@@ -97,6 +98,11 @@
     [imageView release];
     //LNView *view = [[LNView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.bounds.size.height - HEIGHT_BAR) backgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5] cornerable:YES floors:array];
     //[self.view addSubview:view];
+=======
+    NSLog(@"%f",self.view.frame.size.height);
+    LNView *view = [[LNView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height - HEIGHT_BAR) backgroundColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5] cornerable:YES floors:array];
+    [self.view addSubview:view];
+>>>>>>> 2013-03-14
     // Do any additional setup after loading the view from its nib.
 }
 

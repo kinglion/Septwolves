@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #define BREAK_LINE_HEIGHT 2.0f
+#define CORNER_VALUE 10.0f
 #define BREAK_LINE_CONTENT_BACKGROUND_COLOR [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1]
 #define BREAK_LINE_BACKGROUND_COLOR [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1]
 

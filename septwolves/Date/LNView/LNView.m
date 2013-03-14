@@ -26,7 +26,7 @@
     if (self) {
         // Initialization code
         [self setBackgroundColor:backgroundColor];
-        if (cornerable)[[self layer] setCornerRadius:5.0f];
+        if (cornerable)[[self layer] setCornerRadius:CORNER_VALUE];
         float sumHeight = 0.0f;
         int floorsCount = [floors count];
         if (floorsCount > 1) {

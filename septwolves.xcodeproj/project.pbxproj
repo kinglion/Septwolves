@@ -10,6 +10,7 @@
 		3901F24C16F0614300779A13 /* LNView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3901F24B16F0614300779A13 /* LNView.m */; };
 		391130F516EEDB9800BF0DC0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391130F416EEDB9800BF0DC0 /* MediaPlayer.framework */; };
 		3930684816BFC1F300385F61 /* RootNavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3930684716BFC1F300385F61 /* RootNavController.xib */; };
+		3933F1ED16F314760014C1D0 /* LNActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3933F1EB16F30E720014C1D0 /* LNActivityIndicatorView.m */; };
 		3945F71316DCA47600F64A9B /* ChrConsuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71216DCA47500F64A9B /* ChrConsuViewController.m */; };
 		3945F71716DCA4D700F64A9B /* ChrConsuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71616DCA4D700F64A9B /* ChrConsuView.m */; };
 		3945F71B16DCC47D00F64A9B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71A16DCC47D00F64A9B /* JSONKit.m */; };
@@ -179,6 +180,8 @@
 		3901F24B16F0614300779A13 /* LNView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LNView.m; path = septwolves/Date/LNView/LNView.m; sourceTree = SOURCE_ROOT; };
 		391130F416EEDB9800BF0DC0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3930684716BFC1F300385F61 /* RootNavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootNavController.xib; sourceTree = "<group>"; };
+		3933F1EA16F30E720014C1D0 /* LNActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LNActivityIndicatorView.h; path = septwolves/LNActivityIntiditorView/LNActivityIndicatorView.h; sourceTree = "<group>"; };
+		3933F1EB16F30E720014C1D0 /* LNActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LNActivityIndicatorView.m; path = septwolves/LNActivityIntiditorView/LNActivityIndicatorView.m; sourceTree = "<group>"; };
 		3945F71116DCA47500F64A9B /* ChrConsuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrConsuViewController.h; sourceTree = "<group>"; };
 		3945F71216DCA47500F64A9B /* ChrConsuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChrConsuViewController.m; sourceTree = "<group>"; };
 		3945F71516DCA4D700F64A9B /* ChrConsuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrConsuView.h; sourceTree = "<group>"; };
@@ -427,6 +430,16 @@
 			name = LNView;
 			sourceTree = "<group>";
 		};
+		3933F1E716F30DA30014C1D0 /* LNActivityIntiditorView */ = {
+			isa = PBXGroup;
+			children = (
+				3933F1EA16F30E720014C1D0 /* LNActivityIndicatorView.h */,
+				3933F1EB16F30E720014C1D0 /* LNActivityIndicatorView.m */,
+			);
+			name = LNActivityIntiditorView;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		3945F71416DCA4B600F64A9B /* ChrConsuView */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,6 +683,7 @@
 				39AD2F1616AF848100AF0CCE /* MosaicUI */,
 				39CDF63416EF2C3C00E797DE /* ASMediaFocusManager */,
 				B41EA9A8167F25DE0032FA40 /* Supporting Files */,
+				3933F1E716F30DA30014C1D0 /* LNActivityIntiditorView */,
 			);
 			path = septwolves;
 			sourceTree = "<group>";
@@ -1055,6 +1069,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3933F1ED16F314760014C1D0 /* LNActivityIndicatorView.m in Sources */,
 				B41E0D0216ECE0B900332365 /* EGORefreshTableHeaderView.m in Sources */,
 				B41E0D0316ECE0B900332365 /* LoadMoreTableFooterView.m in Sources */,
 				39EE9C5C16E6F52100AFDAB2 /* SecondViewController.m in Sources */,

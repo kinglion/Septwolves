@@ -122,7 +122,6 @@
     // Fill the buffer.
     for (uint i=0; i<bufferSize; i++) {
         NSString *url = [[NSString alloc] initWithString:[urls objectAtIndex:i]];
-        UIImageView *imageView = [[UIImageView alloc]init];
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
         [manager downloadWithURL:[NSURL URLWithString:url]
                          options:0
@@ -136,7 +135,6 @@
                  if(i == bufferSize-1)[NSThread detachNewThreadSelector:@selector(_startSDWebImageAnimations:) toTarget:self withObject:urls];
              }
          }];
-        [imageView release];
         [url release];
     }
     

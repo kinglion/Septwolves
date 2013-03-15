@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JBKenBurnsView.h"
 #import "NavViewController.h"
+#import "LNActivityIndicatorView.h"
+#import "LNconst.h"
 @class RootNavController;
 @protocol RootNavControllerDelegate
 
@@ -20,9 +22,14 @@
 @interface RootNavController : UIViewController<UITableViewDataSource,UITableViewDelegate,KenBurnsViewDelegate,UINavigationControllerDelegate>
 {
     NavViewController *navController;
+    KenBurnsView *kenBurnsView;
+    LNActivityIndicatorView *indicatorView;
+    NSString *resultStr;
 }
+@property (nonatomic, copy) NSString *resultStr;
 @property (nonatomic, assign) id<RootNavControllerDelegate> rootNavControllerDelegate;
 @property (nonatomic, retain) NavViewController *navController;
-@property (strong , nonatomic) KenBurnsView *kenBurnsView;
+@property (nonatomic , retain) KenBurnsView *kenBurnsView;
 @property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) LNActivityIndicatorView *indicatorView;
 @end

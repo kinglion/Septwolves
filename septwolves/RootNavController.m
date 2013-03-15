@@ -23,30 +23,35 @@
 @synthesize kenBurnsView;
 @synthesize navController;
 @synthesize rootNavControllerDelegate = _rootNavControllerDelegate;
+@synthesize indicatorView = _indicatorView;
+@synthesize resultStr;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
         // Custom initializatio
-        /*NSArray *imageArr = [NSArray arrayWithObjects:
-                             @"http://img.article.pchome.net/00/59/22/36/pic_lib/wm/Meinv06.jpg",@"http://img.article.pchome.net/00/50/42/87/pic_lib/wm/Meinv01.jpg",nil];*/
-        //kenBurnsView = [[KenBurnsView alloc]initWithFrame:CGRectMake(0, 0,rootView.frame.size.width,rootView.frame.size.height)];
-        //[rootView addSubview:kenBurnsView];
-        //kenBurnsView.delegate = self;
-        //[kenBurnsView animateWithSDWebImageURLs:imageArr transitionDuration:15 loop:YES isLandscape:YES];
-        UIImage *uiimage = [UIImage imageNamed:@"indexBG.png"];
-        UIImageView *imageView =  [[UIImageView alloc]initWithImage:uiimage];
-        [imageView setFrame:CGRectMake(0, 0, self.view.frame.size
-                                       .width, self.view.frame.size
-                                       .height)];
-        [self.view addSubview:imageView];
+        NSArray *imageArr = [NSArray arrayWithObjects:
+                             @"http://img.article.pchome.net/00/59/22/36/pic_lib/wm/Meinv06.jpg",@"http://img.article.pchome.net/00/50/42/87/pic_lib/wm/Meinv01.jpg",nil];
+        kenBurnsView = [[KenBurnsView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        kenBurnsView.delegate = self;
+        [kenBurnsView animateWithSDWebImageURLs:imageArr transitionDuration:15 loop:YES isLandscape:YES];
+        [self.view addSubview:kenBurnsView];
+        //UIImage *uiimage = [UIImage imageNamed:@"indexBG.png"];
+        //UIImageView *imageView =  [[UIImageView alloc]initWithImage:uiimage];
+        //[imageView setFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        //[self.view addSubview:imageView];
         tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [tableView setDataSource:self];
         [tableView setDelegate:self];
         [self.view addSubview:tableView];
+        [self.view addSubview:tempIndicatorView];
+        self.indicatorView = tempIndicatorView;
+        //[self.indicatorView startAnimating];
+        [tempIndicatorView release];
         [tableView release];
-        [uiimage release];
-        [imageView release];
+        //[uiimage release];
+        //[imageView release];
     }
     return self;
 }

@@ -13,13 +13,16 @@
 #import "DateViewController.h"
 #import "NewViewController.h"
 #import "ServiceViewController.h"
+#import "LNActivityIndicatorView.h"
 
 
 @interface mainViewController : UIViewController<RootNavControllerDelegate>
 {
     UINavigationController *navController;
     RootNavController *rootController;
+    LNActivityIndicatorView *indicatorView;
 }
 @property (nonatomic, retain) UINavigationController *navController;
 @property (nonatomic, retain) RootNavController *rootController;
+@property (nonatomic, retain) LNActivityIndicatorView *indicatorView;
 @end

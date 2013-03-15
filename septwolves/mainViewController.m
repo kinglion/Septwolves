@@ -15,16 +15,13 @@
 @implementation mainViewController
 @synthesize navController;
 @synthesize rootController;
+@synthesize indicatorView = _indicatorView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        rootController = [[RootNavController alloc]initWithNibName:@"RootNavController" bundle:nil];
-        [self addChildViewController:rootController];
-        rootController.rootNavControllerDelegate = self;
-        [self.view addSubview:rootController.view];
     }
     return self;
 }
@@ -32,6 +29,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    rootController = [[RootNavController alloc]initWithNibName:@"RootNavController" bundle:nil];
+    [self addChildViewController:rootController];
+    rootController.rootNavControllerDelegate = self;
+    [self.view addSubview:rootController.view];
     // Do any additional setup after loading the view from its nib.
 }
 

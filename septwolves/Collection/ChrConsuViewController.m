@@ -9,7 +9,7 @@
 #import "ChrConsuViewController.h"
 #import "JSONKit.h"
 #import "ChrConsuView.h"
-#import "detailViewController.h"
+#import "LNConsuViewController.h"
 
 #define LISTHEIGHT 200.0f
 #define LISTDIS 10.0f
@@ -224,7 +224,8 @@
 //实现cViewController的触碰
 - (void)touchEvent:(ChrConsuView *)view
 {
-    detailViewController *viewController = [[detailViewController alloc]initWithNibName:@"detailViewController" bundle:nil];
+    LNConsuViewController *viewController = [[LNConsuViewController alloc]init];
+    [viewController setTitle:view.label.text];
     [self.navigationController pushViewController:viewController animated:YES];
     [view setAlpha:1.0f];
     [viewController release];

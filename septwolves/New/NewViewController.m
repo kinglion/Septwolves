@@ -89,17 +89,15 @@
     dataView = [[UIView alloc]initWithFrame:self.view.frame];
     calendarView = [[VRGCalendarView alloc]init];
     calendarView.delegate = self;
-    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR, self.view.frame.size.width, self.view.frame.size.height)];
+    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR - 5, self.view.frame.size.width, self.view.frame.size.height)];
     [dataView addSubview:calendarView];
     //dataSelectBtn
-    UIButton *dataSelectBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60, 10, 20, 20)];
-    [dataSelectBtn setBackgroundColor:[UIColor blackColor]];
-    [dataSelectBtn setTitle:@"select" forState:UIControlStateNormal];
+    UIButton *dataSelectBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 80, 5, 30, 30)];
+    [dataSelectBtn setBackgroundImage:[UIImage imageNamed:@"data_week_button_bg.png"] forState:UIControlStateNormal];
     [dataSelectBtn addTarget:self action:@selector(dataSelectClick:) forControlEvents:UIControlEventTouchUpInside];
     //addDataBtn
-    UIButton *addDataBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 30, 10, 20, 20)];
-    [addDataBtn setBackgroundColor:[UIColor blackColor]];
-    [addDataBtn setTitle:@"add" forState:UIControlStateNormal];
+    UIButton *addDataBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 40, 5, 30, 30)];
+    [addDataBtn setBackgroundImage:[UIImage imageNamed:@"data_add_button_bg.png"] forState:UIControlStateNormal];
     [addDataBtn addTarget:self action:@selector(addDataClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [dataView addSubview:dataSelectBtn];
@@ -249,16 +247,15 @@
 - (void)dataSelectClick:(id)sender
 {
     if(isCalendarHide){
-        NSLog(@"%f",calendarView.frame.size.height);
         [UIView beginAnimations:@"animate" context:nil];
         [UIView setAnimationDuration:0.5f];
-        [dataTableView setFrame:CGRectMake(0, HEADHEIGHT + calendarView.frame.size.height, dataTableView.frame.size.width, dataTableView.frame.size.height)];
+        [dataTableView setFrame:CGRectMake(0, HEIGHT_BAR - 5 + calendarView.frame.size.height, dataTableView.frame.size.width, dataTableView.frame.size.height)];
         [UIView commitAnimations];
         isCalendarHide = NO;
     }else{
         [UIView beginAnimations:@"animate" context:nil];
         [UIView setAnimationDuration:0.5f];
-        [dataTableView setFrame:CGRectMake(0, HEADHEIGHT, dataTableView.frame.size.width, dataTableView.frame.size.height)];
+        [dataTableView setFrame:CGRectMake(0, HEIGHT_BAR - 5, dataTableView.frame.size.width, dataTableView.frame.size.height)];
         [UIView commitAnimations];
         isCalendarHide = YES;
     }

@@ -65,12 +65,13 @@
         cView *view = [[cView alloc]initWithFrame:CGRectMake((i%2)*WIDTH/2, (i/2)*HEIGHT/3, WIDTH/2, HEIGHT/3)];
         product *productItem = productsArr[i];
         [view setView:CGRectMake((i%2)*WIDTH/2, (i/2)*HEIGHT/3, WIDTH/2, HEIGHT/3) title:productItem.title img:productItem.imgUrl cornerable:NO];
+        [view setDelegate:self];
         [self addSubview:view];
         [view release];
         [productItem release];
     }
     UIButton *addButton = [[UIButton alloc]initWithFrame:CGRectMake((productsLen%2)*WIDTH/2, (productsLen/2)*HEIGHT/3, WIDTH/2, HEIGHT/3)];
-    [addButton addTarget:self action:@selector(addButtonSelected:) forControlEvents:UIControlStateNormal];
+    [addButton addTarget:self action:@selector(addButtonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [addButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
     [addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addSubview:addButton];
@@ -86,7 +87,7 @@
     [self setContentSize:CGSizeMake(self.frame.size.width, (productsLen/2)*HEIGHT/3)];
 }
 
-- (void)addButtonSelected:(id)Sender
+- (void)addButtonSelected:(id)sender
 {
     NSLog(@"addButtonSelected");
     [_customDelegate cTableViewAdd:self];

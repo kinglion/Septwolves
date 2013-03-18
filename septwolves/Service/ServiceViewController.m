@@ -12,6 +12,7 @@
 #import "product.h"
 #import "mainViewController.h"
 #import "LNconst.h"
+#import "ChannelViewController.h"
 #define WIDTH_LIST 120.0f
 @interface ServiceViewController ()
 
@@ -74,11 +75,20 @@
     if (isListOpen) {
         [UIView animateWithDuration:1 animations:^{
             [self.listTableView setFrame:CGRectMake(WIDTH_SCREEN, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.listTableView setHidden:YES];
+            }
         }];
         isListOpen = NO;
     }else{
+        [self.listTableView setHidden:NO];
         [UIView animateWithDuration:1 animations:^{
             [self.listTableView setFrame:CGRectMake(WIDTH_SCREEN - WIDTH_LIST, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.listTableView setHidden:NO];
+            }
         }];
         isListOpen = YES;
     }
@@ -312,6 +322,10 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     UITableView *tempTableView = [[UITableView alloc]initWithFrame:CGRectMake(WIDTH_SCREEN - WIDTH_LIST, 0, WIDTH_LIST, HEIGHT_SUB_BAR) style:UITableViewStylePlain];
     [UIView animateWithDuration:1 animations:^{
         [tempTableView setFrame:CGRectMake(WIDTH_SCREEN, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self.listTableView setHidden:YES];
+        }
     }];
     isListOpen = NO;
     [tempTableView setDataSource:self];
@@ -321,7 +335,8 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 
 - (void)cTableViewAdd:(cTableView *)view
 {
-    NSLog(@"cTableViewAdd");
+    UIViewController *singleViewController = [[ChannelViewController alloc]init];
+    [self.navigationController pushViewController:singleViewController animated:YES];
 }
 
 - (void)cTableViewSelected:(cTableView *)view
@@ -357,6 +372,7 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     if(tableView == self.listTableView){
         NSLog(@"选中！");
         [self.listTableView deselectRowAtIndexPath:indexPath animated:YES];
+        UIViewController *singleViewController;
         switch (indexPath.row) {
             case 0:
                 
@@ -364,13 +380,19 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
             case 1:
                 break;
             case 2:
-                
+                singleViewController = [[ChannelViewController alloc]init];
+                singleViewController.title = @"订阅频道";
                 break;
             default:
                 break;
         }
+        [self.navigationController pushViewController:singleViewController animated:YES];
         [UIView animateWithDuration:1 animations:^{
             [self.listTableView setFrame:CGRectMake(WIDTH_SCREEN, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self.listTableView setHidden:YES];
+            }
         }];
         isListOpen = NO;
     }

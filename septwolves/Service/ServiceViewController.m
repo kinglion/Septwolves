@@ -12,6 +12,7 @@
 #import "product.h"
 #import "mainViewController.h"
 #import "LNconst.h"
+#define WIDTH_LIST 120.0f
 @interface ServiceViewController ()
 
 @end
@@ -23,6 +24,8 @@
 @synthesize str;
 @synthesize allTitleArr;
 @synthesize filterTitleArr;
+@synthesize listTableView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,8 +52,36 @@
         self.navigationItem.leftBarButtonItem = leftBarButtonItem;
         [leftBarButtonItem release];
         [backButton release];
+        
+        UIImage* listImage = [UIImage imageNamed:@"right_item_bg.png"];
+        CGRect listframe = CGRectMake(0, 0, 20, 18);
+        UIButton *listButton = [[UIButton alloc]initWithFrame:listframe];
+        [listButton setBackgroundImage:listImage forState:UIControlStateNormal];
+        [listButton setTitle:@"" forState:UIControlStateNormal];
+        listButton.titleLabel.font=[UIFont systemFontOfSize:13];
+        [listButton addTarget:self action:@selector(doClickListAction:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem* rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:listButton];
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+        [rightBarButtonItem release];
+        [listButton release];
+        [listImage release];
     }
     return self;
+}
+
+- (void)doClickListAction:(id)sender
+{
+    if (isListOpen) {
+        [UIView animateWithDuration:1 animations:^{
+            [self.listTableView setFrame:CGRectMake(WIDTH_SCREEN, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+        }];
+        isListOpen = NO;
+    }else{
+        [UIView animateWithDuration:1 animations:^{
+            [self.listTableView setFrame:CGRectMake(WIDTH_SCREEN - WIDTH_LIST, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+        }];
+        isListOpen = YES;
+    }
 }
 
 #pragma mark -
@@ -189,10 +220,9 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 }
 #pragma mark UITableView and UITableViewController Delegate Methods
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-
 {
     
-    NSInteger a=0;
+    /*NSInteger a=0;
     
     //过滤关键字
     
@@ -207,8 +237,12 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
         a=[self.filterTitleArr count];
         
     }
+    return a;*/
+    NSInteger a = 0;
+    if (tableView == self.listTableView) {
+        a = 3;
+    }
     return a;
-    
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -217,18 +251,32 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:Cellldentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Cellldentifier]autorelease];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if (tableView == self.listTableView) {
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"我的频道";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"我的收藏";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"订阅频道";
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            int resultNum = [self.resultArr count];
+            if(resultNum > 0)
+            {
+                cell.textLabel.text = [self.resultArr objectAtIndex:indexPath.row];
+            }else
+            {
+                cell.textLabel.text = [self.allArr objectAtIndex:indexPath.row];
+            }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
     }
-    int resultNum = [self.resultArr count];
-    if(resultNum > 0)
-    {
-        cell.textLabel.text = [self.resultArr objectAtIndex:indexPath.row];
-    }else
-    {
-        cell.textLabel.text = [self.allArr objectAtIndex:indexPath.row];
-    }
-    
-    NSLog(@"%@",cell.textLabel.text);
     return cell;
 }
 
@@ -255,6 +303,20 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     [self.searchDisplayController.searchResultsTableView reloadData];
     //[ctableView reloadData];
     [ctableView release];
+    self.listTableView = [self creatListTableView];
+    [self.view addSubview:self.listTableView];
+}
+
+- (UITableView*)creatListTableView
+{
+    UITableView *tempTableView = [[UITableView alloc]initWithFrame:CGRectMake(WIDTH_SCREEN - WIDTH_LIST, 0, WIDTH_LIST, HEIGHT_SUB_BAR) style:UITableViewStylePlain];
+    [UIView animateWithDuration:1 animations:^{
+        [tempTableView setFrame:CGRectMake(WIDTH_SCREEN, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+    }];
+    isListOpen = NO;
+    [tempTableView setDataSource:self];
+    [tempTableView setDelegate:self];
+    return tempTableView;
 }
 
 - (void)cTableViewAdd:(cTableView *)view
@@ -266,6 +328,55 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
     NSLog(@"cTableViewSelected");
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIColor *altCellColor = [UIColor colorWithWhite:0 alpha:1];
+    self.listTableView.backgroundColor = altCellColor;
+    cell.backgroundColor = altCellColor;
+    altCellColor = [UIColor colorWithWhite:1 alpha:0];
+    cell.textLabel.backgroundColor = altCellColor;
+    [cell.textLabel setFont:[UIFont fontWithName:@"黑体" size:20]];
+    [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
+    cell.detailTextLabel.backgroundColor = altCellColor;
+    cell.textLabel.textColor = [UIColor whiteColor];
+    self.listTableView.separatorColor = [UIColor darkGrayColor];
+    [self.listTableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.listTableView) {
+        return 50;
+    }else{
+        return 40;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(tableView == self.listTableView){
+        NSLog(@"选中！");
+        [self.listTableView deselectRowAtIndexPath:indexPath animated:YES];
+        switch (indexPath.row) {
+            case 0:
+                
+                break;
+            case 1:
+                break;
+            case 2:
+                
+                break;
+            default:
+                break;
+        }
+        [UIView animateWithDuration:1 animations:^{
+            [self.listTableView setFrame:CGRectMake(WIDTH_SCREEN, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+        }];
+        isListOpen = NO;
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

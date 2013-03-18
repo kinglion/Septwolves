@@ -16,6 +16,8 @@
     NSMutableArray *resultArr;
     NSMutableArray *allTitleArr;
     NSMutableArray *filterTitleArr;
+    BOOL isListOpen;
+    UITableView *listTableView;
 }
 @property (nonatomic, retain)NSMutableArray *allTitleArr;
 @property (nonatomic, retain)NSMutableArray *filterTitleArr;
@@ -23,4 +25,5 @@
 @property (nonatomic,retain)NSMutableArray *allArr;
 @property (nonatomic,retain)NSMutableArray *resultArr;
 @property (nonatomic,copy)NSString* str;
+@property (nonatomic,retain)UITableView *listTableView;
 @end

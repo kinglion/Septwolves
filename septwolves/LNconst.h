@@ -12,6 +12,7 @@
 #define HEIGHT_SCREEN SIZE_SCREEN.height
 #define WIDTH_SCREEN SIZE_SCREEN.width
 #define HEIGHT_BAR 44.0f
+#define HEIGHT_SUB_BAR HEIGHT_SCREEN - HEIGHT_BAR
 @interface LNconst : NSObject
 
 @end

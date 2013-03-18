@@ -44,6 +44,8 @@
 		39CDF63F16EF2C3C00E797DE /* ASMediaFocusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CDF63B16EF2C3C00E797DE /* ASMediaFocusManager.m */; };
 		39CEDA8B16D718FC00C144AC /* SliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEDA8A16D718FC00C144AC /* SliderView.m */; };
 		39CEDA8E16D7191300C144AC /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CEDA8D16D7191300C144AC /* VideoView.m */; };
+		39E185E916F7050E00E0C623 /* ChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E185E816F7050E00E0C623 /* ChannelViewController.m */; };
+		39E185EC16F714D300E0C623 /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E185EB16F714D300E0C623 /* Channel.m */; };
 		39EE9C5A16E6DC6100AFDAB2 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5816E6DC6100AFDAB2 /* backButton.png */; };
 		39EE9C5B16E6DC6100AFDAB2 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5916E6DC6100AFDAB2 /* backButton@2x.png */; };
 		39EE9C5C16E6F52100AFDAB2 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A311680110B0099EE8B /* SecondViewController.m */; };
@@ -244,6 +246,10 @@
 		39CEDA8A16D718FC00C144AC /* SliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderView.m; sourceTree = "<group>"; };
 		39CEDA8C16D7191300C144AC /* VideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
 		39CEDA8D16D7191300C144AC /* VideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
+		39E185E716F7050E00E0C623 /* ChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelViewController.h; sourceTree = "<group>"; };
+		39E185E816F7050E00E0C623 /* ChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelViewController.m; sourceTree = "<group>"; };
+		39E185EA16F714D300E0C623 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Channel.h; path = Service/Channel.h; sourceTree = "<group>"; };
+		39E185EB16F714D300E0C623 /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Channel.m; path = Service/Channel.m; sourceTree = "<group>"; };
 		39EE9C5816E6DC6100AFDAB2 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backButton.png; path = resource/backButton.png; sourceTree = "<group>"; };
 		39EE9C5916E6DC6100AFDAB2 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backButton@2x.png"; path = "resource/backButton@2x.png"; sourceTree = "<group>"; };
 		39EE9C5E16E7271200AFDAB2 /* cellRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellRight.png; path = resource/cellRight.png; sourceTree = "<group>"; };
@@ -577,6 +583,17 @@
 				39CDF63B16EF2C3C00E797DE /* ASMediaFocusManager.m */,
 			);
 			path = ASMediaFocusManager;
+			sourceTree = "<group>";
+		};
+		39E185E116F7031A00E0C623 /* ChannelTableView */ = {
+			isa = PBXGroup;
+			children = (
+				39E185E716F7050E00E0C623 /* ChannelViewController.h */,
+				39E185E816F7050E00E0C623 /* ChannelViewController.m */,
+				39E185EA16F714D300E0C623 /* Channel.h */,
+				39E185EB16F714D300E0C623 /* Channel.m */,
+			);
+			name = ChannelTableView;
 			sourceTree = "<group>";
 		};
 		B4123AA5168066E700E56EE6 /* resource */ = {
@@ -937,6 +954,7 @@
 		B4E75A41168012AD0099EE8B /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				39E185E116F7031A00E0C623 /* ChannelTableView */,
 				398C751316E0B434004838F7 /* customTableView */,
 				B4E75A42168012CC0099EE8B /* ServiceViewController.h */,
 				B4E75A43168012CC0099EE8B /* ServiceViewController.m */,
@@ -1175,6 +1193,8 @@
 				3901F24C16F0614300779A13 /* LNView.m in Sources */,
 				B445616316F2142300D296A9 /* UserViewController.m in Sources */,
 				B4F5E46216F4DD8900BD409E /* LNConsuViewController.m in Sources */,
+				39E185E916F7050E00E0C623 /* ChannelViewController.m in Sources */,
+				39E185EC16F714D300E0C623 /* Channel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

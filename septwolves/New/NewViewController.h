@@ -16,7 +16,9 @@
     UITableView *dataTableView;
     UITableView *outfitTableView;
     BOOL isCalendarHide;
+    NSMutableArray *dataLists;
 }
+@property (nonatomic,retain) NSMutableArray *dataLists;
 @property (nonatomic,retain) VRGCalendarView *calendarView;
 @property (nonatomic,retain) UIView *dataView;
 @property (nonatomic,retain) UIView *outfitView;

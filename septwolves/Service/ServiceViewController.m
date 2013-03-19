@@ -375,15 +375,20 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
         UIViewController *singleViewController;
         switch (indexPath.row) {
             case 0:
-                
+                singleViewController = [[ChannelViewController alloc]init];
+                singleViewController.title = @"订阅频道";
                 break;
             case 1:
+                singleViewController = [[ChannelViewController alloc]init];
+                singleViewController.title = @"订阅频道";
                 break;
             case 2:
                 singleViewController = [[ChannelViewController alloc]init];
                 singleViewController.title = @"订阅频道";
                 break;
             default:
+                singleViewController = [[ChannelViewController alloc]init];
+                singleViewController.title = @"订阅频道";
                 break;
         }
         [self.navigationController pushViewController:singleViewController animated:YES];

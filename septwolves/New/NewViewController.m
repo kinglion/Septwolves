@@ -27,6 +27,7 @@
 @synthesize calendarView;
 @synthesize dataTableView,outfitTableView;
 @synthesize isCalendarHide;
+@synthesize dataLists;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -89,7 +90,9 @@
     dataView = [[UIView alloc]initWithFrame:self.view.frame];
     calendarView = [[VRGCalendarView alloc]init];
     calendarView.delegate = self;
-    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR - 5, self.view.frame.size.width, self.view.frame.size.height)];
+    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR - 5, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+    [dataTableView setDelegate:self];
+    [dataTableView setDataSource:self];
     [dataView addSubview:calendarView];
     //dataSelectBtn
     UIButton *dataSelectBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 80, 5, 30, 30)];
@@ -171,49 +174,65 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView setFrame:CGRectMake(0, self.view.frame.size.height-tableView.contentSize.height, self.view.frame.size.width, tableView.contentSize.height)];
-    UIColor *altCellColor = [UIColor colorWithWhite:0 alpha:0.6];
-    tableView.backgroundColor = altCellColor;
-    cell.backgroundColor = altCellColor;
-    altCellColor = [UIColor colorWithWhite:1 alpha:0];
-    cell.textLabel.backgroundColor = altCellColor;
-    cell.detailTextLabel.backgroundColor = altCellColor;
-    cell.textLabel.textColor = [UIColor whiteColor];
-    tableView.separatorColor = [UIColor darkGrayColor];
-    [tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [tableView setBounces:NO];
+    if (tableView == self.outfitTableView) {
+        [tableView setFrame:CGRectMake(0, self.view.frame.size.height-tableView.contentSize.height, self.view.frame.size.width, tableView.contentSize.height)];
+        UIColor *altCellColor = [UIColor colorWithWhite:0 alpha:0.6];
+        tableView.backgroundColor = altCellColor;
+        cell.backgroundColor = altCellColor;
+        altCellColor = [UIColor colorWithWhite:1 alpha:0];
+        cell.textLabel.backgroundColor = altCellColor;
+        cell.detailTextLabel.backgroundColor = altCellColor;
+        cell.textLabel.textColor = [UIColor whiteColor];
+        tableView.separatorColor = [UIColor darkGrayColor];
+        [tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [tableView setBounces:NO];
+    }else{
+        UIColor *altCellColor = [UIColor colorWithWhite:1 alpha:1];
+        cell.textLabel.backgroundColor = altCellColor;
+        cell.textLabel.textColor = [UIColor blackColor];
+        tableView.separatorColor = [UIColor grayColor];
+        [tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    if(tableView == self.outfitTableView){
+        return 4; 
+    }else{
+        return 6;
+    }
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
     if(cell == nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
-        
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"都市商务";
-                break;
-            case 1:
-                cell.textLabel.text = @"重要会议";
-                break;
-            case 2:
-                cell.textLabel.text = @"运动场所";
-                break;
-            case 3:
-                cell.textLabel.text = @"休闲场所";
-                break;
-            default:
-                break;
+        if (tableView == self.outfitTableView) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"都市商务";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"重要会议";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"运动场所";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"休闲场所";
+                    break;
+                default:
+                    break;
+            }
+            UIImageView *rightCell = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cellRight.png"]];
+            [cell setAccessoryView:rightCell];
+            [rightCell release];
+        }else{
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"simple"];
+            
         }
-        UIImageView *rightCell = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cellRight.png"]];
-        [cell setAccessoryView:rightCell];
-        [rightCell release];
     }
     return cell;
 }
@@ -249,7 +268,7 @@
     if(isCalendarHide){
         [UIView beginAnimations:@"animate" context:nil];
         [UIView setAnimationDuration:0.5f];
-        [dataTableView setFrame:CGRectMake(0, HEIGHT_BAR - 5 + calendarView.frame.size.height, dataTableView.frame.size.width, dataTableView.frame.size.height)];
+        [dataTableView setFrame:CGRectMake(0, 5 + calendarView.frame.size.height, dataTableView.frame.size.width, dataTableView.frame.size.height)];
         [UIView commitAnimations];
         isCalendarHide = NO;
     }else{

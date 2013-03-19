@@ -12,10 +12,17 @@
 {
     UITableView *channelTableView;
     NSMutableArray *channelLists;
+    NSMutableArray *typeLists;
+    UITableView *typeTableView;
+    UILabel *selectLabel;
     BOOL isListOpen;
+    BOOL isMenuOpen;
     UITableView *listTableView;
 }
 @property (nonatomic,retain) UITableView *channelTableView;
 @property (nonatomic,retain) NSMutableArray *channelLists;
-@property (nonatomic,retain)UITableView *listTableView;
+@property (nonatomic,retain) UITableView *listTableView;
+@property (nonatomic,retain) UITableView *typeTableView;
+@property (nonatomic,retain) NSMutableArray *typeLists;
+@property (nonatomic,retain) UILabel *selectLabel;
 @end

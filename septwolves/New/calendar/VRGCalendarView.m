@@ -299,13 +299,13 @@
     
     //Arrow Left
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, xmargin+arrowSize/1.5, ymargin);
-    CGContextAddLineToPoint(context,xmargin+arrowSize/1.5,ymargin+arrowSize);
-    CGContextAddLineToPoint(context,xmargin,ymargin+arrowSize/2);
-    CGContextAddLineToPoint(context,xmargin+arrowSize/1.5, ymargin);
+    CGContextMoveToPoint(context, xmargin+arrowSize/1.5, ymargin-2);
+    CGContextAddLineToPoint(context,xmargin+arrowSize/1.5,ymargin+arrowSize-2);
+    CGContextAddLineToPoint(context,xmargin,ymargin+arrowSize/2-2);
+    CGContextAddLineToPoint(context,xmargin+arrowSize/1.5, ymargin-2);
     
     CGContextSetFillColorWithColor(context, 
-                                   [UIColor blackColor].CGColor);
+                                   [UIColor whiteColor].CGColor);
     CGContextFillPath(context);
     
     //Arrow right
@@ -314,12 +314,12 @@
     //CGContextAddLineToPoint(context,self.frame.size.width-xmargin,ymargin+arrowSize/2);
     //CGContextAddLineToPoint(context,self.frame.size.width-(xmargin+arrowSize/1.5),ymargin+arrowSize);
     //CGContextAddLineToPoint(context,self.frame.size.width-(xmargin+arrowSize/1.5), ymargin);
-    CGContextMoveToPoint(context, (xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5) - 10 , ymargin);
-    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-xmargin- 10 ,ymargin+arrowSize/2);
-    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5)- 10 ,ymargin+arrowSize);
-    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5)- 10 , ymargin);
+    CGContextMoveToPoint(context, (xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5) - 10 , ymargin - 2);
+    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-xmargin- 10 ,ymargin+arrowSize/2 - 2);
+    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5)- 10 ,ymargin+arrowSize - 2);
+    CGContextAddLineToPoint(context,(xmargin+arrowSize/1.5)*3 + labelCurrentMonth.frameWidth-(xmargin+arrowSize/1.5)- 10 , ymargin - 2);
     CGContextSetFillColorWithColor(context, 
-                                   [UIColor blackColor].CGColor);
+                                   [UIColor whiteColor].CGColor);
     CGContextFillPath(context);
     
     //Weekdays
@@ -553,9 +553,9 @@
         isAnimating=NO;
         self.labelCurrentMonth = [[UILabel alloc] initWithFrame:CGRectMake(34, 0, kVRGCalendarViewWidth-68, 40)];
         [self addSubview:labelCurrentMonth];
-        labelCurrentMonth.backgroundColor=[UIColor whiteColor];
+        labelCurrentMonth.backgroundColor=[UIColor colorWithWhite:1.0f alpha:0];
         labelCurrentMonth.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
-        labelCurrentMonth.textColor = [UIColor colorWithHexString:@"0x383838"];
+        labelCurrentMonth.textColor = [UIColor colorWithHexString:@"0xFFFFFF"];
         labelCurrentMonth.textAlignment = NSTextAlignmentCenter;
         
         [self performSelector:@selector(reset) withObject:nil afterDelay:0.1]; //so delegate can be set after init and still get called on init

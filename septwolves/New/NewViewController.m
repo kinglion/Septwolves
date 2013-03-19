@@ -87,6 +87,7 @@
 
 - (void)addSubDataView
 {
+    LNSQLite *sql = [[LNSQLite alloc]init];
     dataView = [[UIView alloc]initWithFrame:self.view.frame];
     calendarView = [[VRGCalendarView alloc]init];
     calendarView.delegate = self;

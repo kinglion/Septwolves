@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "VRGCalendarView.h"
+#import "LNSQLite.h"
 
 @interface NewViewController : UIViewController<VRGCalendarViewDelegate,UITableViewDataSource,UITableViewDelegate>{
     UIView *dataView;

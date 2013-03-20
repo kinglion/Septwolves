@@ -192,7 +192,21 @@
         UIColor *altCellColor = [UIColor colorWithWhite:1 alpha:1];
         cell.textLabel.backgroundColor = altCellColor;
         cell.textLabel.textColor = [UIColor blackColor];
-        tableView.separatorColor = [UIColor grayColor];
+        tableView.separatorColor = [UIColor colorWithWhite:0.7 alpha:1];
+        UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:tableView.frame];
+        UIGraphicsBeginImageContext(tempImageView.frame.size);
+        [tempImageView.image drawInRect:CGRectMake(0, 0, tempImageView.frame.size.width, tempImageView.frame.size.height)];
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 0.5);
+        CGContextSetAllowsAntialiasing(UIGraphicsGetCurrentContext(), YES);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.5, 0.5, 0.5, 1.0);
+        CGContextBeginPath(UIGraphicsGetCurrentContext());
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), WIDTH_TIME - 1, 0);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), WIDTH_TIME - 1, tempImageView.frame.size.height - 4);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        tempImageView.image=UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [tableView setBackgroundView:tempImageView];
+        [tempImageView release];
         [tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
 }
@@ -202,7 +216,11 @@
     if(tableView == self.outfitTableView){
         return 4; 
     }else{
-        return [self.allDataLists count];
+        NSInteger length = [self.allDataLists count];
+        if (length != 0) {
+            return length;
+        }
+        return 1;
     }
 }
 
@@ -237,15 +255,20 @@
         CustomCell *cell = nil;
         if(cell == nil){
             cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
-            dataBean *bean = allDataLists[indexPath.row];
-            NSTimeInterval time=[bean.timesp doubleValue];
-            NSDate *timeDate = [NSDate dateWithTimeIntervalSince1970:time];
-            NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-            [formatter setDateFormat:@"HH:mm"];
-            NSString *timeStr = [formatter stringFromDate:timeDate];
-            cell.timeLabel.text = timeStr;
-            cell.mainLabel.text = bean.title;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            if ([allDataLists count] != 0) {
+                dataBean *bean = allDataLists[indexPath.row];
+                NSTimeInterval time=[bean.timesp doubleValue];
+                NSDate *timeDate = [NSDate dateWithTimeIntervalSince1970:time];
+                NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+                [formatter setDateFormat:@"HH:mm"];
+                NSString *timeStr = [formatter stringFromDate:timeDate];
+                cell.timeLabel.text = timeStr;
+                cell.mainLabel.text = bean.title;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }else{
+                cell.mainLabel.text = @"添加事情请点击右上\"+\"按钮";
+            }
+            
         }
         return cell;
     }

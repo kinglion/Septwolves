@@ -20,7 +20,7 @@
         UIImageView *tempImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_TIME, self.frame.size.height)];
         UIGraphicsBeginImageContext(tempImageView.frame.size);
         [tempImageView.image drawInRect:CGRectMake(0, 0, tempImageView.frame.size.width, tempImageView.frame.size.height)];
-        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 1.0);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 0.5);
         CGContextSetAllowsAntialiasing(UIGraphicsGetCurrentContext(), YES);
         CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.5, 0.5, 0.5, 1.0);
         CGContextBeginPath(UIGraphicsGetCurrentContext());

@@ -61,7 +61,7 @@
         char *timeChar = (char *)sqlite3_column_text(statement, 5);
         bean._id = _idInt;
         bean.title = [[NSString alloc]initWithUTF8String:titleChar];
-        bean.type = typeInt;
+        bean.type = &(typeInt);
         bean.theme = [[NSString alloc]initWithUTF8String:themeChar];
         bean.content = [[NSString alloc]initWithUTF8String:contentChar];
         bean.timesp = [[NSString alloc]initWithUTF8String:timeChar];

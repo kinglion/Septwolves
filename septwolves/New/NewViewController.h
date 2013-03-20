@@ -9,17 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "VRGCalendarView.h"
 #import "LNSQLite.h"
+#import "CustomCell.h"
+#import "CustomTableView.h"
 
 @interface NewViewController : UIViewController<VRGCalendarViewDelegate,UITableViewDataSource,UITableViewDelegate>{
     UIView *dataView;
     UIView *outfitView;
     VRGCalendarView *calendarView;
-    UITableView *dataTableView;
+    CustomTableView *dataTableView;
     UITableView *outfitTableView;
     BOOL isCalendarHide;
-    NSMutableArray *dataLists;
+    NSMutableArray *allDataLists;
+    NSMutableArray *toDayLists;
 }
-@property (nonatomic,retain) NSMutableArray *dataLists;
+@property (nonatomic,retain) NSMutableArray *allDataLists;
+@property (nonatomic,retain) NSMutableArray *toDayLists;
 @property (nonatomic,retain) VRGCalendarView *calendarView;
 @property (nonatomic,retain) UIView *dataView;
 @property (nonatomic,retain) UIView *outfitView;

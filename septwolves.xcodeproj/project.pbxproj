@@ -39,6 +39,8 @@
 		398C751616E0BF0A004838F7 /* cTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 398C751516E0BF0A004838F7 /* cTableView.m */; };
 		398C751916E0C027004838F7 /* product.m in Sources */ = {isa = PBXBuildFile; fileRef = 398C751816E0C027004838F7 /* product.m */; };
 		399FAE4C16B920F1005FD31F /* RootNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 399FAE4A16B920F1005FD31F /* RootNavController.m */; };
+		39A39DD316F9A16B00F7EDBB /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A39DD216F9A16B00F7EDBB /* CustomCell.m */; };
+		39A39DD816F9BE4700F7EDBB /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A39DD716F9BE4700F7EDBB /* CustomTableView.m */; };
 		39AD2F2516AF848100AF0CCE /* MosaicData.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F1916AF848100AF0CCE /* MosaicData.m */; };
 		39AD2F2616AF848100AF0CCE /* TwoDimentionalArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F1C16AF848100AF0CCE /* TwoDimentionalArray.m */; };
 		39AD2F2716AF848100AF0CCE /* MosaicDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F2216AF848100AF0CCE /* MosaicDataView.m */; };
@@ -239,6 +241,10 @@
 		398C751816E0C027004838F7 /* product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = product.m; sourceTree = "<group>"; };
 		399FAE4916B920F1005FD31F /* RootNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootNavController.h; sourceTree = "<group>"; };
 		399FAE4A16B920F1005FD31F /* RootNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootNavController.m; sourceTree = "<group>"; };
+		39A39DD116F9A16B00F7EDBB /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		39A39DD216F9A16B00F7EDBB /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		39A39DD616F9BE4700F7EDBB /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
+		39A39DD716F9BE4700F7EDBB /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
 		39AD2F1816AF848100AF0CCE /* MosaicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MosaicData.h; sourceTree = "<group>"; };
 		39AD2F1916AF848100AF0CCE /* MosaicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MosaicData.m; sourceTree = "<group>"; };
 		39AD2F1B16AF848100AF0CCE /* TwoDimentionalArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoDimentionalArray.h; sourceTree = "<group>"; };
@@ -979,8 +985,12 @@
 				B4E75A3C168012990099EE8B /* NewViewController.h */,
 				B4E75A3D168012990099EE8B /* NewViewController.m */,
 				B4E75A3E168012990099EE8B /* NewViewController.xib */,
+				39A39DD616F9BE4700F7EDBB /* CustomTableView.h */,
+				39A39DD716F9BE4700F7EDBB /* CustomTableView.m */,
 				39593CFF16F844050079A647 /* dataBean.h */,
 				39593D0016F844050079A647 /* dataBean.m */,
+				39A39DD116F9A16B00F7EDBB /* CustomCell.h */,
+				39A39DD216F9A16B00F7EDBB /* CustomCell.m */,
 			);
 			name = New;
 			sourceTree = "<group>";
@@ -1235,6 +1245,8 @@
 				39E185EC16F714D300E0C623 /* Channel.m in Sources */,
 				39593D0116F844050079A647 /* dataBean.m in Sources */,
 				39593D0716F871370079A647 /* LNSQLite.m in Sources */,
+				39A39DD316F9A16B00F7EDBB /* CustomCell.m in Sources */,
+				39A39DD816F9BE4700F7EDBB /* CustomTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

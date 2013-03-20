@@ -10,12 +10,14 @@
 
 @interface dataBean : NSObject
 {
+    NSInteger _id;
     NSString *timesp;
     NSString *title;
     NSInteger *type;
     NSString *theme;
     NSString *content;
 }
+@property (nonatomic,assign)NSInteger _id;
 @property (nonatomic,copy)NSString *timesp;
 @property (nonatomic,copy)NSString *title;
 @property (nonatomic,assign)NSInteger *type;

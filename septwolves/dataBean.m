@@ -10,5 +10,5 @@
 
 @implementation dataBean
 @synthesize timesp,title,theme,content;
-@synthesize type;
+@synthesize type,_id;
 @end

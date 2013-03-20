@@ -27,7 +27,7 @@
 @synthesize calendarView;
 @synthesize dataTableView,outfitTableView;
 @synthesize isCalendarHide;
-@synthesize dataLists;
+@synthesize allDataLists,toDayLists;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -88,10 +88,11 @@
 - (void)addSubDataView
 {
     LNSQLite *sql = [[LNSQLite alloc]init];
+    self.allDataLists = [sql selectSQLAll];
     dataView = [[UIView alloc]initWithFrame:self.view.frame];
     calendarView = [[VRGCalendarView alloc]init];
     calendarView.delegate = self;
-    dataTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR - 5, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
+    dataTableView = [[CustomTableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR - 5, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
     [dataTableView setDelegate:self];
     [dataTableView setDataSource:self];
     [dataView addSubview:calendarView];
@@ -201,15 +202,15 @@
     if(tableView == self.outfitTableView){
         return 4; 
     }else{
-        return 6;
+        return [self.allDataLists count];
     }
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
-    if(cell == nil){
-        if (tableView == self.outfitTableView) {
+    if (tableView == self.outfitTableView) {
+        UITableViewCell *cell = nil;
+        if(cell == nil){
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
             switch (indexPath.row) {
                 case 0:
@@ -230,12 +231,24 @@
             UIImageView *rightCell = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cellRight.png"]];
             [cell setAccessoryView:rightCell];
             [rightCell release];
-        }else{
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"simple"];
-            
         }
-    }
     return cell;
+    }else{
+        CustomCell *cell = nil;
+        if(cell == nil){
+            cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
+            dataBean *bean = allDataLists[indexPath.row];
+            NSTimeInterval time=[bean.timesp doubleValue];
+            NSDate *timeDate = [NSDate dateWithTimeIntervalSince1970:time];
+            NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+            [formatter setDateFormat:@"HH:mm"];
+            NSString *timeStr = [formatter stringFromDate:timeDate];
+            cell.timeLabel.text = timeStr;
+            cell.mainLabel.text = bean.title;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        return cell;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

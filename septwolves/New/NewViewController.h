@@ -11,6 +11,7 @@
 #import "LNSQLite.h"
 #import "CustomCell.h"
 #import "CustomTableView.h"
+#import "DataAddViewController.h"
 
 @interface NewViewController : UIViewController<VRGCalendarViewDelegate,UITableViewDataSource,UITableViewDelegate>{
     UIView *dataView;

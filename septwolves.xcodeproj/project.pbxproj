@@ -11,6 +11,7 @@
 		391130F516EEDB9800BF0DC0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391130F416EEDB9800BF0DC0 /* MediaPlayer.framework */; };
 		3930684816BFC1F300385F61 /* RootNavController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3930684716BFC1F300385F61 /* RootNavController.xib */; };
 		3933F1ED16F314760014C1D0 /* LNActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3933F1EB16F30E720014C1D0 /* LNActivityIndicatorView.m */; };
+		393D0FC616FAB7900009D924 /* DataAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393D0FC516FAB7900009D924 /* DataAddViewController.m */; };
 		3945F71316DCA47600F64A9B /* ChrConsuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71216DCA47500F64A9B /* ChrConsuViewController.m */; };
 		3945F71716DCA4D700F64A9B /* ChrConsuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71616DCA4D700F64A9B /* ChrConsuView.m */; };
 		3945F71B16DCC47D00F64A9B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3945F71A16DCC47D00F64A9B /* JSONKit.m */; };
@@ -200,6 +201,8 @@
 		3930684716BFC1F300385F61 /* RootNavController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootNavController.xib; sourceTree = "<group>"; };
 		3933F1EA16F30E720014C1D0 /* LNActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LNActivityIndicatorView.h; path = septwolves/LNActivityIntiditorView/LNActivityIndicatorView.h; sourceTree = "<group>"; };
 		3933F1EB16F30E720014C1D0 /* LNActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LNActivityIndicatorView.m; path = septwolves/LNActivityIntiditorView/LNActivityIndicatorView.m; sourceTree = "<group>"; };
+		393D0FC416FAB7900009D924 /* DataAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAddViewController.h; sourceTree = "<group>"; };
+		393D0FC516FAB7900009D924 /* DataAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAddViewController.m; sourceTree = "<group>"; };
 		3945F71116DCA47500F64A9B /* ChrConsuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrConsuViewController.h; sourceTree = "<group>"; };
 		3945F71216DCA47500F64A9B /* ChrConsuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChrConsuViewController.m; sourceTree = "<group>"; };
 		3945F71516DCA4D700F64A9B /* ChrConsuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChrConsuView.h; sourceTree = "<group>"; };
@@ -985,6 +988,8 @@
 				B4E75A3C168012990099EE8B /* NewViewController.h */,
 				B4E75A3D168012990099EE8B /* NewViewController.m */,
 				B4E75A3E168012990099EE8B /* NewViewController.xib */,
+				393D0FC416FAB7900009D924 /* DataAddViewController.h */,
+				393D0FC516FAB7900009D924 /* DataAddViewController.m */,
 				39A39DD616F9BE4700F7EDBB /* CustomTableView.h */,
 				39A39DD716F9BE4700F7EDBB /* CustomTableView.m */,
 				39593CFF16F844050079A647 /* dataBean.h */,
@@ -1247,6 +1252,7 @@
 				39593D0716F871370079A647 /* LNSQLite.m in Sources */,
 				39A39DD316F9A16B00F7EDBB /* CustomCell.m in Sources */,
 				39A39DD816F9BE4700F7EDBB /* CustomTableView.m in Sources */,
+				393D0FC616FAB7900009D924 /* DataAddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

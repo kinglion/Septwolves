@@ -44,7 +44,9 @@
         UIBarButtonItem* leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         self.navigationItem.leftBarButtonItem = leftBarButtonItem;
         UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"日常管理",@"穿搭管理", nil]];
-        [segmentedControl setFrame:CGRectMake(0, 0, 120, 35)];
+        [segmentedControl setFrame:CGRectMake(0, 0, 160, 30)];
+        [segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+        [segmentedControl setTintColor:[UIColor grayColor]];
         self.navigationItem.titleView = segmentedControl;
         segmentedControl.selectedSegmentIndex = 0;
         [segmentedControl addTarget:self action:@selector(selectSegment:) forControlEvents:UIControlEventValueChanged];
@@ -305,7 +307,7 @@
     if(isCalendarHide){
         [UIView beginAnimations:@"animate" context:nil];
         [UIView setAnimationDuration:0.5f];
-        [dataTableView setFrame:CGRectMake(0, 5 + calendarView.frame.size.height, dataTableView.frame.size.width, dataTableView.frame.size.height)];
+        [dataTableView setFrame:CGRectMake(0,calendarView.frame.size.height, dataTableView.frame.size.width, dataTableView.frame.size.height)];
         [UIView commitAnimations];
         isCalendarHide = NO;
     }else{
@@ -319,7 +321,8 @@
 
 - (void)addDataClick:(id)sender
 {
-    
+    DataAddViewController *singleViewController = [[DataAddViewController alloc]init];
+    [self.navigationController pushViewController:singleViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

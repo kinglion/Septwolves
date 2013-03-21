@@ -73,11 +73,11 @@
     return tempArray;
 }
 
-- (void)updateSQLByItem:(NSInteger)_id title:(NSString *)title type:(NSInteger)type theme:(NSString *)theme content:(NSString *)content time:(NSString *)time
+- (void)updateSQLByItem:(NSInteger)_id theme:(NSString *)theme type:(NSInteger)type addr:(NSString *)addr content:(NSString *)content time:(NSString *)time
 {
     if (self.dbHandle) {
         char *errorMsg;
-        NSString *updateStr = [NSString stringWithFormat:@"update Adviser set title='%@',type='%d',theme='%@',content='%@',time='%@' WHERE id='%d'",title,type,theme,content,time,_id];
+        NSString *updateStr = [NSString stringWithFormat:@"update Adviser set title='%@',type='%d',theme='%@',content='%@',time='%@' WHERE id='%d'",theme,type,addr,content,time,_id];
         const char *updateSql = [updateStr UTF8String];
         if (sqlite3_exec(dbHandle, updateSql, NULL, NULL, &errorMsg)==SQLITE_OK) {
             NSLog(@"update ok.");
@@ -88,11 +88,11 @@
     }
 }
 
-- (void)insertSQLByItem:(NSString *)title type:(NSInteger)type theme:(NSString *)theme content:(NSString *)content time:(NSString *)time
+- (void)insertSQLByItem:(NSString *)theme type:(NSInteger)type addr:(NSString *)addr content:(NSString *)content time:(NSString *)time
 {
     if (self.dbHandle) {
         char *errorMsg;
-        NSString *insertStr = [NSString stringWithFormat:@"insert into Adviser (title,type,theme,content,time) values('%@','%d','%@','%@','%@')",title,type,theme,content,time];
+        NSString *insertStr = [NSString stringWithFormat:@"insert into Adviser (title,type,theme,content,time) values('%@','%d','%@','%@','%@')",theme,type,addr,content,time];
         const char *insertSql = [insertStr UTF8String];
         if (sqlite3_exec(dbHandle, insertSql, NULL, NULL, &errorMsg)==SQLITE_OK) {
             NSLog(@"insert ok.");

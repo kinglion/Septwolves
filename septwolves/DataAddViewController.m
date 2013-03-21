@@ -20,6 +20,7 @@
 @synthesize mainTableView;
 @synthesize themeField,addrField,externField;
 @synthesize datePicker;
+@synthesize typeSegmented;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -58,15 +59,15 @@
     [tempTableView release];
     
     UIView *tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, HEIGHT_SEGMENT)];
-    UISegmentedControl *tempSegmented = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"都市商务",@"重要会议",@"运动场所",@"休闲场所", nil]];
-    [tempSegmented setFrame:CGRectMake((WIDTH_SCREEN - WIDTH_SEGMENT)/2, 10, WIDTH_SEGMENT, HEIGHT_SEGMENT)];
-    [tempSegmented addTarget:self action:@selector(chageSegmented:) forControlEvents:UIControlEventValueChanged];
-    [tempSegmented setSegmentedControlStyle:UISegmentedControlStyleBar];
-    [tempSegmented setTintColor:[UIColor grayColor]];
-    [tempSegmented setSelected:YES];
-    [tempSegmented setSelectedSegmentIndex:0];
-    [self ChangeSegmentFont:tempSegmented];
-    [tempView addSubview:tempSegmented];
+    typeSegmented = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"都市商务",@"重要会议",@"运动场所",@"休闲场所", nil]];
+    [typeSegmented setFrame:CGRectMake((WIDTH_SCREEN - WIDTH_SEGMENT)/2, 10, WIDTH_SEGMENT, HEIGHT_SEGMENT)];
+    [typeSegmented addTarget:self action:@selector(chageSegmented:) forControlEvents:UIControlEventValueChanged];
+    [typeSegmented setSegmentedControlStyle:UISegmentedControlStyleBar];
+    [typeSegmented setTintColor:[UIColor grayColor]];
+    [typeSegmented setSelected:YES];
+    [typeSegmented setSelectedSegmentIndex:0];
+    [self ChangeSegmentFont:typeSegmented];
+    [tempView addSubview:typeSegmented];
     [self.view addSubview:tempView];
     [tempView release];
     
@@ -97,7 +98,14 @@
 
 - (void)doClickSureAction:(id)sender
 {
-    
+    NSString *themeStr = self.themeField.text;
+    NSString *addrStr = self.addrField.text;
+    NSInteger type = self.typeSegmented.selectedSegmentIndex;
+    NSString *externStr = self.externField.text;
+    NSString *timeStr = [NSString stringWithFormat:@"%f",[self.datePicker.date timeIntervalSince1970]];
+    LNSQLite *lnsql = [[LNSQLite alloc]init];
+    [lnsql insertSQLByItem:themeStr type:type addr:addrStr content:externStr time:timeStr];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)doClickBackAction:(id)sender

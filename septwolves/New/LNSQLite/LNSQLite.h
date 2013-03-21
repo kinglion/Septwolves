@@ -18,6 +18,6 @@
 }
 @property (nonatomic) sqlite3 *dbHandle;
 - (NSMutableArray *)selectSQLAll;
-- (void)updateSQLByItem:(NSInteger)_id title:(NSString *)title type:(NSInteger)type theme:(NSString *)theme content:(NSString *)content time:(NSString *)time;
-- (void)insertSQLByItem:(NSString *)title type:(NSInteger)type theme:(NSString *)theme content:(NSString *)content time:(NSString *)time;
+- (void)updateSQLByItem:(NSInteger)_id theme:(NSString *)theme type:(NSInteger)type addr:(NSString *)addr content:(NSString *)content time:(NSString *)time;
+- (void)insertSQLByItem:(NSString *)theme type:(NSInteger)type addr:(NSString *)addr content:(NSString *)content time:(NSString *)time;
 @end

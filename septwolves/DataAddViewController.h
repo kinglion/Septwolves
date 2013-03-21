@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LNconst.h"
+#import "LNSQLite.h"
 
 @interface DataAddViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -16,10 +17,12 @@
     UITextField *addrField;
     UITextField *externField;
     UIDatePicker *datePicker;
+    UISegmentedControl *typeSegmented;
 }
 @property (nonatomic,retain) UITableView *mainTableView;
 @property (nonatomic,retain) UITextField *themeField;
 @property (nonatomic,retain) UITextField *addrField;
 @property (nonatomic,retain) UITextField *externField;
 @property (nonatomic,retain) UIDatePicker *datePicker;
+@property (nonatomic,retain) UISegmentedControl *typeSegmented;
 @end

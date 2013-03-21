@@ -64,6 +64,13 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    LNSQLite *sql = [[LNSQLite alloc]init];
+    self.allDataLists = [sql selectSQLAll];
+    if(self.dataTableView)[self.dataTableView reloadData];
+}
+
 - (void)selectSegment:(id)sender
 {
     UISegmentedControl *sc = sender;

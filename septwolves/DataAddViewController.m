@@ -21,6 +21,7 @@
 @synthesize themeField,addrField,externField;
 @synthesize datePicker;
 @synthesize typeSegmented;
+@synthesize bean;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -73,7 +74,11 @@
     
     datePicker = [ [ UIDatePicker alloc] initWithFrame:CGRectMake(0.0,self.view.frame.size.height - 216,0.0,216)];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-    datePicker.minuteInterval = 5;
+    datePicker.minuteInterval = 1;
+    if (self.bean) {
+        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[bean.timesp doubleValue]];
+        datePicker.date = confromTimesp;
+    }
     [self.view addSubview:datePicker];
     [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
 	// Do any additional setup after loading the view.
@@ -117,6 +122,7 @@
 {
     UIDatePicker *control = (UIDatePicker*)sender;
     NSDate* _date = control.date;
+    
     NSLog(@"%@",_date);
 }
 
@@ -189,6 +195,9 @@
                         [textField setDelegate: self];
                         textField.returnKeyType = UIReturnKeyDone;
                         [textField addTarget:self action:@selector(textfieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                        if (self.bean) {
+                            textField.text = bean.title;
+                        }
                         [cell.contentView addSubview: textField];
                         self.themeField = textField;
                         break;
@@ -201,6 +210,9 @@
                         [textField setDelegate: self];
                         textField.returnKeyType = UIReturnKeyDone;
                         [textField addTarget:self action:@selector(textfieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                        if (self.bean) {
+                            textField.text = bean.theme;
+                        }
                         [cell.contentView addSubview: textField];
                         self.addrField = textField;
                         break;
@@ -214,6 +226,9 @@
                 [textField setDelegate: self];
                 textField.returnKeyType = UIReturnKeyDone;
                 [textField addTarget:self action:@selector(textfieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
+                if (self.bean) {
+                    textField.text = bean.content;
+                }
                 [cell.contentView addSubview: textField];
                 self.externField = textField;
                 break;
@@ -229,7 +244,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
-- (IBAction)textfieldDone:(id)sender {
+- (void)textfieldDone:(id)sender {
     [sender resignFirstResponder];
 }
 

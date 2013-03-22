@@ -292,21 +292,9 @@
 {
     NSLog(@"选中！");
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //UIViewController *singleView;
-    switch (indexPath.row) {
-        case 0:
-            //都市商务
-            //singleView = [[ActiveViewController alloc]init];
-            break;
-        case 1:
-            //重要会议
-            //singleView = [[ChrConsuViewController alloc]init];
-            break;
-        default:
-            break;
-    }
-    //[self.navigationController pushViewController:singleView animated:YES];
-   // [singleView release];
+    DataDetailViewController *detailViewController = [[DataDetailViewController alloc]init];
+    detailViewController.bean = self.allDataLists[indexPath.row];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 - (void)dataSelectClick:(id)sender

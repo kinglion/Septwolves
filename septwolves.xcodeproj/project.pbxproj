@@ -47,6 +47,7 @@
 		39AD2F2716AF848100AF0CCE /* MosaicDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F2216AF848100AF0CCE /* MosaicDataView.m */; };
 		39AD2F2816AF848100AF0CCE /* MosaicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F2416AF848100AF0CCE /* MosaicView.m */; };
 		39AD2F2A16AF85ED00AF0CCE /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 39AD2F2916AF85ED00AF0CCE /* data.json */; };
+		39AF5D8116FBED7A00B3C01C /* DataDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AF5D8016FBED7900B3C01C /* DataDetailViewController.m */; };
 		39C28A5116B7B9C400B5A74B /* JBKenBurnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3977BF6B16B7706E004D38ED /* JBKenBurnsView.m */; };
 		39C28A5716B7BBE500B5A74B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C28A5616B7BBE500B5A74B /* QuartzCore.framework */; };
 		39CDF63C16EF2C3C00E797DE /* ASImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39CDF63616EF2C3C00E797DE /* ASImageScrollView.m */; };
@@ -259,6 +260,8 @@
 		39AD2F2316AF848100AF0CCE /* MosaicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MosaicView.h; sourceTree = "<group>"; };
 		39AD2F2416AF848100AF0CCE /* MosaicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MosaicView.m; sourceTree = "<group>"; };
 		39AD2F2916AF85ED00AF0CCE /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		39AF5D7F16FBED7900B3C01C /* DataDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataDetailViewController.h; sourceTree = "<group>"; };
+		39AF5D8016FBED7900B3C01C /* DataDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataDetailViewController.m; sourceTree = "<group>"; };
 		39C28A5616B7BBE500B5A74B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		39CDF63516EF2C3C00E797DE /* ASImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASImageScrollView.h; sourceTree = "<group>"; };
 		39CDF63616EF2C3C00E797DE /* ASImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASImageScrollView.m; sourceTree = "<group>"; };
@@ -990,6 +993,8 @@
 				B4E75A3E168012990099EE8B /* NewViewController.xib */,
 				393D0FC416FAB7900009D924 /* DataAddViewController.h */,
 				393D0FC516FAB7900009D924 /* DataAddViewController.m */,
+				39AF5D7F16FBED7900B3C01C /* DataDetailViewController.h */,
+				39AF5D8016FBED7900B3C01C /* DataDetailViewController.m */,
 				39A39DD616F9BE4700F7EDBB /* CustomTableView.h */,
 				39A39DD716F9BE4700F7EDBB /* CustomTableView.m */,
 				39593CFF16F844050079A647 /* dataBean.h */,
@@ -1253,6 +1258,7 @@
 				39A39DD316F9A16B00F7EDBB /* CustomCell.m in Sources */,
 				39A39DD816F9BE4700F7EDBB /* CustomTableView.m in Sources */,
 				393D0FC616FAB7900009D924 /* DataAddViewController.m in Sources */,
+				39AF5D8116FBED7A00B3C01C /* DataDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

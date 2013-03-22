@@ -12,6 +12,7 @@
 #import "CustomCell.h"
 #import "CustomTableView.h"
 #import "DataAddViewController.h"
+#import "DataDetailViewController.h"
 
 @interface NewViewController : UIViewController<VRGCalendarViewDelegate,UITableViewDataSource,UITableViewDelegate>{
     UIView *dataView;

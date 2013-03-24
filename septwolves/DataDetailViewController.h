@@ -18,6 +18,7 @@
     UILabel *addrLabel;
     UILabel *externLabel;
     UILabel *dateLabel;
+    LNSQLite *sql;
     dataBean *bean;
 }
 @property (nonatomic,retain) UITableView *mainTableView;
@@ -26,4 +27,5 @@
 @property (nonatomic,retain) UILabel *externLabel;
 @property (nonatomic,retain) UILabel *dateLabel;
 @property (nonatomic,retain) dataBean *bean;
+@property (nonatomic,retain) LNSQLite *sql;
 @end

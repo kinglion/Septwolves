@@ -13,7 +13,7 @@
 @end
 
 @implementation UserViewController
-
+@synthesize mainView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -21,6 +21,48 @@
         // Custom initialization
     }
     return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil userViewType:(UserViewType)type
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        switch (type) {
+            case Login:
+                self.mainView = [self returnLoginView];
+                break;
+            case Reg:
+                self.mainView = [self returnRegView];
+                break;
+            case Forget:
+                self.mainView = [self returnForgetView];
+                break;
+            default:
+                break;
+        }
+        [self.view addSubview:self.mainView];
+    }
+    return self;
+}
+
+- (UIView *)returnLoginView
+{
+    UIView *tempView = [[UIView alloc]initWithFrame:self.view.frame];
+    
+    return tempView;
+}
+
+- (UIView *)returnRegView
+{
+    UIView *tempView = [[UIView alloc]initWithFrame:self.view.frame];
+    return tempView;
+}
+
+- (UIView *)returnForgetView
+{
+    UIView *tempView = [[UIView alloc]initWithFrame:self.view.frame];
+    return tempView;
 }
 
 - (void)viewDidLoad

@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef enum
+{
+    Login,
+    Reg,
+    Forget
+}UserViewType;
 
 @interface UserViewController : UIViewController
-
+{
+    UIView *mainView;
+}
+@property (nonatomic,retain) UIView *mainView;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil userViewType:(UserViewType)type;
 @end

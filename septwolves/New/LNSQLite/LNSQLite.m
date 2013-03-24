@@ -73,6 +73,33 @@
     return tempArray;
 }
 
+- (dataBean *)selectSQLById:(NSInteger)_id
+{
+    dataBean *bean = [[dataBean alloc]init];
+    NSString *selectStr = [NSString stringWithFormat:@"select * from Adviser WHERE id='%d'",_id];
+    const char *selectSql = [selectStr UTF8String];
+    sqlite3_stmt *statement;
+    if (sqlite3_prepare_v2(dbHandle, selectSql, -1, &statement, nil)==SQLITE_OK) {
+        NSLog(@"select ok.");
+    }
+    while (sqlite3_step(statement)==SQLITE_ROW) {
+        int _idInt=sqlite3_column_int(statement, 0);
+        char *titleChar=(char *)sqlite3_column_text(statement, 1);
+        int typeInt = sqlite3_column_int(statement, 2);
+        char *themeChar = (char *)sqlite3_column_text(statement, 3);
+        char *contentChar = (char *)sqlite3_column_text(statement, 4);
+        char *timeChar = (char *)sqlite3_column_text(statement, 5);
+        bean._id = _idInt;
+        bean.title = [[NSString alloc]initWithUTF8String:titleChar];
+        bean.type = &(typeInt);
+        bean.theme = [[NSString alloc]initWithUTF8String:themeChar];
+        bean.content = [[NSString alloc]initWithUTF8String:contentChar];
+        bean.timesp = [[NSString alloc]initWithUTF8String:timeChar];
+         NSLog(@"row>>id %i, title %s,type %i,theme %s,content %s,time %s",_idInt,titleChar,typeInt,themeChar,contentChar,timeChar);
+    }
+    return bean;
+}
+
 - (void)updateSQLByItem:(NSInteger)_id theme:(NSString *)theme type:(NSInteger)type addr:(NSString *)addr content:(NSString *)content time:(NSString *)time
 {
     if (self.dbHandle) {

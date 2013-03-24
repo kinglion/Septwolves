@@ -109,8 +109,13 @@
     NSString *externStr = self.externField.text;
     NSString *timeStr = [NSString stringWithFormat:@"%f",[self.datePicker.date timeIntervalSince1970]];
     LNSQLite *lnsql = [[LNSQLite alloc]init];
-    [lnsql insertSQLByItem:themeStr type:type addr:addrStr content:externStr time:timeStr];
+    if(self.bean){
+        [lnsql updateSQLByItem:bean._id theme:themeStr type:type addr:addrStr content:externStr time:timeStr];
+    }else{
+        [lnsql insertSQLByItem:themeStr type:type addr:addrStr content:externStr time:timeStr];
+    }
     [self.navigationController popViewControllerAnimated:YES];
+    [lnsql release];
 }
 
 - (void)doClickBackAction:(id)sender

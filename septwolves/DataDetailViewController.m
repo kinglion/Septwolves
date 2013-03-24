@@ -14,6 +14,7 @@
 @end
 
 @implementation DataDetailViewController
+@synthesize sql;
 @synthesize mainTableView;
 @synthesize themeLabel,addrLabel,externLabel,dateLabel;
 @synthesize bean;
@@ -45,6 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    sql = [[LNSQLite alloc]init];
     UITableView *tempTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, HEIGHT_TABLE) style:UITableViewStyleGrouped];
     [tempTableView setDelegate:self];
     [tempTableView setDataSource:self];
@@ -52,6 +54,14 @@
     self.mainTableView = tempTableView;
     [tempTableView release];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.sql) {
+        self.bean = [sql selectSQLById:self.bean._id];
+        [self.mainTableView reloadData];
+    }
 }
 
 - (void)doClickBackAction:(id)sender

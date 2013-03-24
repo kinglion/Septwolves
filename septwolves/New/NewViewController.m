@@ -28,6 +28,7 @@
 @synthesize dataTableView,outfitTableView;
 @synthesize isCalendarHide;
 @synthesize allDataLists,toDayLists;
+@synthesize sql;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -66,9 +67,13 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    LNSQLite *sql = [[LNSQLite alloc]init];
-    self.allDataLists = [sql selectSQLAll];
-    if(self.dataTableView)[self.dataTableView reloadData];
+    NSLog(@"viewDidAppear");
+    if (self.sql) {
+        self.allDataLists = [sql selectSQLAll];
+        [self reloadTodayDate:[NSDate date]];
+        [self.dataTableView reloadData];
+        [self.calendarView reloadInputViews];
+    }
 }
 
 - (void)selectSegment:(id)sender
@@ -96,8 +101,10 @@
 
 - (void)addSubDataView
 {
-    LNSQLite *sql = [[LNSQLite alloc]init];
-    self.allDataLists = [sql selectSQLAll];
+    LNSQLite *tempSql = [[LNSQLite alloc]init];
+    self.allDataLists = [tempSql selectSQLAll];
+    self.sql = tempSql;
+    [tempSql release];
     dataView = [[UIView alloc]initWithFrame:self.view.frame];
     calendarView = [[VRGCalendarView alloc]init];
     calendarView.delegate = self;
@@ -174,14 +181,25 @@
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(int)month targetHeight:(float)targetHeight animated:(BOOL)animated {
-    if (month==[[NSDate date] month]) {
-        NSArray *dates = [NSArray arrayWithObjects:[NSNumber numberWithInt:1],[NSNumber numberWithInt:5], nil];
-        [self.calendarView markDates:dates];
+    NSMutableArray *dates = [[NSMutableArray alloc]init];
+    for (dataBean *bean in self.allDataLists) {
+        NSTimeInterval time=[bean.timesp doubleValue];
+        NSDate *timeDate = [NSDate dateWithTimeIntervalSince1970:time];
+        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+        [formatter setDateFormat:@"MM"];
+        int monthInt = [[formatter stringFromDate:timeDate] intValue];
+        [formatter setDateFormat:@"d"];
+        int dayInt = [[formatter stringFromDate:timeDate] intValue];
+        if (month == monthInt) {
+            [dates addObject:[NSNumber numberWithInt:dayInt]];
+        }
     }
+    [self.calendarView markDates:dates];
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date {
     NSLog(@"Selected date = %@",date);
+    [self reloadTodayDate:date];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -225,7 +243,7 @@
     if(tableView == self.outfitTableView){
         return 4; 
     }else{
-        NSInteger length = [self.allDataLists count];
+        NSInteger length = [self.toDayLists count];
         if (length != 0) {
             return length;
         }
@@ -264,8 +282,8 @@
         CustomCell *cell = nil;
         if(cell == nil){
             cell = [[CustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
-            if ([allDataLists count] != 0) {
-                dataBean *bean = allDataLists[indexPath.row];
+            if ([toDayLists count] != 0) {
+                dataBean *bean = toDayLists[indexPath.row];
                 NSTimeInterval time=[bean.timesp doubleValue];
                 NSDate *timeDate = [NSDate dateWithTimeIntervalSince1970:time];
                 NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -292,6 +310,9 @@
 {
     NSLog(@"选中！");
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([self.toDayLists count] == 0) {
+        return;
+    }
     DataDetailViewController *detailViewController = [[DataDetailViewController alloc]init];
     detailViewController.bean = self.allDataLists[indexPath.row];
     [self.navigationController pushViewController:detailViewController animated:YES];
@@ -318,6 +339,33 @@
 {
     DataAddViewController *singleViewController = [[DataAddViewController alloc]init];
     [self.navigationController pushViewController:singleViewController animated:YES];
+}
+
+- (void)reloadTodayDate:(NSDate *)date
+{
+    if (self.allDataLists) {
+        NSMutableArray *dates = [[NSMutableArray alloc]init];
+        for (dataBean *bean in self.allDataLists) {
+            NSTimeInterval time=[bean.timesp doubleValue];
+            NSDate *timeDate = [NSDate dateWithTimeIntervalSince1970:time];
+            NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+            [formatter setDateFormat:@"MM"];
+            int monthInt = [[formatter stringFromDate:timeDate] intValue];
+            int currentMonthInt = [[formatter stringFromDate:date] intValue];
+            if (monthInt != currentMonthInt) {
+                return;
+            }
+            [formatter setDateFormat:@"dd"];
+            int dayInt = [[formatter stringFromDate:timeDate] intValue];
+            int currentDayInt = [[formatter stringFromDate:date] intValue];
+            NSLog(@"%d,%d",dayInt,currentDayInt);
+            if (dayInt == currentDayInt) {
+                [dates addObject:bean];
+            }
+        }
+        self.toDayLists = dates;
+        [self.dataTableView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning

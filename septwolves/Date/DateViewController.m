@@ -112,8 +112,6 @@
     [l_Button setTitle:@"登陆" forState:UIControlStateNormal];
     [l_Button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [l_Button setBackgroundColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0]];
-    [l_Button.layer setBorderColor:[[UIColor grayColor] CGColor]];
-    [l_Button.layer setBorderWidth:1.0f];
     [l_Button addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:l_Button];
     //注册按钮
@@ -121,8 +119,6 @@
     //[r_Button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [r_Button setBackgroundColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0]];
     [r_Button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [r_Button.layer setBorderWidth:1.0f];
-    [r_Button.layer setBorderColor:[[UIColor grayColor] CGColor]];
     [r_Button setTitle:@"注册" forState:UIControlStateNormal];
     [r_Button addTarget:self action:@selector(regClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:r_Button];
@@ -131,6 +127,7 @@
 - (void)loginClick:(id)sender
 {
     NSLog(@"登陆");
+    
 }
 
 - (void)regClick:(id)sender

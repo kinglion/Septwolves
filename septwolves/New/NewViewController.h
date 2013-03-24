@@ -23,7 +23,9 @@
     BOOL isCalendarHide;
     NSMutableArray *allDataLists;
     NSMutableArray *toDayLists;
+    LNSQLite *sql;
 }
+@property (nonatomic,retain) LNSQLite *sql;
 @property (nonatomic,retain) NSMutableArray *allDataLists;
 @property (nonatomic,retain) NSMutableArray *toDayLists;
 @property (nonatomic,retain) VRGCalendarView *calendarView;

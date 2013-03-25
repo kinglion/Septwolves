@@ -42,6 +42,8 @@
 		399FAE4C16B920F1005FD31F /* RootNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 399FAE4A16B920F1005FD31F /* RootNavController.m */; };
 		39A39DD316F9A16B00F7EDBB /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A39DD216F9A16B00F7EDBB /* CustomCell.m */; };
 		39A39DD816F9BE4700F7EDBB /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A39DD716F9BE4700F7EDBB /* CustomTableView.m */; };
+		39A86A2817002D9500A01304 /* menuBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A86A2717002D9500A01304 /* menuBean.m */; };
+		39A86A2B17002EEB00A01304 /* eachMenuBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A86A2A17002EEB00A01304 /* eachMenuBean.m */; };
 		39AD2F2516AF848100AF0CCE /* MosaicData.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F1916AF848100AF0CCE /* MosaicData.m */; };
 		39AD2F2616AF848100AF0CCE /* TwoDimentionalArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F1C16AF848100AF0CCE /* TwoDimentionalArray.m */; };
 		39AD2F2716AF848100AF0CCE /* MosaicDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39AD2F2216AF848100AF0CCE /* MosaicDataView.m */; };
@@ -249,6 +251,10 @@
 		39A39DD216F9A16B00F7EDBB /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		39A39DD616F9BE4700F7EDBB /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
 		39A39DD716F9BE4700F7EDBB /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
+		39A86A2617002D9500A01304 /* menuBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuBean.h; sourceTree = "<group>"; };
+		39A86A2717002D9500A01304 /* menuBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuBean.m; sourceTree = "<group>"; };
+		39A86A2917002EEB00A01304 /* eachMenuBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eachMenuBean.h; sourceTree = "<group>"; };
+		39A86A2A17002EEB00A01304 /* eachMenuBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eachMenuBean.m; sourceTree = "<group>"; };
 		39AD2F1816AF848100AF0CCE /* MosaicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MosaicData.h; sourceTree = "<group>"; };
 		39AD2F1916AF848100AF0CCE /* MosaicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MosaicData.m; sourceTree = "<group>"; };
 		39AD2F1B16AF848100AF0CCE /* TwoDimentionalArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoDimentionalArray.h; sourceTree = "<group>"; };
@@ -560,6 +566,17 @@
 			name = customTableView;
 			sourceTree = "<group>";
 		};
+		39A86A2317002D7B00A01304 /* bean */ = {
+			isa = PBXGroup;
+			children = (
+				39A86A2617002D9500A01304 /* menuBean.h */,
+				39A86A2717002D9500A01304 /* menuBean.m */,
+				39A86A2917002EEB00A01304 /* eachMenuBean.h */,
+				39A86A2A17002EEB00A01304 /* eachMenuBean.m */,
+			);
+			name = bean;
+			sourceTree = "<group>";
+		};
 		39AD2F1616AF848100AF0CCE /* MosaicUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,6 +711,7 @@
 		B417EF13169924670043A77B /* common */ = {
 			isa = PBXGroup;
 			children = (
+				39A86A2317002D7B00A01304 /* bean */,
 				B417EF14169924BA0043A77B /* LNconst.h */,
 				B417EF15169924BA0043A77B /* LNconst.m */,
 			);
@@ -1259,6 +1277,8 @@
 				39A39DD816F9BE4700F7EDBB /* CustomTableView.m in Sources */,
 				393D0FC616FAB7900009D924 /* DataAddViewController.m in Sources */,
 				39AF5D8116FBED7A00B3C01C /* DataDetailViewController.m in Sources */,
+				39A86A2817002D9500A01304 /* menuBean.m in Sources */,
+				39A86A2B17002EEB00A01304 /* eachMenuBean.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

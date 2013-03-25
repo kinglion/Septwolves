@@ -17,6 +17,7 @@ typedef enum
 @interface UserViewController : UIViewController
 {
     UIView *mainView;
+    UserViewType viewType;
 }
 @property (nonatomic,retain) UIView *mainView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil userViewType:(UserViewType)type;

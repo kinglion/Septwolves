@@ -25,17 +25,15 @@
 @synthesize rootNavControllerDelegate = _rootNavControllerDelegate;
 @synthesize indicatorView = _indicatorView;
 @synthesize resultStr;
+@synthesize bean;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
         // Custom initializatio
-        NSArray *imageArr = [NSArray arrayWithObjects:
-                             @"http://img.article.pchome.net/00/59/22/36/pic_lib/wm/Meinv06.jpg",@"http://img.article.pchome.net/00/50/42/87/pic_lib/wm/Meinv01.jpg",nil];
         kenBurnsView = [[KenBurnsView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
         kenBurnsView.delegate = self;
-        [kenBurnsView animateWithSDWebImageURLs:imageArr transitionDuration:15 loop:YES isLandscape:YES];
         [self.view addSubview:kenBurnsView];
         //UIImage *uiimage = [UIImage imageNamed:@"indexBG.png"];
         //UIImageView *imageView =  [[UIImageView alloc]initWithImage:uiimage];
@@ -47,7 +45,9 @@
         [self.view addSubview:tableView];
         [self.view addSubview:tempIndicatorView];
         self.indicatorView = tempIndicatorView;
+        self.bean = [LNconst httpRequestMenu:self.indicatorView];
         //[self.indicatorView startAnimating];
+        [kenBurnsView animateWithSDWebImageURLs:bean.bgImgList transitionDuration:15 loop:YES isLandscape:YES];
         [tempIndicatorView release];
         [tableView release];
         //[uiimage release];

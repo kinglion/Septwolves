@@ -8,6 +8,7 @@
 
 #import "DateViewController.h"
 #import "mainViewController.h"
+#import "UserViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #define HEIGHT_VIEW 80.0f
 #define TABLE_HEIGHT 120.0f
@@ -127,7 +128,8 @@
 - (void)loginClick:(id)sender
 {
     NSLog(@"登陆");
-    
+    UserViewController *vc = [[UserViewController alloc]initWithNibName:nil bundle:nil userViewType:Login];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)regClick:(id)sender

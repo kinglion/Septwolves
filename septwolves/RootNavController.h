@@ -11,6 +11,7 @@
 #import "NavViewController.h"
 #import "LNActivityIndicatorView.h"
 #import "LNconst.h"
+#import "menuBean.h"
 @class RootNavController;
 @protocol RootNavControllerDelegate
 
@@ -25,6 +26,7 @@
     KenBurnsView *kenBurnsView;
     LNActivityIndicatorView *indicatorView;
     NSString *resultStr;
+    menuBean *bean;
 }
 @property (nonatomic, copy) NSString *resultStr;
 @property (nonatomic, assign) id<RootNavControllerDelegate> rootNavControllerDelegate;
@@ -32,4 +34,5 @@
 @property (nonatomic , retain) KenBurnsView *kenBurnsView;
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, retain) LNActivityIndicatorView *indicatorView;
+@property (nonatomic, retain) menuBean *bean;
 @end

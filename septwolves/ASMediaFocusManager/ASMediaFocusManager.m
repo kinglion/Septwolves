@@ -93,15 +93,16 @@ static CGFloat const kAnimationDuration = 0.5;
     viewController.mainImageView.image = image;
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *url;
+        NSString *url = nil;
         UIImageView *imageView = [[UIImageView alloc]init];
         url = [self.delegate mediaFocusManager:self mediaUrlForView:mediaView];
+        NSLog(@"++++++%@",url);
         [imageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil options:SDWebImageCacheMemoryOnly progress:^(NSUInteger receivedSize, long long expectedSize) {
             
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-            image = imageView.image;
-            image = [self decodedImageWithImage:image];
-            viewController.mainImageView.image = image;
+            //image = imageView.image;
+            //image = [self decodedImageWithImage:image];
+            //viewController.mainImageView.image = image;
         }];
     });
 

@@ -9,6 +9,7 @@
 #import "NewViewController.h"
 #import "mainViewController.h"
 #import "LNconst.h"
+#import "ShakeViewController.h"
 #define HEADHEIGHT 30.0f
 
 @interface NewViewController ()
@@ -310,12 +311,17 @@
 {
     NSLog(@"选中！");
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([self.toDayLists count] == 0) {
-        return;
+    if (tableView == self.dataTableView) {
+        if ([self.toDayLists count] == 0) {
+            return;
+        }
+        DataDetailViewController *detailViewController = [[DataDetailViewController alloc]init];
+        detailViewController.bean = self.allDataLists[indexPath.row];
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    }else{
+        ShakeViewController *vc = [[ShakeViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    DataDetailViewController *detailViewController = [[DataDetailViewController alloc]init];
-    detailViewController.bean = self.allDataLists[indexPath.row];
-    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 - (void)dataSelectClick:(id)sender

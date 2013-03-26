@@ -9,5 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface eachMenuBean : NSObject
+{
+    NSArray *bgImgList;
+    NSArray *menu;
+    NSString *title;
+    NSString *stitle;
+}
+@property (nonatomic,retain) NSArray *bgImgList;
+@property (nonatomic,retain) NSArray *menu;
 
 @end

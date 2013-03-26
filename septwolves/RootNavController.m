@@ -48,6 +48,7 @@
         self.bean = [LNconst httpRequestMenu:self.indicatorView];
         //[self.indicatorView startAnimating];
         [kenBurnsView animateWithSDWebImageURLs:bean.bgImgList transitionDuration:15 loop:YES isLandscape:YES];
+        [tableView reloadData];
         [tempIndicatorView release];
         [tableView release];
         //[uiimage release];
@@ -106,29 +107,59 @@
         [rightCell release];
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"品格男装";
-                imageView = cell.imageView;
-                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
+                for (menuBean *item in self.bean.menu) {
+                    if ([item.menuName isEqualToString:@"pgnz"]) {
+                        cell.textLabel.text = item.title;
+                        imageView = cell.imageView;
+                        [imageView setFrame:CGRectMake(0, 0, 35, 35)];
+                        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+                        [imageView setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"pgnz.png"]];
+                    }
+                }
                 break;
             case 1:
-                cell.textLabel.text = @"男人不止一面";
-                imageView = cell.imageView;
-                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
+                for (menuBean *item in self.bean.menu) {
+                    if ([item.menuName isEqualToString:@"nrbzym"]) {
+                        cell.textLabel.text = item.title;
+                        imageView = cell.imageView;
+                        [imageView setFrame:CGRectMake(0, 0, 35, 35)];
+                        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+                        [imageView setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"nrbzym.png"]];
+                    }
+                }
                 break;
             case 2:
-                cell.textLabel.text = @"品格咨询";
-                imageView = cell.imageView;
-                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
+                for (menuBean *item in self.bean.menu) {
+                    if ([item.menuName isEqualToString:@"pgzx"]) {
+                        cell.textLabel.text = item.title;
+                        imageView = cell.imageView;
+                        [imageView setFrame:CGRectMake(0, 0, 35, 35)];
+                        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+                        [imageView setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"pgzx.png"]];
+                    }
+                }
                 break;
             case 3:
-                cell.textLabel.text = @"品格着装顾问";
-                imageView = cell.imageView;
-                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
+                for (menuBean *item in self.bean.menu) {
+                    if ([item.menuName isEqualToString:@"pgzzgw"]) {
+                        cell.textLabel.text = item.title;
+                        imageView = cell.imageView;
+                        [imageView setFrame:CGRectMake(0, 0, 35, 35)];
+                        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+                        [imageView setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"pgzzgw.png"]];
+                    }
+                }
                 break;
             case 4:
-                cell.textLabel.text = @"品格会";
-                imageView = cell.imageView;
-                [imageView setImageWithURL:[NSURL URLWithString:@"http://img-tx.meilishuo.net/pic/_o/b1/47/88dee2d76aaab27e6b3c87eb4d10_1300_1300.jpg"]];
+                for (menuBean *item in self.bean.menu) {
+                    if ([item.menuName isEqualToString:@"pgh"]) {
+                        cell.textLabel.text = item.title;
+                        imageView = cell.imageView;
+                        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+                        [imageView setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"pgh.png"]];
+                        [imageView setFrame:CGRectMake(0, 0, 35, 35)];
+                    }
+                }
                 break;
             default:
                 break;
@@ -139,7 +170,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 41;
+    return 50;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

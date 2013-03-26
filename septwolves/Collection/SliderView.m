@@ -71,7 +71,6 @@
         [_pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
         [_scrollView release];
         [_pageControl release];
-        [imageArr release];
         [imgArr release];
     }
     return self;

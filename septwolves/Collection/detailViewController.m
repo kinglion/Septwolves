@@ -52,6 +52,7 @@
     //VideoView *view = [[VideoView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height)];
     [self.topView addSubview:view];
     self.imageArr = array;
+    NSLog(@"wwwwwwww%@",array);
     [array release];
     [view release];
     // Do any additional setup after loadßing the view from its nib.
@@ -86,6 +87,7 @@
     // Here, images are accessed through their name "1f.jpg", "2f.jpg",
     NSLog(@"self.imageArr:%d,self.imageViews:%d",[self.imageArr retainCount],[self.imageViews retainCount]);
     url = [self.imageArr objectAtIndex:[self.imageViews indexOfObject:view]];
+    NSLog(@"xxxxxxxx%@",self.imageArr);
     return url;
 }
 

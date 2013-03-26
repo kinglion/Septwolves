@@ -42,28 +42,91 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     rootNav = [[mainViewController alloc]init];
     [self.window makeKeyAndVisible];
-    /*UIImageView *splashView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
-    splashView.image = [UIImage imageNamed:@"sDefault.png"];
-    [self.window addSubview:splashView];
-    [self.window bringSubviewToFront:splashView];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView: self.window cache:YES];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(startupAnimationDone:finished:context:)];
-    splashView.alpha = 0.0;
-    splashView.frame = CGRectMake(-60, -85, 440, 635);
-    [UIView commitAnimations];*/
-    //self.navController = [[UINavigationController alloc] initWithRootViewController:rootNav];
-    //self.navController.navigationBar.tintColor = [UIColor colorWithRed:(29.0/255.0) green:(29.0 / 255.0) blue:(29.0 / 255.0) alpha:1];
     [self.window setRootViewController:rootNav];
     [rootNav release];
+    [self playStartScreen];
+    
     //[navController release];
     return YES;
     
 }
 
-
+- (void)playStartScreen
+{
+    UIImageView *splashView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 480)];
+    splashView.image = [UIImage imageNamed:@"start_bg.png"];
+    [self.window addSubview:splashView];
+    [self.window bringSubviewToFront:splashView];
+    UIImageView *logoIV = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH_SCREEN - 160)/2, (HEIGHT_SCREEN - 81)/2, 160, 81)];
+    [logoIV setAlpha:0];
+    [logoIV setImage:[UIImage imageNamed:@"start_logo.png"]];
+    UIImageView *friIV = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH_SCREEN - 171)/2, 280, 171, 23)];
+    [friIV setAlpha:0];
+    [friIV setImage:[UIImage imageNamed:@"start_frist_text.png"]];
+    UIImageView *secIV = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH_SCREEN - 215)/2, 310, 215, 23)];
+    [secIV setAlpha:0];
+    [secIV setImage:[UIImage imageNamed:@"start_second_text.png"]];
+    UIImageView *thiIV = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH_SCREEN - 156)/2, 340, 156, 23)];
+    [thiIV setAlpha:0];
+    [thiIV setImage:[UIImage imageNamed:@"start_third_text.png"]];
+    UIImageView *fouIV = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH_SCREEN - 185)/2, 365, 185, 27)];
+    [fouIV setAlpha:0];
+    [fouIV setImage:[UIImage imageNamed:@"start_fourth_text.png"]];
+    UIImageView *firIV = [[UIImageView alloc] initWithFrame:CGRectMake((WIDTH_SCREEN - 185)/2, 395, 185, 23)];
+    [firIV setAlpha:0];
+    [firIV setImage:[UIImage imageNamed:@"start_firth_text.png"]];
+    [splashView addSubview:logoIV];
+    [splashView addSubview:friIV];
+    [splashView addSubview:secIV];
+    [splashView addSubview:thiIV];
+    [splashView addSubview:fouIV];
+    [splashView addSubview:firIV];
+    [UIView animateWithDuration:1 animations:^{
+        [logoIV setAlpha:1];
+        [logoIV setCenter:CGPointMake(WIDTH_SCREEN/2, HEIGHT_SCREEN/2)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            [logoIV setFrame:CGRectMake((WIDTH_SCREEN - 160)/2, 100, 160, 81)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:1 animations:^{
+                [friIV setAlpha:1];
+                [friIV setFrame:CGRectMake((WIDTH_SCREEN - 171)/2, 240, 171, 23)];
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:1 animations:^{
+                    [secIV setAlpha:1];
+                    [secIV setFrame:CGRectMake((WIDTH_SCREEN - 215)/2, 270, 215, 23)];
+                } completion:^(BOOL finished) {
+                   [UIView animateWithDuration:1 animations:^{
+                       [thiIV setAlpha:1];
+                       [thiIV setFrame:CGRectMake((WIDTH_SCREEN - 156)/2, 300, 156, 23)];
+                   } completion:^(BOOL finished) {
+                       [UIView animateWithDuration:1 animations:^{
+                           [fouIV setAlpha:1];
+                           [fouIV setFrame:CGRectMake((WIDTH_SCREEN - 185)/2, 325, 185, 27)];
+                       } completion:^(BOOL finished) {
+                           [UIView animateWithDuration:1 animations:^{
+                               [firIV setAlpha:1];
+                               [firIV setFrame:CGRectMake((WIDTH_SCREEN - 185)/2, 355, 185, 23)];
+                           } completion:^(BOOL finished) {
+                               [UIView beginAnimations:nil context:nil];
+                               [UIView setAnimationDuration:1.0];
+                               [UIView setAnimationTransition:UIViewAnimationTransitionNone forView: self.window cache:YES];
+                               [UIView setAnimationDelegate:self];
+                               //[UIView setAnimationDidStopSelector:@selector(startupAnimationDone:finished:context:)];
+                               splashView.alpha = 0.0;
+                               [splashView setFrame:CGRectMake(0,0,660,952)];
+                               [UIView commitAnimations];
+                           }];
+                       }];
+                   }];
+                }];
+            }];
+        }];
+    }];
+    
+    //self.navController = [[UINavigationController alloc] initWithRootViewController:rootNav];
+    //self.navController.navigationBar.tintColor = [UIColor colorWithRed:(29.0/255.0) green:(29.0 / 255.0) blue:(29.0 / 255.0) alpha:1];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

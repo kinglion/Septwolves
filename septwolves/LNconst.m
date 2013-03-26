@@ -13,23 +13,6 @@
 
 @implementation LNconst
 
-#define BASE_URL @"http://uniideas.net/septapp/"
-#define MAIN_PAGE @"main.php"
-#define MEN_PAGE @"pgnz.php"
-#define DYNAMIC_PAGE @"ppdt.php"
-#define INFORMATION_PAGE @"mszx.php"
-#define VIP_HISTORY_PAGE @"hyzc.php"
-#define GIFT_PAGE @"lpdh.php"
-#define USER_PAGE @"user.php"
-
-#define MAIN_URL [NSString stringWithFormat:@"%@%@",BASE_URL,MAIN_PAGE]
-#define MEN_URL [NSString stringWithFormat:@"%@%@",BASE_URL,MEN_PAGE]
-#define DYNAMIC_URL [NSString stringWithFormat:@"%@%@",BASE_URL,DYNAMIC_PAGE]
-#define INFORMATION_URL [NSString stringWithFormat:@"%@%@",BASE_URL,INFORMATION_PAGE]
-#define VIP_HISTORY_URL [NSString stringWithFormat:@"%@%@",BASE_URL,VIP_HISTORY_PAGE]
-#define GIFT_URL [NSString stringWithFormat:@"%@%@",BASE_URL,GIFT_PAGE]
-#define USER_URL [NSString stringWithFormat:@"%@%@",BASE_URL,USER_PAGE]
-
 + (menuBean *)httpRequestMenu:(LNActivityIndicatorView *)indicatorView
 {
     [indicatorView startAnimating];
@@ -48,14 +31,14 @@
         NSLog(@"%@",response);
         NSDictionary *data = [response objectFromJSONString];
         if ([[data objectForKey:@"result"] isEqual:@"000"]) {
-            bean.bgImgList = [data objectForKey:@"bgImgList"];
+            bean.bgImgList = [self formatWithBaseUrl:[data objectForKey:@"bgImgList"]];
             NSMutableArray *tempLists = [[NSMutableArray alloc]init];
             for (NSDictionary *eachMenu in [data objectForKey:@"menu"]) {
                 menuBean *itemBean = [[menuBean alloc]init];
                 NSDictionary *item = [[eachMenu allValues]objectAtIndex:0];
                 itemBean.menuName = [[eachMenu allKeys]objectAtIndex:0];
                 itemBean.title = [item objectForKey:@"title"];
-                itemBean.imgUrl = [item objectForKey:@"imgUrl"];
+                itemBean.imgUrl = [NSString stringWithFormat:@"%@%@",BACK_URL,[item objectForKey:@"imgUrl"]];
                 [tempLists addObject:itemBean];
             }
             bean.menu = tempLists;
@@ -70,7 +53,17 @@
     return bean;
 }
 
-
-
++ (NSArray *)formatWithBaseUrl:(NSArray *)urlList
+{
+    int length = [urlList count];
+    NSMutableArray *tempList = [[NSMutableArray alloc]initWithArray:urlList];
+    for (int i = 0; i < length; i++) {
+        NSString *url = [urlList objectAtIndex:i];
+        url = [NSString stringWithFormat:@"%@%@",BACK_URL,urlList[i]];
+        tempList[i] = url;
+    }
+    urlList = tempList;
+    return urlList;
+}
 
 @end

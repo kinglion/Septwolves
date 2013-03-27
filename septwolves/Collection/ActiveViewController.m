@@ -22,6 +22,8 @@
 @implementation ActiveViewController
 @synthesize scrollView = _scrollView;
 @synthesize array = _array;
+@synthesize indicatorView;
+@synthesize bean;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -101,19 +103,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    str = @"{\"a\":123, \"imgArr\":[\"http://img.itc.cn/photo/jejJ6dJCVWW\",\"http://www.fzlol.com/upimg/allimg/130226/2132T91491.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95612.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T93M4.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T963K.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95D6.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96048.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T921E.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T954410.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tca11.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132U012312.jpg\"]}";
-    NSDictionary *data = [str objectFromJSONString];
-    _array = [data objectForKey:@"imgArr"];
+    LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
 	// Do any additional setup after loading the view.
     if (_scrollView == nil) {
         _scrollView = [self creatTable];
-        int arrCount = [_array count];
-        NSLog(@"%d",arrCount);
-        if (arrCount>0) {
-            [self creatBig:_scrollView];
-            [self creatSmall:_scrollView];
-        }
-        [self updateScrollView:_scrollView];
         [self.view addSubview:_scrollView];
     }
     if (_refreshHeaderView == nil) {
@@ -122,16 +115,27 @@
 		view.delegate = self;
 		[self.scrollView addSubview:view];
 		_refreshHeaderView = view;
-        //[view release];
+        [view release];
 	}
     if (_refreshFooterView == nil) {
         LoadMoreTableFooterView *footview = [[LoadMoreTableFooterView alloc]initWithFrame:CGRectMake(0.0f, self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
         footview.delegate = self;
         [self.scrollView addSubview:footview];
         _refreshFooterView = footview;
-        //[footview release];
+        [footview release];
     }
+    [self.view addSubview:tempIndicatorView];
+    self.indicatorView = tempIndicatorView;
+    self.bean = [LNconst httpRequestNewList:self.indicatorView];
+    int arrCount = [_array count];
+    NSLog(@"%d",arrCount);
+    if (arrCount>0) {
+        [self creatBig:_scrollView];
+        [self creatSmall:_scrollView];
+    }
+    [self updateScrollView:_scrollView];
 	[_scrollView release];
+    [tempIndicatorView release];
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
 }

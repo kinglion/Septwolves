@@ -15,9 +15,11 @@
 {
     LNActivityIndicatorView *indicatorView;
     eachMenuBean *bean;
+    KenBurnsView *kenBurnsView;
 }
 @property (nonatomic,retain) UITableView *typeTable;
 @property (nonatomic,retain) IBOutlet UIView *frontview;
 @property (nonatomic,retain) LNActivityIndicatorView *indicatorView;
 @property (nonatomic,retain) eachMenuBean *bean;
+@property (nonatomic , retain) KenBurnsView *kenBurnsView;
 @end

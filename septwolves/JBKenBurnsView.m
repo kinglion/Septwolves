@@ -410,10 +410,10 @@
 - (void) _notifyDelegate: (NSNumber *)imageIndex
 {
     if (delegate) {
-        if([self.delegate respondsToSelector:@selector(didShowImageAtIndex:)])
+        /*if([self.delegate respondsToSelector:@selector(didShowImageAtIndex:)])
         {
             [self.delegate didShowImageAtIndex:[imageIndex intValue]];
-        }      
+        }*/ 
         
         if ([imageIndex intValue] == ([self.imagesArray count]-1) && !isLoop && [self.delegate respondsToSelector:@selector(didFinishAllAnimations)]) {            
             [self.delegate didFinishAllAnimations];        

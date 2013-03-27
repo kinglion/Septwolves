@@ -13,13 +13,16 @@
 #import "ChrConsuViewController.h"
 #import "mainViewController.h"
 
-@interface SecondViewController ()
+@interface SecondViewController ()<KenBurnsViewDelegate>
 
 @end
 
 @implementation SecondViewController
 @synthesize frontView;
 @synthesize tableView;
+@synthesize indicatorView;
+@synthesize bean;
+@synthesize kenBurnsView;
 
 #pragma mark - Private
 
@@ -45,16 +48,6 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
     if (self) {
         // Custom initialization
         self.title = @"男人不止一面";
-        UIImage *image = [UIImage imageNamed:@"mannoone.png"];
-        UIImageView *imageView =  [[UIImageView alloc]initWithImage:image];
-        [imageView setFrame:CGRectMake(0, 0, self.view.frame.size
-                                       .width, self.view.frame.size
-                                       .height)];
-        [self.view addSubview:imageView];
-        tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        [tableView setDataSource:self];
-        [tableView setDelegate:self];
-        [self.view addSubview:tableView];
         UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
         CGRect backframe = CGRectMake(0,0,30,19);
         UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
@@ -66,9 +59,6 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
         self.navigationItem.leftBarButtonItem = leftBarButtonItem;
         [leftBarButtonItem release];
         [backButton release];
-        [tableView release];
-        [image release];
-        [imageView release];
     }
     return self;
 }
@@ -119,25 +109,17 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [self.bean.menu count];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
     if(cell == nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
-        
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"品牌动态";
-                break;
-            case 1:
-                cell.textLabel.text = @"名士资讯";
-                break;
-            default:
-                break;
-        }
+        eachMenuBean *item = [self.bean.menu objectAtIndex:indexPath.row];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"simple"];
+        cell.textLabel.text = item.title;
+        cell.detailTextLabel.text = item.stitle;
         UIImageView *rightCell = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cellRight.png"]];
         [cell setAccessoryView:rightCell];
         [rightCell release];
@@ -182,6 +164,20 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+    kenBurnsView = [[KenBurnsView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+    kenBurnsView.delegate = self;
+    [self.view addSubview:kenBurnsView];
+    tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:tableView];
+    [self.view addSubview:tempIndicatorView];
+    self.indicatorView = tempIndicatorView;
+    self.bean = [LNconst httpRequestEachMenu:self.indicatorView action:@"nrbzym"];
+    [kenBurnsView animateWithSDWebImageURLs:bean.bgImgList transitionDuration:15 loop:YES isLandscape:YES];
+    [tableView setDataSource:self];
+    [tableView setDelegate:self];
+    [tableView reloadData];
+    [tempIndicatorView release];
     // Do any additional setup after loading the view from its nib.
 }
 

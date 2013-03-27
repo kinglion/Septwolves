@@ -11,15 +11,18 @@
 #import "cView.h"
 #import "EGORefreshTableHeaderView.h"
 #import "LoadMoreTableFooterView.h"
+#import "LNconst.h"
 
 @interface ActiveViewController : UIViewController<cViewDelegate,EGORefreshTableHeaderDelegate,LoadMoreTableFooterDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
     LoadMoreTableFooterView *_refreshFooterView;
+    LNActivityIndicatorView *indicatorView;
     // Status
     BOOL pullTableIsRefreshing;
     BOOL pullTableIsLoadingMore;
     NSString *str;
+    NewBean *bean;
 }
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
@@ -27,4 +30,6 @@
 @property (nonatomic, assign) BOOL pullTableIsLoadingMore;
 @property (nonatomic,retain)UIScrollView *scrollView;
 @property (nonatomic,retain)NSMutableArray *array;
+@property (nonatomic,retain) LNActivityIndicatorView *indicatorView;
+@property (nonatomic,retain) NewBean *bean;
 @end

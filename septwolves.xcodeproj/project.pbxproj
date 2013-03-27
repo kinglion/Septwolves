@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3901F24C16F0614300779A13 /* LNView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3901F24B16F0614300779A13 /* LNView.m */; };
+		390BE3A31702EAB400E3BD94 /* NewBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 390BE3A21702EAB400E3BD94 /* NewBean.m */; };
 		39104CD01700C43B006A243A /* pgh.png in Resources */ = {isa = PBXBuildFile; fileRef = 39104CC61700C43B006A243A /* pgh.png */; };
 		39104CD11700C43B006A243A /* pgh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39104CC71700C43B006A243A /* pgh@2x.png */; };
 		39104CD21700C43B006A243A /* pgzzgw.png in Resources */ = {isa = PBXBuildFile; fileRef = 39104CC81700C43B006A243A /* pgzzgw.png */; };
@@ -222,6 +223,8 @@
 /* Begin PBXFileReference section */
 		3901F24A16F0614300779A13 /* LNView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LNView.h; path = septwolves/Date/LNView/LNView.h; sourceTree = SOURCE_ROOT; };
 		3901F24B16F0614300779A13 /* LNView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LNView.m; path = septwolves/Date/LNView/LNView.m; sourceTree = SOURCE_ROOT; };
+		390BE3A11702EAB400E3BD94 /* NewBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewBean.h; path = bean/NewBean.h; sourceTree = "<group>"; };
+		390BE3A21702EAB400E3BD94 /* NewBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewBean.m; path = bean/NewBean.m; sourceTree = "<group>"; };
 		39104CC61700C43B006A243A /* pgh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pgh.png; path = resource/pgh.png; sourceTree = "<group>"; };
 		39104CC71700C43B006A243A /* pgh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pgh@2x.png"; path = "resource/pgh@2x.png"; sourceTree = "<group>"; };
 		39104CC81700C43B006A243A /* pgzzgw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pgzzgw.png; path = resource/pgzzgw.png; sourceTree = "<group>"; };
@@ -622,6 +625,8 @@
 				39A86A2A17002EEB00A01304 /* eachMenuBean.m */,
 				39F210E41702891000B3DCD5 /* CharacterBean.h */,
 				39F210E51702891000B3DCD5 /* CharacterBean.m */,
+				390BE3A11702EAB400E3BD94 /* NewBean.h */,
+				390BE3A21702EAB400E3BD94 /* NewBean.m */,
 			);
 			name = bean;
 			sourceTree = "<group>";
@@ -1373,6 +1378,7 @@
 				39104CDE1700CC69006A243A /* ShakeViewController.m in Sources */,
 				39104CE11700CF7E006A243A /* LNShakeView.m in Sources */,
 				39F210E61702891000B3DCD5 /* CharacterBean.m in Sources */,
+				390BE3A31702EAB400E3BD94 /* NewBean.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1422,7 +1428,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "4BB580B3-3C40-4FD5-97EF-BF7CD44A38D3";
+				PROVISIONING_PROFILE = "067E322C-C4B2-42DE-9C26-5A532DF2C5BC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0F501A4F-BF46-46B1-AD82-69350A9B67FC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1444,7 +1451,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "4BB580B3-3C40-4FD5-97EF-BF7CD44A38D3";
+				PROVISIONING_PROFILE = "067E322C-C4B2-42DE-9C26-5A532DF2C5BC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0F501A4F-BF46-46B1-AD82-69350A9B67FC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1453,7 +1461,7 @@
 		B41EA9C2167F25DE0032FA40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: xiamen septwolves software developing co., ltd";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1468,6 +1476,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = septwolves;
+				PROVISIONING_PROFILE = "067E322C-C4B2-42DE-9C26-5A532DF2C5BC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1475,7 +1484,7 @@
 		B41EA9C3167F25DE0032FA40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: xiamen septwolves software developing co., ltd";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1490,6 +1499,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = septwolves;
+				PROVISIONING_PROFILE = "067E322C-C4B2-42DE-9C26-5A532DF2C5BC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

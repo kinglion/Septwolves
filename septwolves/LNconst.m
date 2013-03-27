@@ -117,6 +117,45 @@
     return bean;
 }
 
++ (NewBean *)httpRequestNewList:(LNActivityIndicatorView *)indicatorView
+{
+    NewBean *bean = [[NewBean alloc]init];
+    [indicatorView startAnimating];
+    NSURL *url = [NSURL URLWithString:DYNAMIC_URL];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    [request setPostValue:@"list" forKey:@"act"];
+    [request setPostValue:@"septapp" forKey:@"REQUEST_METHOD"];
+    [request startSynchronous];
+    NSError *error = [request error];
+    if (!error) {
+        [indicatorView stopAnimating];
+        NSString *response = [request responseString];
+        NSLog(@"%@",response);
+        NSDictionary *data = [response objectFromJSONString];
+        /*if ([[data objectForKey:@"result"] isEqual:@"000"]) {
+            bean.index = [self stringFormatWithBaseUrl:[data objectForKey:@"index"]];
+            NSMutableArray *tempLists = [[NSMutableArray alloc]init];
+            for (NSDictionary *eachMenu in [data objectForKey:@"list"]) {
+                CharacterBean *itemBean = [[CharacterBean alloc]init];
+                itemBean._id = [[eachMenu objectForKey:@"id"] intValue];
+                itemBean.imgUrl = [NSString stringWithFormat:@"%@%@",BACK_URL,[eachMenu objectForKey:@"imgUrl"]];
+                NSMutableArray *infoLists = [[NSMutableArray alloc]init];
+                for (NSDictionary *eachInfo in [eachMenu objectForKey:@"itemInfo"]) {
+                    CharacterBean *infoBean = [[CharacterBean alloc]init];
+                    infoBean.name = [eachInfo objectForKey:@"name"];
+                    infoBean.num = [eachInfo objectForKey:@"num"];
+                    [infoLists addObject:infoBean];
+                }
+                itemBean.itemInfo = infoLists;
+                [tempLists addObject:itemBean];
+            }
+            bean.list = tempLists;
+        }*/
+    }
+
+    return bean;
+}
+
 + (NSArray *)formatWithBaseUrl:(NSArray *)urlList
 {
     int length = [urlList count];

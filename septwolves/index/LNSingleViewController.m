@@ -45,8 +45,6 @@
         pageControl = [[UIPageControl alloc]init];
         [pageControl setCurrentPage:0];
         [pageControl setCenter:CGPointMake(self.view.center.x, self.view.frame.size.height - 40.0f)];
-        [pageControl setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.2]];
-        [pageControl.layer setCornerRadius:8]; // 圆角层
         [self.view addSubview:pageControl];
         LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
         [self.view addSubview:tempIndicatorView];
@@ -55,12 +53,16 @@
         if (self.type_id) {
             self.bean = [LNconst httpRequestCharacterMenu:self.indicatorView action:[NSString stringWithFormat:@"%d",type_id]];
             int arrCount = [bean.list count];
-            [pageControl setNumberOfPages:arrCount];
+            [pageControl setNumberOfPages:arrCount + 1];
             [pageControl setFrame:CGRectMake((self.view.frame.size.width - pageControl.frame.size.width)*0.5,self.view.frame.size.height - 30.0f,16*(arrCount-1)+16,16)];
             [pageControl setBounds:CGRectMake(0,0,16*(arrCount-1)+16,16)]; //页面控件上的圆点间距基本在16左右。
-            [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width * arrCount, self.view.frame.size.height)];
+            [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width * (arrCount + 1), self.view.frame.size.height)];
+            UIImageView *indexIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, HEIGHT_SCREEN)];
+            [indexIV setImageWithURL:[NSURL URLWithString:bean.index]];
+            [indexIV setContentMode:UIViewContentModeScaleAspectFit];
+            [_scrollView addSubview:indexIV];
             for (int i = 0; i < arrCount; i++) {
-                UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width * i, 0, self.view.frame.size.width, self.view.frame.size.height)];
+                UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width * (i+1), 0, self.view.frame.size.width, HEIGHT_SCREEN)];
                 CharacterBean *item = [self.bean.list objectAtIndex:i];
                 [imageView setImageWithURL:[NSURL URLWithString:item.imgUrl]];
                 [imageView setContentMode:UIViewContentModeScaleAspectFit];
@@ -133,8 +135,8 @@
 	
 	if (pageControl.currentPage != nearestNumber)
 	{
-		pageControl.currentPage = nearestNumber ;
-		self.currentNum = nearestNumber;
+		pageControl.currentPage = nearestNumber;
+		self.currentNum = nearestNumber - 1;
 		// if we are dragging, we want to update the page control directly during the drag
 		if (ascrollView.dragging)
 			[pageControl updateCurrentPageDisplay] ;

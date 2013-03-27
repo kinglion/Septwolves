@@ -12,6 +12,7 @@
 #import "eachMenuBean.h"
 #import "CharacterBean.h"
 #import "LNActivityIndicatorView.h"
+#import "NewBean.h"
 #define RECT_SCREEN [[UIScreen mainScreen] bounds]
 #define SIZE_SCREEN RECT_SCREEN.size
 #define HEIGHT_SCREEN SIZE_SCREEN.height
@@ -44,7 +45,9 @@
 //
 + (CharacterBean *)httpRequestCharacterMenu:(LNActivityIndicatorView *)indicatorView action:(NSString *)action;
 //
-
++ (NewBean *)httpRequestNewList:(LNActivityIndicatorView *)indicatorView;
+//
+//
 + (NSArray *)formatWithBaseUrl:(NSArray *)urlList;
 + (NSString *)stringFormatWithBaseUrl:(NSString *)url;
 @end

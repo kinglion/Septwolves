@@ -11,7 +11,7 @@
 #import "LNSingleViewController.h"
 #import "mainViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-@interface FristViewController ()
+@interface FristViewController ()<KenBurnsViewDelegate>
 
 @end
 
@@ -20,7 +20,7 @@
 @synthesize typeTable;
 @synthesize indicatorView;
 @synthesize bean;
-
+@synthesize kenBurnsView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,23 +51,19 @@
     [super viewDidLoad];
     if(self){
         LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
-        UIImage *uiimage = [UIImage imageNamed:@"pingeBg.png"];
-        UIImageView *imageView =  [[UIImageView alloc]initWithImage:uiimage];
-        [imageView setFrame:CGRectMake(0, 0, self.view.frame.size
-                                       .width, self.view.frame.size
-                                       .height)];
-        [self.view addSubview:imageView];
+        kenBurnsView = [[KenBurnsView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        kenBurnsView.delegate = self;
+        [self.view addSubview:kenBurnsView];
         typeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [self.view addSubview:typeTable];
         [self.view addSubview:tempIndicatorView];
         self.indicatorView = tempIndicatorView;
         self.bean = [LNconst httpRequestEachMenu:self.indicatorView action:@"pgnz"];
+        [kenBurnsView animateWithSDWebImageURLs:bean.bgImgList transitionDuration:15 loop:YES isLandscape:YES];
         [typeTable setDelegate:self];
         [typeTable setDataSource:self];
         [typeTable reloadData];
         [tempIndicatorView release];
-        [uiimage release];
-        [imageView release];
     }
     // Do any additional setup after loading the view from its nib.
 }
@@ -164,8 +160,7 @@
     self.frontview = nil;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
+} 
 
 -(BOOL)shouldAutomaticallyForwardAppearanceMethods{
     return NO;

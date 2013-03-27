@@ -18,22 +18,14 @@
 @implementation FristViewController
 @synthesize frontview;
 @synthesize typeTable;
+@synthesize indicatorView;
+@synthesize bean;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         self.title = @"品格男装";
-        UIImage *uiimage = [UIImage imageNamed:@"pingeBg.png"];
-        UIImageView *imageView =  [[UIImageView alloc]initWithImage:uiimage];
-        [imageView setFrame:CGRectMake(0, 0, self.view.frame.size
-                                       .width, self.view.frame.size
-                                       .height)];
-        [self.view addSubview:imageView];
-        typeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        [typeTable setDelegate:self];
-        [typeTable setDataSource:self];
-        [self.view addSubview:typeTable];
         UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
         CGRect backframe = CGRectMake(0,0,30,19);
         UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
@@ -50,8 +42,6 @@
         [backItem setBackButtonBackgroundImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         self.navigationItem.leftBarButtonItem = backItem; 
         [backItem release];*/
-        [uiimage release];
-        [imageView release];
     }
     return self;
 }
@@ -60,7 +50,24 @@
 {
     [super viewDidLoad];
     if(self){
-        
+        LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        UIImage *uiimage = [UIImage imageNamed:@"pingeBg.png"];
+        UIImageView *imageView =  [[UIImageView alloc]initWithImage:uiimage];
+        [imageView setFrame:CGRectMake(0, 0, self.view.frame.size
+                                       .width, self.view.frame.size
+                                       .height)];
+        [self.view addSubview:imageView];
+        typeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [self.view addSubview:typeTable];
+        [self.view addSubview:tempIndicatorView];
+        self.indicatorView = tempIndicatorView;
+        self.bean = [LNconst httpRequestEachMenu:self.indicatorView action:@"pgnz"];
+        [typeTable setDelegate:self];
+        [typeTable setDataSource:self];
+        [typeTable reloadData];
+        [tempIndicatorView release];
+        [uiimage release];
+        [imageView release];
     }
     // Do any additional setup after loading the view from its nib.
 }
@@ -95,7 +102,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated{
     //画面消失
-    NSLog(@"顶部导航消失！");
+    
 }
 
 
@@ -116,16 +123,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [self.bean.menu count];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
+    
     if(cell == nil){
+        eachMenuBean *item = [self.bean.menu objectAtIndex:indexPath.row];
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"simple"];
-        cell.textLabel.text = @"男式服装";
-        cell.detailTextLabel.text = @"摩登,进取,都市时间";
+        cell.textLabel.text = item.title;
+        cell.detailTextLabel.text = item.stitle;
         UIImageView *rightCell = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"cellRight.png"]];
         [cell setAccessoryView:rightCell];
         [rightCell release];
@@ -141,7 +150,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    LNSingleViewController *singleView = [[LNSingleViewController alloc]init];
+    eachMenuBean *item = [self.bean.menu objectAtIndex:indexPath.row];
+    LNSingleViewController *singleView = [[LNSingleViewController alloc]init:item.typeid];
+    NSLog(@"%d",item.typeid);
+    singleView.type_id = item.typeid;
     [self.navigationController pushViewController:singleView animated:YES];
     [singleView release];
 }

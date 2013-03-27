@@ -87,6 +87,7 @@
 		39EE9C5C16E6F52100AFDAB2 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4E75A311680110B0099EE8B /* SecondViewController.m */; };
 		39EE9C6016E7271200AFDAB2 /* cellRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5E16E7271200AFDAB2 /* cellRight.png */; };
 		39EE9C6116E7271200AFDAB2 /* cellRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39EE9C5F16E7271200AFDAB2 /* cellRight@2x.png */; };
+		39F210E61702891000B3DCD5 /* CharacterBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F210E51702891000B3DCD5 /* CharacterBean.m */; };
 		39FEC76216F17C0000ACFF4F /* gift_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FEC75216F17C0000ACFF4F /* gift_bg.png */; };
 		39FEC76316F17C0000ACFF4F /* send_button_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FEC75316F17C0000ACFF4F /* send_button_bg.png */; };
 		39FEC76416F17C0000ACFF4F /* send_button_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FEC75416F17C0000ACFF4F /* send_button_bg@2x.png */; };
@@ -110,7 +111,6 @@
 		B414C2DE1682BDED004608CC /* CustomNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B414C2DD1682BDED004608CC /* CustomNavigationController.xib */; };
 		B417EF16169924BA0043A77B /* LNconst.m in Sources */ = {isa = PBXBuildFile; fileRef = B417EF15169924BA0043A77B /* LNconst.m */; };
 		B417EF1E169964450043A77B /* LNSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B417EF1C169964450043A77B /* LNSingleViewController.m */; };
-		B417EF1F169964450043A77B /* LNSingleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B417EF1D169964450043A77B /* LNSingleViewController.xib */; };
 		B41BBA13168A9E24009933F1 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B41BBA12168A9E24009933F1 /* CustomNavigationController.m */; };
 		B41E0D0216ECE0B900332365 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B41E0CFF16ECE05D00332365 /* EGORefreshTableHeaderView.m */; };
 		B41E0D0316ECE0B900332365 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B41E0D0116ECE05D00332365 /* LoadMoreTableFooterView.m */; };
@@ -334,6 +334,9 @@
 		39EE9C5916E6DC6100AFDAB2 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backButton@2x.png"; path = "resource/backButton@2x.png"; sourceTree = "<group>"; };
 		39EE9C5E16E7271200AFDAB2 /* cellRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellRight.png; path = resource/cellRight.png; sourceTree = "<group>"; };
 		39EE9C5F16E7271200AFDAB2 /* cellRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cellRight@2x.png"; path = "resource/cellRight@2x.png"; sourceTree = "<group>"; };
+		39F210E0170281F000B3DCD5 /* septwolves-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "septwolves-Info.plist"; sourceTree = "<group>"; };
+		39F210E41702891000B3DCD5 /* CharacterBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharacterBean.h; path = bean/CharacterBean.h; sourceTree = "<group>"; };
+		39F210E51702891000B3DCD5 /* CharacterBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CharacterBean.m; path = bean/CharacterBean.m; sourceTree = "<group>"; };
 		39FEC75216F17C0000ACFF4F /* gift_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gift_bg.png; path = resource/gift_bg.png; sourceTree = "<group>"; };
 		39FEC75316F17C0000ACFF4F /* send_button_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = send_button_bg.png; path = resource/send_button_bg.png; sourceTree = "<group>"; };
 		39FEC75416F17C0000ACFF4F /* send_button_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "send_button_bg@2x.png"; path = "resource/send_button_bg@2x.png"; sourceTree = "<group>"; };
@@ -359,7 +362,6 @@
 		B417EF15169924BA0043A77B /* LNconst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNconst.m; sourceTree = "<group>"; };
 		B417EF1B169964450043A77B /* LNSingleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LNSingleViewController.h; path = index/LNSingleViewController.h; sourceTree = "<group>"; };
 		B417EF1C169964450043A77B /* LNSingleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LNSingleViewController.m; path = index/LNSingleViewController.m; sourceTree = "<group>"; };
-		B417EF1D169964450043A77B /* LNSingleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LNSingleViewController.xib; path = index/LNSingleViewController.xib; sourceTree = "<group>"; };
 		B41BBA11168A9E24009933F1 /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNavigationController.h; path = custom/CustomNavigationController.h; sourceTree = "<group>"; };
 		B41BBA12168A9E24009933F1 /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNavigationController.m; path = custom/CustomNavigationController.m; sourceTree = "<group>"; };
 		B41E0CFE16ECE05D00332365 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -370,7 +372,6 @@
 		B41EA9A1167F25DE0032FA40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B41EA9A3167F25DE0032FA40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B41EA9A5167F25DE0032FA40 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		B41EA9A9167F25DE0032FA40 /* sepwolves-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sepwolves-Info.plist"; sourceTree = "<group>"; };
 		B41EA9AB167F25DE0032FA40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B41EA9AD167F25DE0032FA40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B41EA9AF167F25DE0032FA40 /* septwolves-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "septwolves-Prefix.pch"; sourceTree = "<group>"; };
@@ -619,6 +620,8 @@
 				39A86A2717002D9500A01304 /* menuBean.m */,
 				39A86A2917002EEB00A01304 /* eachMenuBean.h */,
 				39A86A2A17002EEB00A01304 /* eachMenuBean.m */,
+				39F210E41702891000B3DCD5 /* CharacterBean.h */,
+				39F210E51702891000B3DCD5 /* CharacterBean.m */,
 			);
 			name = bean;
 			sourceTree = "<group>";
@@ -856,7 +859,7 @@
 		B41EA9A8167F25DE0032FA40 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B41EA9A9167F25DE0032FA40 /* sepwolves-Info.plist */,
+				39F210E0170281F000B3DCD5 /* septwolves-Info.plist */,
 				B41EA9AA167F25DE0032FA40 /* InfoPlist.strings */,
 				B41EA9AD167F25DE0032FA40 /* main.m */,
 				B41EA9AF167F25DE0032FA40 /* septwolves-Prefix.pch */,
@@ -1025,7 +1028,6 @@
 				B4E75A251680100A0099EE8B /* FristViewController.m */,
 				B417EF1B169964450043A77B /* LNSingleViewController.h */,
 				B417EF1C169964450043A77B /* LNSingleViewController.m */,
-				B417EF1D169964450043A77B /* LNSingleViewController.xib */,
 			);
 			name = Index;
 			sourceTree = "<group>";
@@ -1207,7 +1209,6 @@
 				B48513AB1696841C0088B29F /* MainWindow.xib in Resources */,
 				B42885EF1696E674002963DC /* man1.png in Resources */,
 				B42885F01696E674002963DC /* man1@2x.png in Resources */,
-				B417EF1F169964450043A77B /* LNSingleViewController.xib in Resources */,
 				B4C501C116996FF40013091C /* top_pic.png in Resources */,
 				B4C501C216996FF40013091C /* top_pic@2x.png in Resources */,
 				B4C501C6169985E50013091C /* single_pic.png in Resources */,
@@ -1371,6 +1372,7 @@
 				39A86A2B17002EEB00A01304 /* eachMenuBean.m in Sources */,
 				39104CDE1700CC69006A243A /* ShakeViewController.m in Sources */,
 				39104CE11700CF7E006A243A /* LNShakeView.m in Sources */,
+				39F210E61702891000B3DCD5 /* CharacterBean.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1459,7 +1461,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "septwolves/septwolves-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2/**";
-				INFOPLIST_FILE = "septwolves/sepwolves-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/septwolves/septwolves-Info.plist";
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-all_load",
@@ -1481,7 +1483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "septwolves/septwolves-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2/**";
-				INFOPLIST_FILE = "septwolves/sepwolves-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/septwolves/septwolves-Info.plist";
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-all_load",

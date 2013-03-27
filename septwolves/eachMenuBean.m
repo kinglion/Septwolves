@@ -9,5 +9,7 @@
 #import "eachMenuBean.h"
 
 @implementation eachMenuBean
-
+@synthesize bgImgList,menu;
+@synthesize title,stitle;
+@synthesize typeid;
 @end

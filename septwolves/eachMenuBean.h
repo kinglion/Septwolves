@@ -14,8 +14,11 @@
     NSArray *menu;
     NSString *title;
     NSString *stitle;
+    NSInteger typeid;
 }
 @property (nonatomic,retain) NSArray *bgImgList;
 @property (nonatomic,retain) NSArray *menu;
-
+@property (nonatomic,retain) NSString *title;
+@property (nonatomic,retain) NSString *stitle;
+@property (nonatomic,assign) NSInteger typeid;
 @end

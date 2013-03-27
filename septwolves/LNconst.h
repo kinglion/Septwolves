@@ -10,6 +10,7 @@
 #import "JSONKit.h"
 #import "menuBean.h"
 #import "eachMenuBean.h"
+#import "CharacterBean.h"
 #import "LNActivityIndicatorView.h"
 #define RECT_SCREEN [[UIScreen mainScreen] bounds]
 #define SIZE_SCREEN RECT_SCREEN.size
@@ -40,6 +41,10 @@
 + (menuBean *)httpRequestMenu:(LNActivityIndicatorView *)indicatorView;
 //发出http请求获取单独菜单信息
 + (eachMenuBean *)httpRequestEachMenu:(LNActivityIndicatorView *)indicatorView action:(NSString *)action;
+//
++ (CharacterBean *)httpRequestCharacterMenu:(LNActivityIndicatorView *)indicatorView action:(NSString *)action;
+//
 
 + (NSArray *)formatWithBaseUrl:(NSArray *)urlList;
++ (NSString *)stringFormatWithBaseUrl:(NSString *)url;
 @end

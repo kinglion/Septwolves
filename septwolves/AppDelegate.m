@@ -44,7 +44,7 @@
     [self.window makeKeyAndVisible];
     [self.window setRootViewController:rootNav];
     [rootNav release];
-    [self playStartScreen];
+    //[self playStartScreen];
     
     //[navController release];
     return YES;

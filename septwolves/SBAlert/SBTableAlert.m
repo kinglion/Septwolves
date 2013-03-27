@@ -73,11 +73,15 @@
 	
 	if (_alertStyle == SBTableAlertStyleApple) {
 		// Draw background gradient
-		CGFloat colors [] = { 
+		/*CGFloat colors [] = {
 			0.922, 0.925, 0.933, 1,
 			0.749, 0.753, 0.761, 1,
+		};*/
+		CGFloat colors [] = {
+			0, 0, 0, 1,
+			0, 0, 0, 1,
 		};
-		
+        
 		CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
 		CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
 		CGColorSpaceRelease(baseSpace), baseSpace = NULL;

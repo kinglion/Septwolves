@@ -9,6 +9,7 @@
 #import "LNSingleViewController.h"
 #import "FPPopoverController.h"
 #import "JSONKit.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface LNSingleViewController ()
 
@@ -22,6 +23,65 @@
 @synthesize scrollView = _scrollView;
 @synthesize array = _array;
 @synthesize currentNum;
+@synthesize type_id;
+@synthesize indicatorView;
+@synthesize bean;
+- (id)init:(NSInteger)typeid
+{
+    self = [super init];
+    if (self) {
+        NSLog(@"我先运行");
+        self.type_id = typeid;
+        currentNum = 0;
+        _scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+        [_scrollView setUserInteractionEnabled:YES];
+        [_scrollView setPagingEnabled:YES];
+        [_scrollView setDelegate:self];
+        [_scrollView setShowsHorizontalScrollIndicator:NO];
+        [self.view addSubview:_scrollView];
+        
+        // Custom initialization
+        //addSubView UIpageControl
+        pageControl = [[UIPageControl alloc]init];
+        [pageControl setCurrentPage:0];
+        [pageControl setCenter:CGPointMake(self.view.center.x, self.view.frame.size.height - 40.0f)];
+        [pageControl setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.2]];
+        [pageControl.layer setCornerRadius:8]; // 圆角层
+        [self.view addSubview:pageControl];
+        LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        [self.view addSubview:tempIndicatorView];
+        self.indicatorView = tempIndicatorView;
+        NSLog(@"%d",self.type_id);
+        if (self.type_id) {
+            self.bean = [LNconst httpRequestCharacterMenu:self.indicatorView action:[NSString stringWithFormat:@"%d",type_id]];
+            int arrCount = [bean.list count];
+            [pageControl setNumberOfPages:arrCount];
+            [pageControl setFrame:CGRectMake((self.view.frame.size.width - pageControl.frame.size.width)*0.5,self.view.frame.size.height - 30.0f,16*(arrCount-1)+16,16)];
+            [pageControl setBounds:CGRectMake(0,0,16*(arrCount-1)+16,16)]; //页面控件上的圆点间距基本在16左右。
+            [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width * arrCount, self.view.frame.size.height)];
+            for (int i = 0; i < arrCount; i++) {
+                UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width * i, 0, self.view.frame.size.width, self.view.frame.size.height)];
+                CharacterBean *item = [self.bean.list objectAtIndex:i];
+                [imageView setImageWithURL:[NSURL URLWithString:item.imgUrl]];
+                [imageView setContentMode:UIViewContentModeScaleAspectFit];
+                [_scrollView addSubview:imageView];
+                [imageView setUserInteractionEnabled:YES];
+                //生成触摸点
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                [button setImage:[UIImage imageNamed:@"03.png"] forState:UIControlStateNormal];
+                [button setFrame:CGRectMake(self.view.frame.size.width - 74,10, 64, 64)];
+                [button addTarget:self action:@selector(onClickPop:) forControlEvents:UIControlEventTouchUpInside];
+                [imageView addSubview:button];
+                [imageView release];
+            }
+            
+        }
+        [tempIndicatorView release];
+        [_scrollView release];
+
+    }
+    return self;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,9 +108,10 @@
 - (void)onClickPop:(id)sender
 {
     NSLog(@"点击");
-    SBTableAlert *alert	= [[SBTableAlert alloc] initWithTitle:nil cancelButtonTitle:@"Cancel" messageFormat:nil];
+    SBTableAlert *alert	= [[SBTableAlert alloc] initWithTitle:nil cancelButtonTitle:@"取消" messageFormat:nil];
     [alert setType:SBTableAlertTypeMultipleSelct];
-    [alert.view addButtonWithTitle:@"OK"];
+    [alert setStyle:SBTableAlertStyleApple];
+    [alert.view addButtonWithTitle:@"购买"];
     [alert setDelegate:self];
 	[alert setDataSource:self];
 	[alert show];
@@ -61,47 +122,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    currentNum = 1;
-    str = @"{\"result\":\"000\", \"imgArr\":[\"http://img.itc.cn/photo/jejJ6dJCVWW\",\"http://www.fzlol.com/upimg/allimg/130226/2132T91491.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95612.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\"]}";
-    NSDictionary *data = [str objectFromJSONString];
-    _array = [data objectForKey:@"imgArr"];
-    int arrCount = [_array count];
-    _scrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
-    [_scrollView setUserInteractionEnabled:YES];
-    [_scrollView setPagingEnabled:YES];
-    [_scrollView setDelegate:self];
-    [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width * arrCount, self.view.frame.size.height)];
-    [self.view addSubview:_scrollView];
-    for (int i = 0; i < arrCount; i++) {
-        UIImage *image = [UIImage imageNamed:@"man1.png"];
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-        [imageView setFrame:CGRectMake(self.view.frame.size.width * i, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        [_scrollView addSubview:imageView];
-        [imageView setUserInteractionEnabled:YES];
-        //生成触摸点
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:[UIImage imageNamed:@"03.png"] forState:UIControlStateNormal];
-        [button setFrame:CGRectMake(self.view.frame.size.width - 74,10, 64, 64)];
-        [button addTarget:self action:@selector(onClickPop:) forControlEvents:UIControlEventTouchUpInside];
-        [imageView addSubview:button];
-        [imageView release];
-        //[button release];
-        //
-        //[image release];
-    }
-    
-    // Custom initialization
-    //addSubView UIpageControl
-    pageControl = [[UIPageControl alloc]init];
-    [pageControl setCurrentPage:0];
-    [pageControl setNumberOfPages:arrCount];
-    [pageControl setFrame:CGRectMake((self.view.frame.size.width - pageControl.frame.size.width)*0.5,self.view.frame.size.height - 30.0f,16*(arrCount-1)+16,16)];
-    [pageControl setCenter:CGPointMake(self.view.center.x, self.view.frame.size.height - 40.0f)];
-    [pageControl setBounds:CGRectMake(0,0,16*(arrCount-1)+16,16)]; //页面控件上的圆点间距基本在16左右。
-    [pageControl setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.2]];
-    [pageControl.layer setCornerRadius:8]; // 圆角层
-    [self.view addSubview:pageControl];
-    [_scrollView release];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -114,7 +134,7 @@
 	if (pageControl.currentPage != nearestNumber)
 	{
 		pageControl.currentPage = nearestNumber ;
-		
+		self.currentNum = nearestNumber;
 		// if we are dragging, we want to update the page control directly during the drag
 		if (ascrollView.dragging)
 			[pageControl updateCurrentPageDisplay] ;
@@ -167,13 +187,17 @@
 	UITableViewCell *cell;
 	
 	if (tableAlert.view.tag == 0 || tableAlert.view.tag == 1) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
+        CharacterBean *item = [[[self.bean.list objectAtIndex:currentNum] itemInfo]objectAtIndex:indexPath.row];
+        [cell.textLabel setText:item.name];
+        [cell.detailTextLabel setText:item.num];
 	} else {
 		// Note: SBTableAlertCell
-		cell = [[[SBTableAlertCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+		cell = [[[SBTableAlertCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
+        CharacterBean *item = [[[self.bean.list objectAtIndex:currentNum] itemInfo]objectAtIndex:indexPath.row];
+        [cell.textLabel setText:item.name];
+        [cell.detailTextLabel setText:item.num];
 	}
-	
-	[cell.textLabel setText:[NSString stringWithFormat:@"Cell %d", indexPath.row]];
 	
 	return cell;
 }
@@ -182,7 +206,7 @@
 	if (tableAlert.type == SBTableAlertTypeSingleSelect)
 		return 3;
 	else
-		return 10;
+		return [[[self.bean.list objectAtIndex:currentNum] itemInfo] count];
 }
 
 - (NSInteger)numberOfSectionsInTableAlert:(SBTableAlert *)tableAlert {

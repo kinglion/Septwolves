@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LNconst.h"
-
+#import "LNActivityIndicatorView.h"
 @interface LNConsuViewController : UIViewController<UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UIScrollView *mainScrollView;
@@ -18,10 +18,19 @@
     BOOL isListOpen;
     NSMutableArray *lists;
     UIView *mainView;
+    NewBean *beanList;
+    NewBean *bean;
+    LNActivityIndicatorView *indicatorView;
+    NSInteger _id;
 }
 @property (nonatomic,retain)UIScrollView *mainScrollView;
 @property (nonatomic,retain)UIView *mainView;
 @property (nonatomic,retain)UITableView *listTableView;
 @property (nonatomic,retain)UILabel *pageLabel;
 @property (nonatomic,retain)NSMutableArray *lists;
+@property (nonatomic,retain)NewBean *beanList;
+@property (nonatomic,retain)NewBean *bean;
+@property (nonatomic,retain) LNActivityIndicatorView *indicatorView;
+@property (nonatomic,assign) NSInteger _id;
+- (id)init:(NSInteger)ID beanList:(NewBean *)BeanList;
 @end

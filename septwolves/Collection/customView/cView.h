@@ -22,6 +22,7 @@
 @property (nonatomic,retain)UILabel *label;
 @property (nonatomic,copy)NSString *title;
 @property (nonatomic,copy)NSString *img;
+@property (nonatomic,assign)NSInteger _id;
 @property (nonatomic,assign)BOOL cornerable;
 
 - (void)setView:(CGRect)frame title:(NSString*)text img:(NSString*)url cornerable:(BOOL)cable;

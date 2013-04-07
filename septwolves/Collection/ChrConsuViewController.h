@@ -10,6 +10,8 @@
 #import "EGORefreshTableHeaderView.h"
 #import "ChrConsuView.h"
 #import "LoadMoreTableFooterView.h"
+#import "NewBean.h"
+#import "LNActivityIndicatorView.h"
 @interface ChrConsuViewController : UIViewController<UIScrollViewDelegate,EGORefreshTableHeaderDelegate,ChrConsuViewDelegate,LoadMoreTableFooterDelegate>
 {
     EGORefreshTableHeaderView *_refreshHeaderView;
@@ -20,8 +22,12 @@
     BOOL pullTableIsRefreshing;
     BOOL pullTableIsLoadingMore;
     BOOL _reloading;
+    LNActivityIndicatorView *indicatorView;
+    NewBean *bean;
 }
 @property (nonatomic, assign) BOOL pullTableIsRefreshing;
 @property (nonatomic, assign) BOOL pullTableIsLoadingMore;
-@property (nonatomic,retain)UIScrollView *scrollView;
+@property (nonatomic,retain) UIScrollView *scrollView;
+@property (nonatomic,retain) LNActivityIndicatorView *indicatorView;
+@property (nonatomic,retain) NewBean *bean;
 @end

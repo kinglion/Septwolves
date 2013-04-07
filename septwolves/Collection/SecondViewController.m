@@ -47,7 +47,6 @@ static UIImageView *captureSnapshotOfView(UIView *targetView){
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"男人不止一面";
         UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
         CGRect backframe = CGRectMake(0,0,30,19);
         UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];

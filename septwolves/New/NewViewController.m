@@ -35,7 +35,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"品格着装顾问";
         UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
         CGRect backframe = CGRectMake(0,0,30,19);
         UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];

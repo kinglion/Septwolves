@@ -10,9 +10,9 @@
 #import "cView.h"
 #import "detailViewController.h"
 #import "JSONKit.h"
-#define BIGLISTHEIGHT 160.0f
+#define BIGLISTHEIGHT 188.0f
 #define SMALLLISTHEIGHT 100.0f
-#define SMALLLISTWIDTH 140.0f
+#define SMALLLISTWIDTH 150.0f
 #define NAVIGATIONHEIGHT 44.0f
 
 @interface ActiveViewController (Private) <UIScrollViewDelegate>
@@ -21,8 +21,9 @@
 
 @implementation ActiveViewController
 @synthesize scrollView = _scrollView;
-@synthesize array = _array;
 @synthesize indicatorView;
+@synthesize _refreshHeaderView;
+@synthesize _refreshFooterView;
 @synthesize bean;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,7 +60,8 @@
 -(void)creatBig:(UIView*)view
 {
     cView *cview = [[cView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, BIGLISTHEIGHT)];
-    [cview setView:CGRectMake(0, 0, self.view.frame.size.width, BIGLISTHEIGHT) title:@"ssss" img:_array[0] cornerable:NO];
+    [cview setView:CGRectMake(0, 0, self.view.frame.size.width, BIGLISTHEIGHT) title:[[self.bean.list objectAtIndex:0] title] img:[[self.bean.list objectAtIndex:0] imgUrl] cornerable:NO];
+    [cview set_id:[[self.bean.list objectAtIndex:0] _id]];
     cview.delegate = self;
     [view addSubview:cview];
     [cview release];
@@ -68,10 +70,13 @@
 //需判断有无数据
 -(void)creatSmall:(UIView*)view
 {
-    int arrCount = [_array count] - 1;
-    for (NSInteger i = 0; i<arrCount; i++) {
-        cView *cview = [[cView alloc]initWithFrame:CGRectMake(10.0f+ (i % 2) * (SMALLLISTWIDTH + 10.0f), floor(i/2) * (SMALLLISTHEIGHT+10.0f) + BIGLISTHEIGHT + 10.0f, SMALLLISTWIDTH, SMALLLISTHEIGHT)];
-        [cview setView:CGRectMake(10.0f+ (i % 2) * (SMALLLISTWIDTH + 10.0f), floor(i/2) * (SMALLLISTHEIGHT+10.0f) + BIGLISTHEIGHT + 10.0f, SMALLLISTWIDTH, SMALLLISTHEIGHT) title:@"ssss" img:_array[i] cornerable:YES];
+    int arrCount = [self.bean.list count] - 1;
+    if(arrCount < 2)return;
+    for (NSInteger i = 1; i<arrCount; i++) {
+        NSInteger copyI = i - 1;
+        cView *cview = [[cView alloc]initWithFrame:CGRectMake(10.0f+ (copyI % 2) * (SMALLLISTWIDTH + 10.0f), floor(copyI/2) * (SMALLLISTHEIGHT+10.0f) + BIGLISTHEIGHT + 10.0f, SMALLLISTWIDTH, SMALLLISTHEIGHT)];
+        [cview setView:CGRectMake(10.0f+ (copyI % 2) * (SMALLLISTWIDTH + 10.0f), floor(copyI/2) * (SMALLLISTHEIGHT+10.0f) + BIGLISTHEIGHT + 10.0f, SMALLLISTWIDTH, SMALLLISTHEIGHT) title:[[self.bean.list objectAtIndex:i] title] img:[[self.bean.list objectAtIndex:i] imgUrl] cornerable:YES];
+        [cview set_id:[[self.bean.list objectAtIndex:i] _id]];
         cview.delegate = self;
         [view addSubview:cview];
         [cview release];
@@ -86,15 +91,16 @@
 //更新scrollview的contentsize
 -(void)updateScrollView:(UIScrollView*)scrollView
 {
-    int arrCount = [_array count];
-    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, BIGLISTHEIGHT + 10.0f + arrCount/2 * (SMALLLISTHEIGHT+10.0f))];
+    int arrCount = [self.bean.list count];
+    float height_scroll = BIGLISTHEIGHT + 10.0f + arrCount/2 * (SMALLLISTHEIGHT+10.0f);
+    height_scroll = (height_scroll < scrollView.frame.size.height)? scrollView.frame.size.height + 1.0f:height_scroll;
+    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, height_scroll)];
 }
 
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     CGFloat visibleTableDiffBoundsHeight = (self.scrollView.bounds.size.height - MIN(self.scrollView.bounds.size.height, self.scrollView.contentSize.height));
-    
     CGRect loadMoreFrame = _refreshFooterView.frame;
     loadMoreFrame.origin.y = self.scrollView.contentSize.height + visibleTableDiffBoundsHeight;
     _refreshFooterView.frame = loadMoreFrame;
@@ -109,31 +115,31 @@
         _scrollView = [self creatTable];
         [self.view addSubview:_scrollView];
     }
-    if (_refreshHeaderView == nil) {
-		NSLog(@"scrollView.bounds.size.height:%f",self.scrollView.bounds.size.height);
-        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc]initWithFrame:CGRectMake(0.0f, -self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
-		view.delegate = self;
-		[self.scrollView addSubview:view];
-		_refreshHeaderView = view;
-        [view release];
-	}
-    if (_refreshFooterView == nil) {
-        LoadMoreTableFooterView *footview = [[LoadMoreTableFooterView alloc]initWithFrame:CGRectMake(0.0f, self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
-        footview.delegate = self;
-        [self.scrollView addSubview:footview];
-        _refreshFooterView = footview;
-        [footview release];
-    }
     [self.view addSubview:tempIndicatorView];
     self.indicatorView = tempIndicatorView;
     self.bean = [LNconst httpRequestNewList:self.indicatorView];
-    int arrCount = [_array count];
+    int arrCount = [self.bean.list count];
     NSLog(@"%d",arrCount);
     if (arrCount>0) {
         [self creatBig:_scrollView];
         [self creatSmall:_scrollView];
     }
     [self updateScrollView:_scrollView];
+    if (_refreshHeaderView == nil) {
+		NSLog(@"scrollView.bounds.size.height:%f",self.scrollView.bounds.size.height);
+        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc]initWithFrame:CGRectMake(0.0f, -self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
+		view.delegate = self;
+		[self.scrollView addSubview:view];
+		_refreshHeaderView = view;
+        //[view release];
+	}
+    if (_refreshFooterView == nil) {
+        LoadMoreTableFooterView *footview = [[LoadMoreTableFooterView alloc]initWithFrame:CGRectMake(0.0f, self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
+        footview.delegate = self;
+        [self.scrollView addSubview:footview];
+        _refreshFooterView = footview;
+        //[footview release];
+    }
 	[_scrollView release];
     [tempIndicatorView release];
 	//  update the last update date
@@ -182,11 +188,9 @@
 }
 
 - (void)doneLoadingTableViewData{
-	
 	//  model should call this when its done loading
 	pullTableIsRefreshing = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollView];
-	
 }
 
 #pragma mark -
@@ -215,7 +219,6 @@
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
 	
 	return pullTableIsRefreshing; // should return if data source model is reloading
-	
 }
 
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
@@ -229,6 +232,7 @@
 - (void)loadMoreTableFooterDidTriggerLoadMore:(LoadMoreTableFooterView *)view
 {
     pullTableIsLoadingMore = YES;
+    [self performSelector:@selector(reloadTableViewDataSource) withObject:nil afterDelay:3.0];
 }
 
 - (void)dealloc
@@ -245,10 +249,9 @@
 //实现cViewController的触碰
 - (void)touchEvent:(cView *)view
 {
-    
     detailViewController *viewController = [[detailViewController alloc]initWithNibName:@"detailViewController" bundle:nil];
-    NSLog(@"title:%@",view);
     viewController.title = [view getTitle];
+    [viewController updateId:view._id];
     [self.navigationController pushViewController:viewController animated:YES];
     [view setAlpha:1.0f];
     [viewController release];

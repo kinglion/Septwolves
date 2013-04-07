@@ -26,10 +26,12 @@
 }
 - (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
+
 @property (nonatomic, assign) BOOL pullTableIsRefreshing;
 @property (nonatomic, assign) BOOL pullTableIsLoadingMore;
-@property (nonatomic,retain)UIScrollView *scrollView;
-@property (nonatomic,retain)NSMutableArray *array;
+@property (nonatomic,retain) UIScrollView *scrollView;
 @property (nonatomic,retain) LNActivityIndicatorView *indicatorView;
 @property (nonatomic,retain) NewBean *bean;
+@property (nonatomic,retain) EGORefreshTableHeaderView *_refreshHeaderView;
+@property (nonatomic,retain) LoadMoreTableFooterView *_refreshFooterView;
 @end

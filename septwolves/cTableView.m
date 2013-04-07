@@ -7,7 +7,6 @@
 //
 
 #import "cTableView.h"
-#import "product.h"
 #import "cView.h"
 
 #define WIDTH 320.0f
@@ -16,6 +15,7 @@
 @implementation cTableView
 @synthesize customDelegate = _customDelegate;
 @synthesize products;
+@synthesize loadIndex;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -25,25 +25,19 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame products:(NSMutableArray*)productsArr
+- (id)initWithFrame:(CGRect)frame products:(RssBean*)productsArr
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         if (self.products == nil) {
-            self.products = [[NSMutableArray alloc]initWithArray:productsArr];
+            self.products = productsArr;
             [self setBackgroundColor:[UIColor blackColor]];
             [self setShowsVerticalScrollIndicator:NO];
             [self setupView:productsArr];
         }
     }
     return self;
-}
-
-
-- (NSMutableArray*)getProducts
-{
-    return self.products;
 }
 
 - (void)reloadData
@@ -58,13 +52,13 @@
     
 }
 
-- (void)setupView:(NSMutableArray*)productsArr
+- (void)setupView:(RssBean*)productsArr
 {
-    int productsLen = [productsArr count];
+    int productsLen = [productsArr.list count];
     for (int i = 0; i < productsLen; i++) {
         cView *view = [[cView alloc]initWithFrame:CGRectMake((i%2)*WIDTH/2, (i/2)*HEIGHT/3, WIDTH/2, HEIGHT/3)];
-        product *productItem = productsArr[i];
-        [view setView:CGRectMake((i%2)*WIDTH/2, (i/2)*HEIGHT/3, WIDTH/2, HEIGHT/3) title:productItem.title img:productItem.imgUrl cornerable:NO];
+        RssBean *productItem = [productsArr.list objectAtIndex:i];
+        [view setView:CGRectMake((i%2)*WIDTH/2, (i/2)*HEIGHT/3, WIDTH/2, HEIGHT/3) title:productItem.title img:productItem.icon cornerable:NO];
         [view setDelegate:self];
         [self addSubview:view];
         [view release];
@@ -80,7 +74,7 @@
 
 - (void)layoutSubviews
 {
-    int productsLen = [self.products count];
+    int productsLen = [self.products.list count];
     if (productsLen % 2 == 0) {
         productsLen += 2;
     }

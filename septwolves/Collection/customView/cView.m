@@ -9,13 +9,14 @@
 #import "cView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
-#define CORNER 6
+#define CORNER 2
 #define LABELHEIGHT 30
 
 @implementation cView{
     BOOL testHits; 
 }
 @synthesize imageView,label,title,img,cornerable;
+@synthesize _id;
 @synthesize delegate = _delegate;
 - (id)initWithFrame:(CGRect)frame
 {
@@ -56,8 +57,8 @@
         self.layer.masksToBounds = YES;
         self.opaque = YES;
         self.layer.cornerRadius = CORNER;
-        self.layer.borderWidth = 1.0;
-        self.layer.borderColor = [[UIColor grayColor] CGColor];
+        //self.layer.borderWidth = 1.0;
+        //self.layer.borderColor = [[UIColor grayColor] CGColor];
     }
     [self addSubview:bottomlabel];
     [bottomlabel release];

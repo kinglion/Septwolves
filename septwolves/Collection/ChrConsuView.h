@@ -19,5 +19,5 @@
 @property(nonatomic,assign) id <ChrConsuViewDelegate> delegate;
 @property (nonatomic,assign)NSInteger imageCount;
 @property (nonatomic,retain)UILabel *label;
-- (id)initWithFrame:(CGRect)frame imageArr:(NSMutableArray *)array title:(NSString*)text;
+- (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl title:(NSString *)text;
 @end

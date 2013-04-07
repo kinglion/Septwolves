@@ -25,7 +25,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"品格会";
         [self.view setBackgroundColor:[UIColor blackColor]];
         UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
         CGRect backframe = CGRectMake(0,0,30,19);

@@ -176,7 +176,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [_rootNavControllerDelegate onClickItem:self row:indexPath.row];
+    [_rootNavControllerDelegate onClickItem:self row:indexPath.row bean:self.bean];
 }
 
 

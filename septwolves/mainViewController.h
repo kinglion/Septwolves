@@ -14,6 +14,7 @@
 #import "NewViewController.h"
 #import "ServiceViewController.h"
 #import "LNActivityIndicatorView.h"
+#import "menuBean.h"
 
 
 @interface mainViewController : UIViewController<RootNavControllerDelegate>

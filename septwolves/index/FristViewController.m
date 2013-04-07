@@ -59,10 +59,12 @@
         [self.view addSubview:tempIndicatorView];
         self.indicatorView = tempIndicatorView;
         self.bean = [LNconst httpRequestEachMenu:self.indicatorView action:@"pgnz"];
-        [kenBurnsView animateWithSDWebImageURLs:bean.bgImgList transitionDuration:15 loop:YES isLandscape:YES];
-        [typeTable setDelegate:self];
-        [typeTable setDataSource:self];
-        [typeTable reloadData];
+        if (self.bean) {
+            [kenBurnsView animateWithSDWebImageURLs:bean.bgImgList transitionDuration:15 loop:YES isLandscape:YES];
+            [typeTable setDelegate:self];
+            [typeTable setDataSource:self];
+            [typeTable reloadData];
+        }
         [tempIndicatorView release];
     }
     // Do any additional setup after loading the view from its nib.
@@ -148,7 +150,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     eachMenuBean *item = [self.bean.menu objectAtIndex:indexPath.row];
     LNSingleViewController *singleView = [[LNSingleViewController alloc]init:item.typeid];
-    NSLog(@"%d",item.typeid);
+    singleView.title = item.title;
     singleView.type_id = item.typeid;
     [self.navigationController pushViewController:singleView animated:YES];
     [singleView release];

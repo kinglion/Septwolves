@@ -22,6 +22,50 @@
 @synthesize pageLabel;
 @synthesize lists;
 @synthesize mainView;
+@synthesize beanList;
+@synthesize bean;
+@synthesize indicatorView;
+@synthesize _id;
+
+- (id)init:(NSInteger)ID beanList:(NewBean *)BeanList
+{
+    self = [super init];
+    if (self) {
+        self._id = ID;
+        self.beanList = BeanList;
+        UIView *tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SUB_BAR)];
+        [self.view addSubview:tempView];
+        self.mainView = tempView;
+        [tempView release];
+        UILabel *tempLabel = [[UILabel alloc]initWithFrame:CGRectMake(IMAGE_DIS_LEFT_AND_RIGHT, HEIGHT_SUB_BAR - IMAGE_DIS_TOP_AND_BOTTOM, self.view.frame.size.width - 2*IMAGE_DIS_LEFT_AND_RIGHT, 20.0f)];
+        [tempLabel setBackgroundColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0]];
+        [tempLabel setTextColor:[UIColor whiteColor]];
+        [tempLabel setTextAlignment:NSTextAlignmentRight];
+        self.pageLabel = tempLabel;
+        [self.view addSubview:tempLabel];
+        [tempLabel release];
+        if (self.beanList) {
+            self.lists = [[NSMutableArray alloc]initWithArray:self.beanList.list];
+            self.listTableView = [self creatListTableView:self.lists];
+            [self.view addSubview:self.listTableView];
+        }
+        LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        [self.view addSubview:tempIndicatorView];
+        self.indicatorView = tempIndicatorView;
+        NSLog(@"hhhhhhhh:%d",self._id);
+        if (self._id) {
+            self.bean = [LNconst httpRequestChrInfo:self.indicatorView id:self._id];
+            self.mainScrollView = [self creatImageScroll:self.bean.list];
+            [self.mainView addSubview:self.mainScrollView];
+            tempLabel.text = [NSString stringWithFormat:@"%d / %d",1,[self.bean.list count]];
+        }
+        
+        // Do any additional setup after loading the view.
+        [tempIndicatorView release];
+        [tempLabel release];
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,9 +122,10 @@
     }
 }
 
-- (UIScrollView *)creatImageScroll:(NSMutableArray *)images
+- (UIScrollView *)creatImageScroll:(NSArray *)images
 {
     int imagesCount = [images count];
+    NSLog(@"fdasfdsafdsa:%d",imagesCount);
     allPage = imagesCount;
     UIScrollView *tempScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, HEIGHT_SUB_BAR)];
     [tempScroll setContentSize:CGSizeMake(self.view.frame.size.width * imagesCount, HEIGHT_SUB_BAR)];
@@ -88,9 +133,9 @@
     [tempScroll setShowsHorizontalScrollIndicator:NO];
     int index = 0;
     [self updateLabelDisplay:1];
-    for (NSString* url in images) {
+    for (NewBean* item in images) {
         UIImageView *tempImageView = [[[UIImageView alloc]initWithFrame:CGRectMake(IMAGE_DIS_LEFT_AND_RIGHT + index *self.view.frame.size.width, IMAGE_DIS_TOP_AND_BOTTOM, self.view.frame.size.width - 2*IMAGE_DIS_LEFT_AND_RIGHT, HEIGHT_SUB_BAR - 2*IMAGE_DIS_TOP_AND_BOTTOM)] autorelease];
-        [tempImageView setImageWithURL:[NSURL URLWithString:url] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        [tempImageView setImageWithURL:[NSURL URLWithString:[item simg]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             if (error) {
                 NSLog(@"some thing worry!must be happened");
             }
@@ -112,35 +157,14 @@
     isListOpen = NO;
     [tempTableView setDataSource:self];
     [tempTableView setDelegate:self];
+    [tempTableView setBounces:YES];
     return tempTableView;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIView *tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SUB_BAR)];
-    [self.view addSubview:tempView];
-    self.mainView = tempView;
-    [tempView release];
-    NSMutableArray *images = [[NSMutableArray alloc]initWithObjects:@"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg",@"http://www.fzlol.com/upimg/allimg/130226/2132T93M4.jpg", nil];
-    UILabel *tempLabel = [[UILabel alloc]initWithFrame:CGRectMake(IMAGE_DIS_LEFT_AND_RIGHT, HEIGHT_SUB_BAR - IMAGE_DIS_TOP_AND_BOTTOM, self.view.frame.size.width - 2*IMAGE_DIS_LEFT_AND_RIGHT, 20.0f)];
-    tempLabel.text = [NSString stringWithFormat:@"%d / %d",1,[images count]];
-    [tempLabel setBackgroundColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:0]];
-    [tempLabel setTextColor:[UIColor whiteColor]];
-    [tempLabel setTextAlignment:NSTextAlignmentRight];
-    self.pageLabel = tempLabel;
-    self.mainScrollView = [self creatImageScroll:images];
-    [self.mainView addSubview:self.mainScrollView];
-    [self.view addSubview:tempLabel];
-    [tempLabel release];
-    NSMutableArray *templists = [[NSMutableArray alloc]initWithObjects:@"《周杰伦》",@"《蔡依林》", nil];
-    self.lists = templists;
-    self.listTableView = [self creatListTableView:templists];
-    [self.view addSubview:self.listTableView];
-    [templists release];
-	// Do any additional setup after loading the view.
 }
-
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -188,7 +212,7 @@
     UITableViewCell *cell = nil;
     if(cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"simple"];
-        cell.textLabel.text = lists[indexPath.row];
+        cell.textLabel.text = [lists[indexPath.row] title];
     }
     return cell;
 }
@@ -202,14 +226,21 @@
 {
     NSLog(@"选中！");
     [self.listTableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSMutableArray *images = [[NSMutableArray alloc]initWithObjects:@"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg",@"http://www.fzlol.com/upimg/allimg/130226/2132T93M4.jpg", nil];
-    [UIView animateWithDuration:1 animations:^{
-        [self.listTableView setFrame:CGRectMake(WIDTH_SCREEN, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
-    }];
-    isListOpen = NO;
-    [self clear];
-    self.mainScrollView = [self creatImageScroll:images];
-    [self.mainView  addSubview:self.mainScrollView];
+    if (self.beanList) {
+        NSLog(@"xxxxx:%d",[[self.beanList.list objectAtIndex:[indexPath row]] _id]);
+        self._id = [[self.beanList.list objectAtIndex:[indexPath row]] _id];
+        [UIView animateWithDuration:1 animations:^{
+            [self.listTableView setFrame:CGRectMake(WIDTH_SCREEN, 0, WIDTH_LIST, HEIGHT_SUB_BAR)];
+        }];
+        isListOpen = NO;
+        [self clear];
+        NSLog(@"self._id:%d",self._id);
+        self.bean = [LNconst httpRequestChrInfo:self.indicatorView id:self._id];
+        self.mainScrollView = [self creatImageScroll:self.bean.list];
+        [self.mainView  addSubview:self.mainScrollView];
+        [self setTitle:[[self.beanList.list objectAtIndex:indexPath.row] title]];
+        [self updateLabelDisplay:[self.bean.list count]];
+    }
 }
 
 

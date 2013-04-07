@@ -23,10 +23,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        
+        NSLog(@"===============");
     }
     return self;
 }
+
 
 - (id)setFrame:(CGRect)frame ImageArr:(NSMutableArray *)imageArr
 
@@ -67,6 +68,7 @@
         [_scrollView setShowsHorizontalScrollIndicator:NO];
         [self addSubview:_scrollView];
         [self addSubview:_pageControl];
+        NSLog(@"sss");
         [_delegate touchView:self ASMediaFocusManager:self.mediaFocusManager images:imgArr];
         [_pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
         [_scrollView release];

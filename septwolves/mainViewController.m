@@ -42,7 +42,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)onClickItem:(UIViewController*)viewController row:(NSInteger)row
+- (void)onClickItem:(UIViewController*)viewController row:(NSInteger)row bean:(menuBean *)bean
 {
     NSLog(@"选中！%d",row);
     UIViewController *singleView = nil;
@@ -50,21 +50,46 @@
         case 0:
             //跳转到品格男装
             singleView = [[FristViewController alloc]init];
+            for (menuBean *item in bean.menu) {
+                if ([item.menuName isEqualToString:@"pgnz"]) {
+                    singleView.title = item.title;
+                }
+            }
             break;
         case 1:
             //男人不止一面
             singleView = [[SecondViewController alloc]init];
+            for (menuBean *item in bean.menu) {
+                if ([item.menuName isEqualToString:@"nrbzym"]) {
+                    singleView.title = item.title;
+                }
+            }
             break;
         case 2:
             //品格天下
             singleView = [[ServiceViewController alloc]init];
+            for (menuBean *item in bean.menu) {
+                if ([item.menuName isEqualToString:@"pgzx"]) {
+                    singleView.title = item.title;
+                }
+            }
             break;
         case 3:
             //品格着装顾问
             singleView = [[NewViewController alloc]init];
+            for (menuBean *item in bean.menu) {
+                if ([item.menuName isEqualToString:@"pgzzgw"]) {
+                    singleView.title = item.title;
+                }
+            }
             break;
         case 4:
             singleView = [[DateViewController alloc]init];
+            for (menuBean *item in bean.menu) {
+                if ([item.menuName isEqualToString:@"pgh"]) {
+                    singleView.title = item.title;
+                }
+            }
             //品格会
             break;
         default:

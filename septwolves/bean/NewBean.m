@@ -21,4 +21,6 @@
 @synthesize stitle;
 @synthesize url;
 @synthesize vedioUrl;
+@synthesize simg;
+@synthesize bimg;
 @end

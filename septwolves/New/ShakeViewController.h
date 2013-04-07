@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "LNShakeView.h"
-@interface ShakeViewController : UIViewController<UIAccelerometerDelegate>
+#import "dataBean.h"
+@interface ShakeViewController : UIViewController<UIAccelerometerDelegate,LNShakeViewDelegate>
 {
     LNShakeView *shakeView;
+    dataBean *bean;
+    BOOL isShaking;
 }
 @property (nonatomic,retain) LNShakeView *shakeView;
-
+@property (nonatomic,assign) BOOL isShaking;
+@property (nonatomic,retain) dataBean *bean;
 @end

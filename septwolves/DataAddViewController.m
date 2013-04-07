@@ -206,7 +206,6 @@
                         [cell.contentView addSubview: textField];
                         self.themeField = textField;
                         break;
-                        
                     default:
                         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"form1"];
                         cell.textLabel.text = @"地点";
@@ -238,7 +237,7 @@
                 self.externField = textField;
                 break;
         }
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }

@@ -7,7 +7,6 @@
 //  名士资讯
 
 #import "ChrConsuViewController.h"
-#import "JSONKit.h"
 #import "ChrConsuView.h"
 #import "LNConsuViewController.h"
 
@@ -21,7 +20,8 @@
 
 @implementation ChrConsuViewController
 @synthesize scrollView = _scrollView;
-
+@synthesize indicatorView;
+@synthesize bean;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -46,15 +46,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    str = @"{\"list\":[{\"id\":123,\"name\":\"《周杰伦》\", \"imgArr\":[\"http://img1.cache.cdqss.com/images/ent/content/attachement/jpg/site2/20100412/00173152bd7b0d2c430425.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T91491.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95612.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T93M4.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T963K.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95D6.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96048.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T921E.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T954410.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tca11.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132U012312.jpg\"]},{\"id\":123,\"name\":\"《王力宏》\",\"imgArr\":[\"http://i2.sinaimg.cn/book/2010/0430/2010430181756.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T91491.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95612.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T93M4.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T963K.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95D6.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96048.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T921E.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T954410.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tca11.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132U012312.jpg\"]},{\"id\":123,\"name\":\"《蔡依林》\",\"imgArr\":[\"http://images.rednet.cn/articleimage/2010/08/24/1529361601.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T91491.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95612.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T93M4.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T963K.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T95D6.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T96048.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T921E.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132T954410.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132Tca11.jpg\",\"http://www.fzlol.com/upimg/allimg/130226/2132U012312.jpg\"]}]}";
-    NSDictionary *data = [str objectFromJSONString];
-    array = [NSMutableArray arrayWithArray:[data objectForKey:@"list"]];
-    NSLog(@"%@",data);
+    LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
     _scrollView = [self creatTable];
+    [self.view addSubview:_scrollView];
+    [self.view addSubview:tempIndicatorView];
+    self.indicatorView = tempIndicatorView;
+    self.bean = [LNconst httpRequestChrList:self.indicatorView];
+    array = [NSMutableArray arrayWithArray:self.bean.list];
+    [tempIndicatorView release];
+    
     int arrCount = [array count];
     if (arrCount > 0) {
         [self creatList:_scrollView];
     }
+    
     if (_refreshHeaderView == nil) {
 		NSLog(@"scrollView.bounds.size.height:%f",self.scrollView.bounds.size.height);
         EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc]initWithFrame:CGRectMake(0.0f, -self.scrollView.bounds.size.height, self.view.frame.size.width, self.scrollView.bounds.size.height)];
@@ -70,7 +75,6 @@
         _refreshFooterView = footview;
         //[footview release];
     }
-    [self.view addSubview:_scrollView];
     [self updateScrollView:_scrollView];
 	[_scrollView release];
     [_refreshHeaderView refreshLastUpdatedDate];
@@ -102,10 +106,8 @@
 -(void)creatList:(UIView*)view
 {
     int arrCount = [array count];
-    NSMutableArray *imageArr;
     for (NSInteger i = 0; i<arrCount; i++) {
-        imageArr = [NSMutableArray arrayWithArray:[[array objectAtIndex:i] objectForKey:@"imgArr"]];
-        ChrConsuView *cview = [[ChrConsuView alloc]initWithFrame:CGRectMake(0.0f, i * (LISTHEIGHT + LISTDIS), self.view.frame.size.width, LISTHEIGHT) imageArr:imageArr title:[[array objectAtIndex:i] objectForKey:@"name"]];
+        ChrConsuView *cview = [[ChrConsuView alloc]initWithFrame:CGRectMake(0.0f, i * (LISTHEIGHT + LISTDIS), self.view.frame.size.width, LISTHEIGHT) imageUrl:[[array objectAtIndex:i] imgUrl] title:[[array objectAtIndex:i] title]];
         [cview setDelegate:self];
         [view addSubview:cview];
         [cview release];
@@ -224,7 +226,8 @@
 //实现cViewController的触碰
 - (void)touchEvent:(ChrConsuView *)view
 {
-    LNConsuViewController *viewController = [[LNConsuViewController alloc]init];
+    LNConsuViewController *viewController = [[LNConsuViewController alloc]init:[[self.bean.list objectAtIndex:view.tag] _id] beanList:self.bean];
+    NSLog(@"xxxxxx:%d",[[self.bean.list objectAtIndex:view.tag] _id]);
     [viewController setTitle:view.label.text];
     [self.navigationController pushViewController:viewController animated:YES];
     [view setAlpha:1.0f];

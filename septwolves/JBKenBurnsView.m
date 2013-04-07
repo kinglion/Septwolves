@@ -212,7 +212,6 @@
            [self.imagesArray removeObjectAtIndex:0]; 
         }
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        NSLog(@"%@",[NSURL URLWithString:[urls objectAtIndex:urlIndex]]);
         [manager downloadWithURL:[NSURL URLWithString:[urls objectAtIndex: urlIndex]]
                          options:0
                         progress:^(NSUInteger receivedSize, long long expectedSize){}
@@ -316,8 +315,6 @@
     // Resize the image.
     float optimusWidth  = (image.size.width * resizeRatio) * enlargeRatio;
     float optimusHeight = (image.size.height * resizeRatio) * enlargeRatio;
-    NSLog(@"%f",optimusWidth);
-    NSLog(@"%f",optimusHeight);
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, optimusWidth, optimusHeight)];
     
     // Calcule the maximum move allowed.

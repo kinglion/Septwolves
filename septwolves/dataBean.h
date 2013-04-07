@@ -13,14 +13,24 @@
     NSInteger _id;
     NSString *timesp;
     NSString *title;
-    NSInteger *type;
+    NSInteger type;
     NSString *theme;
     NSString *content;
+    NSArray *item;
+    NSString *imgUrl;
+    NSArray *itemInfo;
+    NSString *name;
+    NSInteger num;
 }
 @property (nonatomic,assign)NSInteger _id;
 @property (nonatomic,copy)NSString *timesp;
 @property (nonatomic,copy)NSString *title;
-@property (nonatomic,assign)NSInteger *type;
+@property (nonatomic,assign)NSInteger type;
 @property (nonatomic,copy)NSString *theme;
 @property (nonatomic,copy)NSString *content;
+@property (nonatomic,retain)NSArray *item;
+@property (nonatomic,copy)NSString *imgUrl;
+@property (nonatomic,retain)NSArray *itemInfo;
+@property (nonatomic,copy)NSString *name;
+@property (nonatomic,assign)NSInteger num;
 @end

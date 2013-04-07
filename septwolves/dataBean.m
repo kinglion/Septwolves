@@ -9,6 +9,7 @@
 #import "dataBean.h"
 
 @implementation dataBean
-@synthesize timesp,title,theme,content;
-@synthesize type,_id;
+@synthesize timesp,title,theme,content,name,imgUrl;
+@synthesize type,_id,num;
+@synthesize item,itemInfo;
 @end

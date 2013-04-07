@@ -26,6 +26,7 @@
 @synthesize type_id;
 @synthesize indicatorView;
 @synthesize bean;
+@synthesize _id;
 - (id)init:(NSInteger)typeid
 {
     self = [super init];
@@ -44,7 +45,6 @@
         //addSubView UIpageControl
         pageControl = [[UIPageControl alloc]init];
         [pageControl setCurrentPage:0];
-        [pageControl setCenter:CGPointMake(self.view.center.x, self.view.frame.size.height - 40.0f)];
         [self.view addSubview:pageControl];
         LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
         [self.view addSubview:tempIndicatorView];
@@ -56,6 +56,7 @@
             [pageControl setNumberOfPages:arrCount + 1];
             [pageControl setFrame:CGRectMake((self.view.frame.size.width - pageControl.frame.size.width)*0.5,self.view.frame.size.height - 30.0f,16*(arrCount-1)+16,16)];
             [pageControl setBounds:CGRectMake(0,0,16*(arrCount-1)+16,16)]; //页面控件上的圆点间距基本在16左右。
+            [pageControl setCenter:CGPointMake(self.view.center.x, self.view.frame.size.height - 40.0f)];
             [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width * (arrCount + 1), self.view.frame.size.height)];
             UIImageView *indexIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, HEIGHT_SCREEN)];
             [indexIV setImageWithURL:[NSURL URLWithString:bean.index]];
@@ -88,7 +89,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"西装服饰";
         [self.view setBackgroundColor:[UIColor blackColor]];
         //navigationBarItem
         UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
@@ -104,6 +104,30 @@
         [backButton release];
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self._id) {
+        NSLog(@"我先运行");
+        
+        // Custom initialization
+        LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+        [self.view addSubview:tempIndicatorView];
+        self.indicatorView = tempIndicatorView;
+        self.bean = [LNconst httpRequestCharacterMenu:self.indicatorView action:[NSString stringWithFormat:@"%d",type_id]];
+        UIImageView *indexIV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, HEIGHT_SCREEN)];
+        [indexIV setImageWithURL:[NSURL URLWithString:bean.imgUrl]];
+        [indexIV setContentMode:UIViewContentModeScaleAspectFit];
+        [self.view addSubview:indexIV];
+        //生成触摸点
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setImage:[UIImage imageNamed:@"03.png"] forState:UIControlStateNormal];
+        [button setFrame:CGRectMake(self.view.frame.size.width - 74,10, 64, 64)];
+        [button addTarget:self action:@selector(onClickPop:) forControlEvents:UIControlEventTouchUpInside];
+        [indexIV addSubview:button];
+        [indexIV release];
+    }
 }
 
 
@@ -153,10 +177,6 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-- (void)viewDidAppear:(BOOL)animated{
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -22,28 +22,24 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame imageArr:(NSMutableArray *)array title:(NSString *)text
+- (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl title:(NSString *)text
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         [self setBackgroundColor:[UIColor blackColor]];
-        _imageCount = [array count];
         UIImageView *imageView;
         _label = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, self.frame.size.height - LABELHEIGHT, self.frame.size.width, LABELHEIGHT)];
         _label.text = text;
         UIColor *color = [[UIColor alloc] initWithRed:0.0 / 255 green:0.0 / 255 blue:0.0 / 255 alpha:0.5];
         [_label setBackgroundColor:color];
         [_label setTextColor:[UIColor whiteColor]];
-        if(_imageCount > 0)
-        {
-            imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height)];
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
-            [imageView setImageWithURL:[NSURL URLWithString:array[0]] placeholderImage:[UIImage imageNamed:@"pingeBg.png"]];
-            //NSLog(@"%d",arc4random() % 0xffffffffu);
-            [self addSubview:imageView];
-            [imageView release];
-        }
+        imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height)];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [imageView setImageWithURL:[NSURL URLWithString:imageUrl]];
+        //NSLog(@"%d",arc4random() % 0xffffffffu);
+        [self addSubview:imageView];
+        [imageView release];
         [self addSubview:_label];
         [_label release];
         [color release];

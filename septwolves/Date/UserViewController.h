@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LNconst.h"
 typedef enum
 {
     Login,
@@ -14,7 +15,7 @@ typedef enum
     Forget
 }UserViewType;
 
-@interface UserViewController : UIViewController
+@interface UserViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     UIView *mainView;
     UserViewType viewType;

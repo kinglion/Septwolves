@@ -15,11 +15,14 @@
 
 @implementation ShakeViewController
 @synthesize shakeView;
+@synthesize isShaking;
+@synthesize bean;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        isShaking = NO;
         UIImage* backImage = [UIImage imageNamed:@"backButton.png"];
         CGRect backframe = CGRectMake(0,0,30,19);
         UIButton* backButton= [[UIButton alloc] initWithFrame:backframe];
@@ -63,6 +66,21 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)shakeAnimateFinished:(LNShakeView *)target
+{
+    [shakeView pull];
+}
+
+- (void)pullAnimateFinished:(LNShakeView *)target
+{
+    [shakeView push];
+}
+
+- (void)pushAnimateFinished:(LNShakeView *)target
+{
+    isShaking = NO;
+}
+
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
     //    NSString *str = [NSString stringWithFormat:@"x:%g\ty:%g\tz:%g",acceleration.x,acceleration.y,acceleration.z];
@@ -92,6 +110,10 @@
         shakeCount ++;
         if (shakeCount >10) {
             NSLog(@"你摇动我了~");
+            if (isShaking) {
+                return;
+            }
+            isShaking = YES;
             [self.shakeView shake];
             shakeCount = 0;
             [shakeStart release];

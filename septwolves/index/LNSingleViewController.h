@@ -22,6 +22,7 @@
     NSInteger currentNum;
     NSInteger type_id;
     CharacterBean *bean;
+    NSInteger _id;
 }
 @property (nonatomic,retain) LNActivityIndicatorView *indicatorView;
 @property (nonatomic,retain) UIPageControl *pageControl;
@@ -30,5 +31,6 @@
 @property (nonatomic) NSInteger currentNum;
 @property (nonatomic,assign) NSInteger type_id;
 @property (nonatomic,retain) CharacterBean *bean;
+@property (nonatomic,assign) NSInteger _id;
 - (id)init:(NSInteger)typeid;
 @end

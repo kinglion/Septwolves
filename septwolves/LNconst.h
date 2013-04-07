@@ -13,6 +13,8 @@
 #import "CharacterBean.h"
 #import "LNActivityIndicatorView.h"
 #import "NewBean.h"
+#import "dataBean.h"
+#import "RssBean.h"
 #define RECT_SCREEN [[UIScreen mainScreen] bounds]
 #define SIZE_SCREEN RECT_SCREEN.size
 #define HEIGHT_SCREEN SIZE_SCREEN.height
@@ -29,6 +31,8 @@
 #define VIP_HISTORY_PAGE @"hyzc.php"
 #define GIFT_PAGE @"lpdh.php"
 #define USER_PAGE @"user.php"
+#define RSS_PAGE @"rss.php"
+#define ADVITER_PAGE @"gw.php"
 
 #define MAIN_URL [NSString stringWithFormat:@"%@%@",BASE_URL,MAIN_PAGE]
 #define MEN_URL [NSString stringWithFormat:@"%@%@",BASE_URL,MEN_PAGE]
@@ -37,6 +41,8 @@
 #define VIP_HISTORY_URL [NSString stringWithFormat:@"%@%@",BASE_URL,VIP_HISTORY_PAGE]
 #define GIFT_URL [NSString stringWithFormat:@"%@%@",BASE_URL,GIFT_PAGE]
 #define USER_URL [NSString stringWithFormat:@"%@%@",BASE_URL,USER_PAGE]
+#define RSS_URL [NSString stringWithFormat:@"%@%@",BASE_URL,RSS_PAGE]
+#define ADVITER_URL [NSString stringWithFormat:@"%@%@",BASE_URL,ADVITER_PAGE]
 @interface LNconst : NSObject
 //发出http请求获取菜单信息
 + (menuBean *)httpRequestMenu:(LNActivityIndicatorView *)indicatorView;
@@ -47,7 +53,13 @@
 //
 + (NewBean *)httpRequestNewList:(LNActivityIndicatorView *)indicatorView;
 //
++ (NewBean *)httpRequestNewInfo:(LNActivityIndicatorView *)indicatorView id:(NSInteger)_id;
 //
++ (NewBean *)httpRequestChrList:(LNActivityIndicatorView *)indicatorView;
+//
++ (NewBean *)httpRequestChrInfo:(LNActivityIndicatorView *)indicatorView id:(NSInteger)_id;
++ (dataBean *)httpRequestAdviserList:(LNActivityIndicatorView *)indicatorView type:(NSInteger)type num:(NSInteger)num;
++ (RssBean *)httpRequestRssList:(LNActivityIndicatorView *)indicatorView type:(NSInteger)type;
 + (NSArray *)formatWithBaseUrl:(NSArray *)urlList;
 + (NSString *)stringFormatWithBaseUrl:(NSString *)url;
 @end

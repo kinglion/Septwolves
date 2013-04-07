@@ -7,7 +7,12 @@
 //
 
 #import "DataDetailViewController.h"
-#define HEIGHT_TABLE 300.0f
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
+#define HEIGHT_TABLE 235.0f
+#define HEIGHT_IMG 170.0f
+#define WIDTH_IMG 130.0f
+#define WIDTH_DIS (WIDTH_SCREEN - 2 * WIDTH_IMG)/3 
 
 @interface DataDetailViewController ()
 
@@ -18,6 +23,9 @@
 @synthesize mainTableView;
 @synthesize themeLabel,addrLabel,externLabel,dateLabel;
 @synthesize bean;
+@synthesize indicatorView;
+@synthesize imgBean;
+@synthesize imgView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -46,12 +54,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
     sql = [[LNSQLite alloc]init];
     UITableView *tempTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, HEIGHT_TABLE) style:UITableViewStyleGrouped];
     [tempTableView setDelegate:self];
     [tempTableView setDataSource:self];
     [self.view addSubview:tempTableView];
     self.mainTableView = tempTableView;
+    [self.view addSubview:tempIndicatorView];
+    self.indicatorView = tempIndicatorView;
+    UIView *tempView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 175)];
+    [self.view addSubview:tempView];
+    self.imgView = tempView;
+    [tempView release];
     [tempTableView release];
 	// Do any additional setup after loading the view.
 }
@@ -61,7 +76,46 @@
     if (self.sql) {
         self.bean = [sql selectSQLById:self.bean._id];
         [self.mainTableView reloadData];
+        self.imgBean = [LNconst httpRequestAdviserList:self.indicatorView type:self.bean.type num:2];
+        [self reloadImgView];
+        NSLog(@"viewDidAppear");
     }
+}
+
+- (void)reloadImgView
+{
+    NSLog(@"item:%@",self.imgBean.item);
+    if (self.imgView) {
+        for (UIView *view in self.imgView.subviews) {
+            [view removeFromSuperview];
+        }
+    }
+    [self.imgView setFrame:CGRectMake(0, self.mainTableView.frame.size.height+10, 320, 175)];
+    int length = [self.imgBean.item count];
+    length = length > 2? 2 : length;
+    for (int i = 0; i < length; i++) {
+        float x = (i % 2) * (WIDTH_DIS + WIDTH_IMG) + WIDTH_DIS;
+        float y = floor(i / 2) * HEIGHT_IMG;
+        UIImageView *tempView = [self ImageViewOfURL:[[self.imgBean.item objectAtIndex:i] imgUrl] x:x y:y index:[[self.imgBean.item objectAtIndex:i] _id                                                                                                     ]];
+        [self.imgView addSubview:tempView];
+    }
+}
+
+- (UIImageView *)ImageViewOfURL:(NSString *)url x:(float)x y:(float)y index:(NSInteger)index
+{
+    UIImageView *tempView = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, WIDTH_IMG, HEIGHT_IMG)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, tempView.frame.size.width, tempView.frame.size.height)];
+    [button setAlpha:1];
+    [tempView addSubview:button];
+    [button setTag:index];
+    [button addTarget:self action:@selector(clickItem:) forControlEvents:UIControlEventTouchUpInside];
+    [button setUserInteractionEnabled:YES];
+    [tempView setUserInteractionEnabled:YES];
+    [tempView setImageWithURL:[NSURL URLWithString:url]];
+    [tempView.layer setBorderWidth:2];
+    [tempView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [tempView.layer setShadowColor:[[UIColor grayColor] CGColor]];
+    return tempView;
 }
 
 - (void)doClickBackAction:(id)sender
@@ -74,6 +128,12 @@
     DataAddViewController *addVc = [[DataAddViewController alloc]init];
     [addVc setBean:self.bean];
     [self.navigationController pushViewController:addVc animated:YES];
+}
+
+- (void)clickItem:(id)sender
+{
+    UIButton *button = sender;
+    NSLog(@"touch:%d",button.tag);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -166,7 +226,7 @@
                 cell.textLabel.text = @"推荐搭配:";
                 break;
         }
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return cell;
 }

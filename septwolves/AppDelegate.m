@@ -39,13 +39,17 @@
     // Override point for customization after application launch.
     //隐藏顶部状态栏
     //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     rootNav = [[mainViewController alloc]init];
-    [self.window makeKeyAndVisible];
-    [self.window setRootViewController:rootNav];
+    if ([_window respondsToSelector:@selector(setRootViewController:)]) {
+        self.window.rootViewController = rootNav;
+    } else {
+        [self.window addSubview:rootNav.view];
+    }
+    
     [rootNav release];
     //[self playStartScreen];
-    
+    [self.window makeKeyAndVisible];
     //[navController release];
     return YES;
     

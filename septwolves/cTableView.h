@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "product.h"
 #import "cView.h"
+#import "RssBean.h"
 @class cTableView;
 @protocol cTableViewDelegate
 
@@ -20,16 +20,14 @@
 
 @interface cTableView : UIScrollView<cViewDelegate>
 {
-    NSMutableArray* products;
+    RssBean* products;
     id<cTableViewDelegate> customDelegate;
+    NSInteger loadIndex;
 }
-@property (nonatomic,retain)NSMutableArray* products;
+@property (nonatomic,retain)RssBean* products;
 @property (nonatomic,retain)id<cTableViewDelegate> customDelegate;
-- (id)initWithFrame:(CGRect)frame products:(NSMutableArray*)products;
-//设置view的数据
-- (void)setProducts:(NSMutableArray*)products;
-//返回view的数据
-- (NSMutableArray*)getProducts;
+@property (nonatomic,assign)NSInteger loadIndex;
+- (id)initWithFrame:(CGRect)frame products:(RssBean*)productsArr;
 //重新更新一个视图的数据
 - (void)reloadData;
 //清空视图内容

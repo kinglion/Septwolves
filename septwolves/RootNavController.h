@@ -17,7 +17,7 @@
 
 
 @optional
-- (void)onClickItem:(UIViewController*)viewController row:(NSInteger)row;
+- (void)onClickItem:(UIViewController*)viewController row:(NSInteger)row bean:(menuBean *)bean;
 @end
 
 @interface RootNavController : UIViewController<UITableViewDataSource,UITableViewDelegate,KenBurnsViewDelegate,UINavigationControllerDelegate>

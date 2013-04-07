@@ -19,7 +19,9 @@
 @synthesize topView = _topView;
 @synthesize imageArr = _imageArr;
 @synthesize imageViews = _imageViews;
-
+@synthesize _id;
+@synthesize bean;
+@synthesize indicatorView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -44,23 +46,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSMutableArray *array = [[NSMutableArray alloc]initWithObjects:@"http://www.fzlol.com/upimg/allimg/130226/2132T96443.jpg",@"http://www.fzlol.com/upimg/allimg/130226/2132T93M4.jpg", nil];
-    SliderView *view = [[SliderView alloc]init];
-    view.delegate = self;
-    [view setFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height)];
-    [view setFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height) ImageArr:array];
-    //VideoView *view = [[VideoView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height)];
-    [self.topView addSubview:view];
-    self.imageArr = array;
-    NSLog(@"wwwwwwww%@",array);
-    [array release];
-    [view release];
+    self.textView.backgroundColor = [UIColor blackColor];
+    LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+    [self.view addSubview:tempIndicatorView];
+    self.indicatorView = tempIndicatorView;
+    self.bean = [LNconst httpRequestNewInfo:self.indicatorView id:self._id];
+    [self.textLabel setText:bean.time];
+    NSString *postHTML = bean.content;
+    
+    NSString *structure =[NSString stringWithFormat:@"<html><head><style type='text/css'>iframe {width:290px; height:auto; background-color:#000; color:#ffffff;} object {width:290px; height:auto; color:#ffffff;} blockquote {font-family:Arial; color:#ffffff;}img{width:290px; height:auto; display: block; margin-left: 0px; margin-right: auto} p {text-indent:2em; font-family:Arial; color:#ffffff;}   body {color:#ffffff;background-color:#000000; text-indent:2em;} h1 {font-family:Arial; color:#ffffff;} h2 {font-family:Arial; color:#ffffff;} h3 {font-family:Arial; color:#ffffff;} h4 {font-family:Arial; color:#ffffff;} h5 {font-family:Arial; color:#ffffff;} h6 {font-family:Arial; color:#ffffff;} li {font-family:Arial; color:#ffffff;} b {font-family:Arial; color:#ffffff;}</style></head><body>"];
+    NSString *close =[NSString stringWithFormat:@"</body></html>"];
+    
+    NSString *HTMLString = [NSString stringWithFormat:@"%@%@%@", structure, postHTML, close];
+    [self.textView loadHTMLString:HTMLString baseURL:nil];
+    if ([bean.type isEqual:@"image"]) {
+        imageArr = [[NSMutableArray alloc]init];
+        for (NewBean *img in self.bean.imgList) {
+            [imageArr addObject:img.url];
+        }
+        SliderView *view = [[SliderView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height)];
+        view.delegate = self;
+        [view setFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height) ImageArr:imageArr];
+        [_topView addSubview:view];
+        [view release];
+    }else{
+        VideoView *view = [[VideoView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _topView.frame.size.width, _topView.frame.size.height)];
+        view.delegate = self;
+        [self.topView addSubview:view];
+        [view release];
+    }
+    [tempIndicatorView release];
     // Do any additional setup after loadßing the view from its nib.
+}
+
+- (void)updateId:(NSInteger)newID
+{
+    self._id = newID;
 }
 
 - (void)touchEvent:(VideoView *)view
 {
-    MPMoviePlayerViewController *viewController = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:@"http://movies.apple.com/media/us/iphone/2010/tours/apple-iphone4-design_video-us-20100607_848x480.mov"]];
+    MPMoviePlayerViewController *viewController = [[MPMoviePlayerViewController alloc]initWithContentURL:[NSURL URLWithString:self.bean.vedioUrl]];
     [self presentMoviePlayerViewControllerAnimated:viewController];
     [view setAlpha:1.0f];
 }
@@ -85,14 +111,14 @@
 {
     NSString *url;
     // Here, images are accessed through their name "1f.jpg", "2f.jpg",
-    NSLog(@"self.imageArr:%d,self.imageViews:%d",[self.imageArr retainCount],[self.imageViews retainCount]);
+    NSLog(@"======");
     url = [self.imageArr objectAtIndex:[self.imageViews indexOfObject:view]];
-    NSLog(@"xxxxxxxx%@",self.imageArr);
     return url;
 }
 
 - (void)touchView:(SliderView *)view ASMediaFocusManager:(ASMediaFocusManager *)mediaFocusManager images:(NSMutableArray *)images
 {
+    NSLog(@"==========");
     mediaFocusManager.delegate = self;
     self.imageViews = images;
 }

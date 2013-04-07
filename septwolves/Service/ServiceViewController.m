@@ -9,7 +9,6 @@
 
 #import "ServiceViewController.h"
 #import "JSONKit.h"
-#import "product.h"
 #import "mainViewController.h"
 #import "LNconst.h"
 #import "ChannelViewController.h"
@@ -26,13 +25,14 @@
 @synthesize allTitleArr;
 @synthesize filterTitleArr;
 @synthesize listTableView;
-
+@synthesize bean;
+@synthesize mainView;
+@synthesize indicatorView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"品格咨询";
         [self.searchDisplayController setDelegate:self];
         [self.searchDisplayController setSearchResultsDataSource:self];
         [self.searchDisplayController setSearchResultsDelegate:self];
@@ -158,13 +158,6 @@
             [parentVC.navController removeFromParentViewController];
         }];
     }
-    /*[self.parentViewController transitionFromViewController:self toViewController:self.parentViewController.rootController duration:0.5 options:UIViewAnimationOptionTransitionNone animations:^{
-     [rootController.view setCenter:CGPointMake(-self.view.frame.size.width/2, self.view.frame.size.height/2)];
-     [navController.view setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
-     } completion:^(BOOL finished) {
-     //
-     }];*/
-    
 }
 
 
@@ -293,28 +286,20 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    str = @"{\"result\":\"000\", \"list\":[{\"id\":\"0\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"1\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"},{\"id\":\"2\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"}]}";
-    //str = @"{\"result\":\"000\", \"list\":[{\"id\":\"0\",\"title\":\"七匹狼男装\",\"imgUrl\":\"http://www.fzlol.com/upimg/allimg/130226/2132Tb1C.jpg\",\"content\":\"一匹狼\"}]}";
-    allTitleArr = [[NSMutableArray alloc]init];
-    filterTitleArr = [[NSMutableArray alloc]init];
-    allArr = [[NSMutableArray alloc]init];
-    NSDictionary *data = [str objectFromJSONString];
-    NSArray *dataArray = [[NSArray alloc]initWithArray:[data objectForKey:@"list"]];
-    int allArrCount = [dataArray count];
-    for (NSInteger i = 0; i < allArrCount; i++) {
-        NSDictionary *single = [dataArray objectAtIndex:i];
-        product *productBean = [product productWithType:[[single objectForKey:@"id"] intValue] title:[single objectForKey:@"title"] imgUrl:[single objectForKey:@"imgUrl"] type:0];
-        [allTitleArr addObject:[single objectForKey:@"title"]];
-        [allArr addObject:productBean];
-    }
-    ctableView = [[cTableView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR, self.view.frame.size.width, self.view.frame.size.height - HEIGHT_BAR) products:allArr];
-    [ctableView setCustomDelegate:self];
-    [self.view addSubview:ctableView];
+    LNActivityIndicatorView *tempIndicatorView = [[LNActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, HEIGHT_SCREEN)];
+    UIView *tempView = [[UIView alloc]initWithFrame:CGRectMake(0, HEIGHT_BAR, self.view.frame.size.width, self.view.frame.size.height - HEIGHT_BAR)];
+    [self.view addSubview:tempView];
+    self.mainView = tempView;
     [self.searchDisplayController.searchResultsTableView reloadData];
-    //[ctableView reloadData];
-    [ctableView release];
     self.listTableView = [self creatListTableView];
     [self.view addSubview:self.listTableView];
+    [self.view addSubview:tempIndicatorView];
+    self.indicatorView = tempIndicatorView;
+    self.bean = [LNconst httpRequestRssList:self.indicatorView type:nil];
+    ctableView = [[cTableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - HEIGHT_BAR) products:bean];
+    [self.mainView addSubview:ctableView];
+    [ctableView setCustomDelegate:self];
+    [ctableView release];
 }
 
 - (UITableView*)creatListTableView
@@ -342,6 +327,9 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 - (void)cTableViewSelected:(cTableView *)view
 {
     NSLog(@"cTableViewSelected");
+    ReaderVC *readerVc = [[ReaderVC alloc]init];
+    readerVc.sharedIndex = 0;
+    [self.navigationController pushViewController:readerVc animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
